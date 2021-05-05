@@ -11,7 +11,7 @@ export const Home = (): JSX.Element => (
 
     <main>
       <h1 className="title">
-        Welcome to <a href="https://nextjs.org">Next.js!</a>
+        opensource at <a href="https://nextjs.org">ACM at UCLA</a>
       </h1>
 
       <p className="description">
@@ -65,18 +65,6 @@ export const Home = (): JSX.Element => (
         <Image src="/vercel.svg" alt="Vercel Logo" height={'32'} width={'64'} />
       </a>
     </footer>
-      {/* TODO(mattxwang): let's abstract this out to westwood css, or a file?*/}
-    <style jsx global>{`
-      html,
-      body {
-        padding: 0;
-        margin: 0;
-      }
-
-      * {
-        box-sizing: border-box;
-      }
-    `}</style>
   </div>
 )
 
