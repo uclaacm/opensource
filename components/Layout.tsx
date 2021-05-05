@@ -17,7 +17,7 @@ function Layout(props: LayoutProps): JSX.Element {
         <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 
         <title>open source at acm at ucla</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/logo.png" />
         <link href="/westwood.min.css" rel="stylesheet" key="westwood-sans"/>
       </Head>
       <Navbar />
