@@ -1,30 +1,13 @@
-import Head from 'next/head'
-import Image from 'next/image'
+import React from 'react';
+import Layout from '../components/Layout';
 
-export const Home = (): JSX.Element => (
-  <div className="container">
-    <Head>
-      <title>Create Next App</title>
-      <link rel="icon" href="/favicon.ico" />
-      <link href="/westwood.min.css" rel="stylesheet" key="westwood-sans"/>
-    </Head>
-
-    <main>
+function Home(): JSX.Element {
+  return (
+  <Layout>
+    <div className="container">
       <h1 className="title">
-        opensource at <a href="https://nextjs.org">ACM at UCLA</a>
+        opensource at <a href="https://uclaacm.com">ACM at UCLA</a>
       </h1>
-
-      <p className="description">
-        Get started by editing <code>pages/index.tsx</code>
-      </p>
-
-      <button
-        onClick={() => {
-          window.alert('With typescript and Jest')
-        }}
-      >
-        Test Button
-      </button>
 
       <div className="grid">
         <a href="https://nextjs.org/docs" className="card">
@@ -53,19 +36,9 @@ export const Home = (): JSX.Element => (
           <p>Instantly deploy your Next.js site to a public URL with Vercel.</p>
         </a>
       </div>
-    </main>
-
-    <footer>
-      <a
-        href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Powered by{' '}
-        <Image src="/vercel.svg" alt="Vercel Logo" height={'32'} width={'64'} />
-      </a>
-    </footer>
-  </div>
-)
+    </div>
+  </Layout>
+  )
+}
 
 export default Home
