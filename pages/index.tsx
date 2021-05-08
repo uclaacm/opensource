@@ -70,9 +70,16 @@ function Home({numRepos, recentEvents}: InferGetStaticPropsType<typeof getStatic
       <p>
         repositories: {numRepos}
       </p>
-      {
-        recentEvents.map((event) => <GitHubEvent {...event} key={event.id} />)
-      }
+      <div className="card">
+        <div className="card-body">
+          {
+            recentEvents.map((event) => <GitHubEvent {...event} key={event.id} />)
+          }
+          <p>
+            see more activity <a href="https://github.com/uclaacm/">on our org</a>!
+          </p>
+        </div>
+      </div>
     </div>
   </Layout>
   )
