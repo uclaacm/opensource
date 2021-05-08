@@ -14,7 +14,7 @@ interface GitHubEvent {
 interface GitHubActor {
   id: number,
   login: string,
-  display_login: string,
+  display_login?: string,
   gravatar_id: string,
   url: string,
   avatar_url: string,
@@ -31,7 +31,7 @@ function GitHubEvent(props: GitHubEvent): JSX.Element {
   return (
     <div className="card" style={{marginTop: "20px"}}>
       <div className="card-body">
-        <b>{actor.display_login}</b> did a {type} on <Link href={`https://github.com/${repo.name}`}>{repo.name}</Link>
+        <b>{actor.login}</b> did a {type} on <Link href={`https://github.com/${repo.name}`}>{repo.name}</Link>
       </div>
     </div>
   )

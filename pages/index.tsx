@@ -1,35 +1,34 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Octokit } from "@octokit/core";
+import { InferGetStaticPropsType } from 'next'
 import GitHubEvent from '../components/GitHubEvent';
 import Layout from '../components/Layout';
 
-function Home(): JSX.Element {
-  const [acmRepos, setACMRepos] = useState(0);
-  const [recentActions, setRecentActions] = useState([]);
+// TODO(mattxwang): can we resolve the "missing return type on func statement"
+export const getStaticProps = async () => {
+  // TODO(mattxwang): change the auth scope and get members, etc.
+  // see: https://docs.github.com/en/rest/reference/orgs
+  const octokit = new Octokit();
+  const orgResponse = await octokit.request("GET /orgs/{org}", {
+    org: "uclaacm",
+  });
+  const numRepos = orgResponse.data.public_repos;
 
-  useEffect(()=> {
-    // TODO(mattxwang): change the auth scope and get members, etc.
-    // see: https://docs.github.com/en/rest/reference/orgs
-    const octokit = new Octokit();
-    async function getGHRepoCounts() {
-      const response = await octokit.request("GET /orgs/{org}", {
-        org: "uclaacm",
-      })
-      setACMRepos(response.data.public_repos);
-    }
-    getGHRepoCounts();
-  }, [])
+  const eventResponse = await octokit.request("GET /orgs/{org}/events", {
+    org: "uclaacm",
+  });
+  const recentEvents = eventResponse.data;
 
-  useEffect(()=> {
-    const octokit = new Octokit();
-    async function getGHRepoCounts() {
-      const response = await octokit.request("GET /orgs/{org}/events", {
-        org: "uclaacm",
-      })
-      setRecentActions(response.data);
-    }
-    getGHRepoCounts();
-  }, [])
+  return {
+    props: {
+      numRepos,
+      recentEvents
+    },
+    revalidate: 60,
+  }
+}
+
+function Home({numRepos, recentEvents}: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
 
   return (
   <Layout>
@@ -38,22 +37,21 @@ function Home(): JSX.Element {
         opensource at <a href="https://uclaacm.com">ACM at UCLA</a>
       </h1>
 
-      <p>
-        repositories: {acmRepos}
-      </p>
-
       <div className="card">
         <a href="https://nextjs.org/docs" className="card-body">
           <h3>Documentation &rarr;</h3>
           <p>Find in-depth information about Next.js features and API.</p>
         </a>
       </div>
-      <h2>what we&apos;ve been doing recently...</h2>
       <div>
-        {
-          recentActions.map((event) => <GitHubEvent {...event} key={event.id} />)
-        }
-      </div>
+      <h2>what we&apos;ve been doing recently...</h2>
+      <p>
+        repositories: {numRepos}
+      </p>
+      {
+        recentEvents.map((event) => <GitHubEvent {...event} key={event.id} />)
+      }
+    </div>
     </div>
   </Layout>
   )
