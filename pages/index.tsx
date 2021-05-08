@@ -1,8 +1,9 @@
 import React from 'react';
 import { Octokit } from "@octokit/core";
-import { InferGetStaticPropsType } from 'next'
+import { InferGetStaticPropsType } from 'next';
 import GitHubEvent from '../components/GitHubEvent';
 import Layout from '../components/Layout';
+import ProjectCard from '../components/ProjectCard';
 
 // TODO(mattxwang): can we resolve the "missing return type on func statement"
 export const getStaticProps = async () => {
@@ -28,8 +29,16 @@ export const getStaticProps = async () => {
   }
 }
 
-function Home({numRepos, recentEvents}: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
+const bufferBuffetProject = {
+  name: "Buffer Buffet",
+  description: "All of our projects are open-source! Literally, all of them.",
+  repo: "https://github.com/uclaacm/buffer-buffet",
+  link: "https://bufferbuffet.uclaacm.com/",
+  image: "/buffer-buffet.png",
+  alt: "buffer buffet landing splash",
+}
 
+function Home({numRepos, recentEvents}: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
   return (
   <Layout>
     <div className="container">
@@ -37,13 +46,26 @@ function Home({numRepos, recentEvents}: InferGetStaticPropsType<typeof getStatic
         opensource at <a href="https://uclaacm.com">ACM at UCLA</a>
       </h1>
 
-      <div className="card">
-        <a href="https://nextjs.org/docs" className="card-body">
-          <h3>Documentation &rarr;</h3>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
+      <div className="row">
+        <div className="col-6">
+          <div className="card">
+            <a href="https://github.com/uclaacm/" className="card-body">
+              <h3>Projects &rarr;</h3>
+              <p>All of our projects are open-source! Literally, all of them.</p>
+            </a>
+          </div>
+        </div>
+        <div className="col-6">
+          <div className="card">
+            <a href="https://dev-pathways.netlify.app/" className="card-body">
+              <h3>Learning &rarr;</h3>
+              <p>We want to teach you how to contribute to OSS too!</p>
+            </a>
+          </div>
+        </div>
       </div>
-      <div>
+      <h2>featured project</h2>
+      <ProjectCard {...bufferBuffetProject} />
       <h2>what we&apos;ve been doing recently...</h2>
       <p>
         repositories: {numRepos}
@@ -51,7 +73,6 @@ function Home({numRepos, recentEvents}: InferGetStaticPropsType<typeof getStatic
       {
         recentEvents.map((event) => <GitHubEvent {...event} key={event.id} />)
       }
-    </div>
     </div>
   </Layout>
   )
