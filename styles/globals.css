@@ -12,6 +12,54 @@ body {
   font-size: 2rem;
 }
 
+.mt-1 {
+  margin-top: 1rem;
+}
+
 .mt-2 {
   margin-top: 2rem;
+}
+
+/* overriding the WestwoodCSS default */
+.navbar-link a {
+  padding-left: 1em !important;
+}
+
+.navbar-link > button {
+  margin-left: 1em;
+}
+
+.dev-language-badge {
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  border-radius: 100px;
+  position: relative;
+  top: 0.125em;
+  margin-right: 0.25em;
+  background-color: black;
+}
+
+.dev-language-badge.lang-js {
+  background-color: #EFDF6A;
+}
+
+.dev-language-badge.lang-ts {
+  background-color: #2B7489;
+}
+
+.dev-language-badge.lang-scss {
+  background-color: #C6538C;
+}
+
+.dev-language-badge.lang-go {
+  background-color: #4AABD5;
+}
+
+.dev-language-badge.lang-html {
+  background-color: #D35A31;
+}
+
+.dev-language-badge.lang-rust {
+  background-color: #DEA584;
 }

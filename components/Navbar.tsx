@@ -13,7 +13,15 @@ function Navbar(): JSX.Element {
       </div>
       <div className="navbar-items">
         <div className="navbar-link">
-          <Link href="https://github.com/uclaacm">GitHub</Link>
+          <Link href="/projects">
+            <a>projects</a>
+          </Link>
+          <Link href="/contribute">
+            <a>contribute</a>
+          </Link>
+          <Link href="https://github.com/uclaacm">
+            <button>GitHub</button>
+          </Link>
         </div>
       </div>
     </nav>

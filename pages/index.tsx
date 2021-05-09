@@ -1,9 +1,12 @@
 import React from 'react';
 import { Octokit } from "@octokit/core";
 import { InferGetStaticPropsType } from 'next';
+import Link from 'next/link';
 import GitHubEvent from '../components/GitHubEvent';
 import Layout from '../components/Layout';
 import ProjectCard from '../components/ProjectCard';
+
+import projects from '../data/projects';
 
 // TODO(mattxwang): can we resolve the "missing return type on func statement"
 export const getStaticProps = async () => {
@@ -29,15 +32,6 @@ export const getStaticProps = async () => {
   }
 }
 
-const bufferBuffetProject = {
-  name: "Buffer Buffet",
-  description: "All of our projects are open-source! Literally, all of them.",
-  repo: "https://github.com/uclaacm/buffer-buffet",
-  link: "https://bufferbuffet.uclaacm.com/",
-  image: "/buffer-buffet.png",
-  alt: "buffer buffet landing splash",
-}
-
 function Home({numRepos, recentEvents}: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
   const linkProps = {
     rel: "noopener noreferrer",
@@ -57,10 +51,12 @@ function Home({numRepos, recentEvents}: InferGetStaticPropsType<typeof getStatic
         <div className="col-6">
           <div className="card">
             <div className="card-body">
-              <a href="https://github.com/uclaacm/" {...linkProps}>
-                <h3>Projects &rarr;</h3>
-                <p>All of our projects are open-source! Literally, all of them.</p>
-              </a>
+              <Link href="/projects">
+                <a>
+                  <h3>Projects &rarr;</h3>
+                  <p>All of our projects are open-source! Literally, all of them.</p>
+                </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -68,9 +64,9 @@ function Home({numRepos, recentEvents}: InferGetStaticPropsType<typeof getStatic
           <div className="card">
             <div className="card-body">
                 <a href="https://github.com/uclaacm/" {...linkProps}>
-                <h3>Learning &rarr;</h3>
-                <p>Pick up the skills to write great software.</p>
-              </a>
+                  <h3>Learning &rarr;</h3>
+                  <p>Pick up the skills to write great software.</p>
+                </a>
             </div>
           </div>
         </div>
@@ -81,19 +77,21 @@ function Home({numRepos, recentEvents}: InferGetStaticPropsType<typeof getStatic
           <div className="card">
             <div className="card-body">
                 <a href="https://github.com/uclaacm/" {...linkProps}>
-                <h3>Events &rarr;</h3>
-                <p>We love talking about open-source. Come talk with us!</p>
-              </a>
+                  <h3>Events &rarr;</h3>
+                  <p>We love talking about open-source. Come talk with us!</p>
+                </a>
             </div>
           </div>
         </div>
         <div className="col-6">
           <div className="card">
             <div className="card-body">
-                <a href="https://github.com/uclaacm/" {...linkProps}>
-                <h3>Contribute &rarr;</h3>
-                <p>Make your first pull request with us!</p>
-              </a>
+                <Link href="/contribute">
+                  <a>
+                    <h3>Contribute &rarr;</h3>
+                    <p>Make your first pull request with us!</p>
+                  </a>
+                </Link>
             </div>
           </div>
         </div>
@@ -101,7 +99,7 @@ function Home({numRepos, recentEvents}: InferGetStaticPropsType<typeof getStatic
       <hr className="mt-2" />
 
       <h2>featured project</h2>
-      <ProjectCard {...bufferBuffetProject} />
+      <ProjectCard project={projects[0]} />
       <h2>what we&apos;ve been doing recently...</h2>
       <p>
         repositories: {numRepos}
