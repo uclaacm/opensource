@@ -7,3 +7,11 @@ body {
 * {
   box-sizing: border-box;
 }
+
+.knockout-description {
+  font-size: 2rem;
+}
+
+.mt-2 {
+  margin-top: 2rem;
+}

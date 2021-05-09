@@ -39,31 +39,67 @@ const bufferBuffetProject = {
 }
 
 function Home({numRepos, recentEvents}: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
+  const linkProps = {
+    rel: "noopener noreferrer",
+    target: "_blank",
+  }
   return (
   <Layout>
     <div className="container">
       <h1>
-        opensource at <a href="https://uclaacm.com">ACM at UCLA</a>
+        open source at <a href="https://uclaacm.com" {...linkProps}>ACM at UCLA</a>
       </h1>
-
+      <hr />
+      <p className="knockout-description">
+        at the largest computer science community at UCLA,<br/> <b>we care about open-source.</b>
+      </p>
       <div className="row">
         <div className="col-6">
           <div className="card">
-            <a href="https://github.com/uclaacm/" className="card-body">
-              <h3>Projects &rarr;</h3>
-              <p>All of our projects are open-source! Literally, all of them.</p>
-            </a>
+            <div className="card-body">
+              <a href="https://github.com/uclaacm/" {...linkProps}>
+                <h3>Projects &rarr;</h3>
+                <p>All of our projects are open-source! Literally, all of them.</p>
+              </a>
+            </div>
           </div>
         </div>
         <div className="col-6">
           <div className="card">
-            <a href="https://dev-pathways.netlify.app/" className="card-body">
-              <h3>Learning &rarr;</h3>
-              <p>We want to teach you how to contribute to OSS too!</p>
-            </a>
+            <div className="card-body">
+                <a href="https://github.com/uclaacm/" {...linkProps}>
+                <h3>Learning &rarr;</h3>
+                <p>Pick up the skills to write great software.</p>
+              </a>
+            </div>
           </div>
         </div>
       </div>
+
+      <div className="row mt-2">
+        <div className="col-6">
+          <div className="card">
+            <div className="card-body">
+                <a href="https://github.com/uclaacm/" {...linkProps}>
+                <h3>Events &rarr;</h3>
+                <p>We love talking about open-source. Come talk with us!</p>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div className="col-6">
+          <div className="card">
+            <div className="card-body">
+                <a href="https://github.com/uclaacm/" {...linkProps}>
+                <h3>Contribute &rarr;</h3>
+                <p>Make your first pull request with us!</p>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr className="mt-2" />
+
       <h2>featured project</h2>
       <ProjectCard {...bufferBuffetProject} />
       <h2>what we&apos;ve been doing recently...</h2>
@@ -76,7 +112,7 @@ function Home({numRepos, recentEvents}: InferGetStaticPropsType<typeof getStatic
             recentEvents.map((event) => <GitHubEvent {...event} key={event.id} />)
           }
           <p>
-            see more activity <a href="https://github.com/uclaacm/">on our org</a>!
+            see more activity <a href="https://github.com/uclaacm/" {...linkProps}>on our org</a>!
           </p>
         </div>
       </div>
