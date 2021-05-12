@@ -1,27 +1,55 @@
-# NextJS Typescript Boilerplate
+# open-source at acm (at ucla)
 
-Bootstrap a developer-friendly NextJS app configured with:
+hello friends! this is a ~ top-secret ~ project that has three key goals:
 
-- [Typescript](https://www.typescriptlang.org/)
-- Linting with [ESLint](https://eslint.org/)
-- Formatting with [Prettier](https://prettier.io/)
-- Linting, typechecking and formatting on by default using [`husky`](https://github.com/typicode/husky) for commit hooks
-- Testing with [Jest](https://jestjs.io/) and [`react-testing-library`](https://testing-library.com/docs/react-testing-library/intro)
+1. to showcase the open-source projects, events, and culture at [acm at UCLA](https://uclaacm.com)
+2. so that matt (@mattxwang) can test out [Next.js](https://nextjs.org/) (for possible use in other acm projects)!
+3. to test out [WestwoodCSS](https://github.com/uclaacm/WestwoodCSS), a CSS framework made by acm at ucla!
 
-## Deploy your own
+Eventually, matt's got bigger ideas - he'd love to showcase how awesome OSS is at UCLA!
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
+## Dev Notes
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-typescript-eslint-jest&project-name=with-typescript-eslint-jest&repository-name=with-typescript-eslint-jest)
+### Setup
 
-## How to use
+We use the typical node project workflow, but with [yarn](https://yarnpkg.com/). To run a local dev copy,
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
-
-```bash
-npx create-next-app --example with-typescript-eslint-jest with-typescript-eslint-jest-app
-# or
-yarn create next-app --example with-typescript-eslint-jest with-typescript-eslint-jest-app
+```sh
+$ git clone https://github.com/uclaacm/opensource.git # or use ssh!
+...
+$ cd opensource
+...
+$ yarn install
+...
+$ npx next dev
+...
 ```
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+### Stack
+
+This app is built with [Next.js](https://nextjs.org/), a framework built on top of [React](https://reactjs.org/). We enforce [Typescript](https://www.typescriptlang.org/) throughout the project, and have a strict linter with [ESLint](https://eslint.org/). The CSS framework used is an alpha version [WestwoodCSS](https://github.com/uclaacm/WestwoodCSS), ACM Design's own CSS framework!
+
+We bootstrapped this app with [`create-next-app`](https://nextjs.org/docs/api-reference/create-next-app) using the `with-typescript-eslint-jest` template. There are some other goodies too, like Prettier and Jest (the latter we'd use more seriously in production).
+
+This app is deployed on [Netlify](https://www.netlify.com/) using their [Next.js plugin](https://github.com/netlify/netlify-plugin-nextjs); in particular, this let's us (kind of) [take advantage of ISR](https://www.netlify.com/blog/2021/03/08/incremental-static-regeneration-its-benefits-and-its-flaws/).
+
+### misc
+
+Some small notes on how I've been writing the app so far:
+
+* I use [octokit](https://github.com/octokit/octokit.js) to wrap GitHub's API to get information about the `uclaacm` org. So far, all of this is ISR'd :)
+* [WestwoodCSS](https://github.com/uclaacm/WestwoodCSS) is still in early alpha, so:
+  * there is no documentation (other than reading the source file)
+  * there is no guarantee of forwards-compatability with new versions of WestwoodCSS
+* so far, there is no unified types file; most component types live in the component file, and there is some relevant typing in `util/types.ts`
+* the mapping of event data to human-readable components in `components/GitHubEventAction.tsx` is manually done (and currently, manually typed). I haven't *really* looked into it, but...
+  * I'm sure there are ways we can use the generated types for `octokit` to flesh out the event types, instead of manually picking/resolving fields
+  * there may even be a way to programatically explore types and do the string generation in a much more natural way!
+* most of the actual copy isn't here yet! i'm mostly just fiddling with code :)
+
+
+Want to give a quick shoutout to [Bryan Pan](https://bryanpan.co/) of [Creative Labs](https://www.creativelabsucla.com/) - he's been a big pusher of Next and a great friend to ACM!
+
+## Licensing
+
+This code is under the MIT License, so you can generally use it as you see fit (including forking, copying, etc.). I would love to know if you did - send matt an email at [matt@matthewwang.me](mailto:matt@matthewwang.me).
