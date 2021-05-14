@@ -11,10 +11,10 @@ export interface Project {
 }
 
 export enum Language {
-  GO = "go",
-  HTML = "html",
-  JS = "js",
-  RUST= "rust",
-  SCSS = "scss",
-  TS = "ts",
+  GO = 'go',
+  HTML = 'html',
+  JS = 'js',
+  RUST= 'rust',
+  SCSS = 'scss',
+  TS = 'ts',
 }

@@ -1,3 +1,14 @@
-**/node_modules/*
-**/out/*
-**/.next/*
+webpack.*
+yarn.lock
+*.json
+*.md
+*.toml
+
+*.css
+*.scss
+*.js
+
+node_modules/
+dist/
+public/
+.next/

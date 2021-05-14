@@ -1,7 +1,7 @@
-import Link from 'next/link'
-import React from 'react'
+import Link from 'next/link';
+import React from 'react';
 
-import GitHubEventAction from './GitHubEventAction'
+import GitHubEventAction from './GitHubEventAction';
 
 // TODO(mattxwang): get the official types from the type registry;
 // see https://github.com/octokit/types.ts
@@ -32,12 +32,8 @@ interface GitHubRepo {
 }
 
 function GitHubEvent(props: GitHubEvent): JSX.Element {
-  const { type, actor, repo, payload } = props
-  const userLink = !actor.login.includes('[bot]') ? (
-    <Link href={`https://github.com/${actor.login}`}>{`@${actor.login}`}</Link>
-  ) : (
-    actor.login
-  )
+  const {type, actor, repo, payload} = props;
+  const userLink = !actor.login.includes('[bot]') ? <Link href={`https://github.com/${actor.login}`}>{`@${actor.login}`}</Link> : actor.login;
   return (
     <>
       {/* <div className="card" style={{marginTop: "20px"}}> */}
@@ -48,7 +44,7 @@ function GitHubEvent(props: GitHubEvent): JSX.Element {
       {/*  </div> */}
       {/* // </div> */}
     </>
-  )
+  );
 }
 
-export default GitHubEvent
+export default GitHubEvent;

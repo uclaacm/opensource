@@ -21,12 +21,12 @@ function Projects(): JSX.Element {
               <div className="col-4" key={project.name}>
                 <ProjectCard project={project} vertical />
               </div>
-            )
+            );
           })}
         </div>
       </div>
     </Layout>
-  )
+  );
 }
 
 export default Projects;

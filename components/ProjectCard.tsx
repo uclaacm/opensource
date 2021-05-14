@@ -1,8 +1,8 @@
-import React from 'react'
-import Image from 'next/image'
-import Link from 'next/link'
+import Image from 'next/image';
+import Link from 'next/link';
+import React from 'react';
 
-import { Project } from '../util/'
+import { Project } from '../util/';
 
 interface ProjectCardProps {
   project: Project
@@ -10,9 +10,9 @@ interface ProjectCardProps {
 }
 
 const linkProps = {
-  rel: "noopener noreferrer",
-  target: "_blank",
-}
+  rel: 'noopener noreferrer',
+  target: '_blank',
+};
 
 function ProjectCardImage(project: Project) {
   const { image, alt, link } = project;
@@ -37,10 +37,10 @@ function ProjectCardBody(project: Project) {
   return (
     <div className="card-body">
       <h3 className="mt-1">
-      <Link href={link} >
-        <a {...linkProps}>
-          {name}
-        </a>
+        <Link href={link} >
+          <a {...linkProps}>
+            {name}
+          </a>
         </Link>
       </h3>
       <p>
@@ -63,7 +63,7 @@ function ProjectCard({project, vertical = false}: ProjectCardProps): JSX.Element
         <ProjectCardImage {...project}/>
         <ProjectCardBody {...project}/>
       </div>
-    )
+    );
   }
   return (
     <div className="card">
@@ -76,7 +76,7 @@ function ProjectCard({project, vertical = false}: ProjectCardProps): JSX.Element
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default ProjectCard
+export default ProjectCard;
