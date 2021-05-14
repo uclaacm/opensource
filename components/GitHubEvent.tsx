@@ -1,7 +1,7 @@
-import Link from 'next/link'
-import React from 'react'
+import Link from 'next/link';
+import React from 'react';
 
-import GitHubEventAction from './GitHubEventAction'
+import GitHubEventAction from './GitHubEventAction';
 
 // TODO(mattxwang): get the official types from the type registry;
 // see https://github.com/octokit/types.ts
@@ -47,4 +47,4 @@ function GitHubEvent(props: GitHubEvent): JSX.Element {
   );
 }
 
-export default GitHubEvent
+export default GitHubEvent;

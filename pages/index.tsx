@@ -1,12 +1,12 @@
-import React from 'react'
-import { Octokit } from '@octokit/core'
-import { GetStaticProps } from 'next'
-import Link from 'next/link'
-import GitHubEvent from '../components/GitHubEvent'
-import Layout from '../components/Layout'
-import ProjectCard from '../components/ProjectCard'
+import { Octokit } from '@octokit/core';
+import { GetStaticProps } from 'next';
+import Link from 'next/link';
+import React from 'react';
+import GitHubEvent from '../components/GitHubEvent';
+import Layout from '../components/Layout';
+import ProjectCard from '../components/ProjectCard';
 
-import projects from '../data/projects'
+import projects from '../data/projects';
 
 interface HomeProps {
   numRepos: number
@@ -20,7 +20,7 @@ export default function Home({
   const linkProps = {
     rel: 'noopener noreferrer',
     target: '_blank',
-  }
+  };
   return (
     <Layout>
       <div className="container">
@@ -109,22 +109,22 @@ export default function Home({
         </div>
       </div>
     </Layout>
-  )
+  );
 }
 
 export const getStaticProps: GetStaticProps<HomeProps> = async () => {
   // TODO(mattxwang): change the auth scope and get members, etc.
   // see: https://docs.github.com/en/rest/reference/orgs
-  const octokit = new Octokit()
+  const octokit = new Octokit();
   const orgResponse = await octokit.request('GET /orgs/{org}', {
     org: 'uclaacm',
-  })
-  const numRepos = orgResponse.data.public_repos
+  });
+  const numRepos = orgResponse.data.public_repos;
 
   const eventResponse = await octokit.request('GET /orgs/{org}/events', {
     org: 'uclaacm',
-  })
-  const recentEvents = eventResponse.data
+  });
+  const recentEvents = eventResponse.data;
 
   return {
     props: {
@@ -132,5 +132,5 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
       recentEvents,
     },
     revalidate: 60,
-  }
-}
+  };
+};
