@@ -7,7 +7,7 @@ function Footer(): JSX.Element {
         made by acm at ucla, with next
       </div>
     </footer>
-  )
+  );
 }
 
 export default Footer;

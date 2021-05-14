@@ -25,7 +25,7 @@ function Navbar(): JSX.Element {
         </div>
       </div>
     </nav>
-  )
+  );
 }
 
 export default Navbar;

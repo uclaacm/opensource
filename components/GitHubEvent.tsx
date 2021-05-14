@@ -32,17 +32,17 @@ interface GitHubRepo {
 
 function GitHubEvent(props: GitHubEvent): JSX.Element {
   const {type, actor, repo, payload} = props;
-  const userLink = !actor.login.includes("[bot]") ? <Link href={`https://github.com/${actor.login}`}>{`@${actor.login}`}</Link> : actor.login;
+  const userLink = !actor.login.includes('[bot]') ? <Link href={`https://github.com/${actor.login}`}>{`@${actor.login}`}</Link> : actor.login;
   return (
     <>
-     {/* <div className="card" style={{marginTop: "20px"}}> */}
+      {/* <div className="card" style={{marginTop: "20px"}}> */}
       {/* <div className="card-body"> */}
-        {userLink} <GitHubEventAction type={type} payload={payload} /> <Link href={`https://github.com/${repo.name}`}>{repo.name}</Link>
-        <hr />
+      {userLink} <GitHubEventAction type={type} payload={payload} /> <Link href={`https://github.com/${repo.name}`}>{repo.name}</Link>
+      <hr />
       {/*  </div> */}
-    {/* // </div> */}
+      {/* // </div> */}
     </>
-  )
+  );
 }
 
 export default GitHubEvent;

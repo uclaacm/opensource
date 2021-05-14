@@ -10,7 +10,7 @@ function Contribute(): JSX.Element {
         </h1>
       </div>
     </Layout>
-  )
+  );
 }
 
 export default Contribute;
