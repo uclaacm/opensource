@@ -21,13 +21,13 @@ $ cd opensource
 ...
 $ yarn install
 ...
-$ npx next dev
+$ yarn dev
 ...
 ```
 
 ### Stack
 
-This app is built with [Next.js](https://nextjs.org/), a framework built on top of [React](https://reactjs.org/). We enforce [Typescript](https://www.typescriptlang.org/) throughout the project, and have a strict linter with [ESLint](https://eslint.org/). The CSS framework used is an alpha version [WestwoodCSS](https://github.com/uclaacm/WestwoodCSS), ACM Design's own CSS framework!
+This app is built with [Next.js](https://nextjs.org/), a framework built on top of [React](https://reactjs.org/). We enforce [Typescript](https://www.typescriptlang.org/) throughout the project, and have a strict linter with [ESLint](https://eslint.org/) - enforced as a pre-commit hook with [Husky](https://github.com/typicode/husky) and [lint-staged](https://github.com/okonet/lint-staged#readme). The CSS framework used is an alpha version [WestwoodCSS](https://github.com/uclaacm/WestwoodCSS), ACM Design's own CSS framework!
 
 We bootstrapped this app with [`create-next-app`](https://nextjs.org/docs/api-reference/create-next-app) using the `with-typescript-eslint-jest` template. There are some other goodies too, like Prettier and Jest (the latter we'd use more seriously in production).
 
