@@ -2,136 +2,277 @@
 
 exports[`Home page matches snapshot 1`] = `
 <DocumentFragment>
-  <div
-    class="jsx-1276654382 container"
+  <nav
+    class="navbar"
   >
-    <main
-      class="jsx-1276654382"
-    >
-      <h1
-        class="jsx-1276654382 title"
-      >
-        Welcome to 
-        <a
-          class="jsx-1276654382"
-          href="https://nextjs.org"
-        >
-          Next.js!
-        </a>
-      </h1>
-      <p
-        class="jsx-1276654382 description"
-      >
-        Get started by editing 
-        <code
-          class="jsx-1276654382"
-        >
-          pages/index.tsx
-        </code>
-      </p>
-      <button
-        class="jsx-1276654382"
-      >
-        Test Button
-      </button>
-      <div
-        class="jsx-1276654382 grid"
-      >
-        <a
-          class="jsx-1276654382 card"
-          href="https://nextjs.org/docs"
-        >
-          <h3
-            class="jsx-1276654382"
-          >
-            Documentation →
-          </h3>
-          <p
-            class="jsx-1276654382"
-          >
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-        <a
-          class="jsx-1276654382 card"
-          href="https://nextjs.org/learn"
-        >
-          <h3
-            class="jsx-1276654382"
-          >
-            Learn →
-          </h3>
-          <p
-            class="jsx-1276654382"
-          >
-            Learn about Next.js in an interactive course with quizzes!
-          </p>
-        </a>
-        <a
-          class="jsx-1276654382 card"
-          href="https://github.com/vercel/next.js/tree/master/examples"
-        >
-          <h3
-            class="jsx-1276654382"
-          >
-            Examples →
-          </h3>
-          <p
-            class="jsx-1276654382"
-          >
-            Discover and deploy boilerplate example Next.js projects.
-          </p>
-        </a>
-        <a
-          class="jsx-1276654382 card"
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-        >
-          <h3
-            class="jsx-1276654382"
-          >
-            Deploy →
-          </h3>
-          <p
-            class="jsx-1276654382"
-          >
-            Instantly deploy your Next.js site to a public URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-    <footer
-      class="jsx-1276654382"
+    <div
+      class="navbar-brand"
     >
       <a
-        class="jsx-1276654382"
-        href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-        rel="noopener noreferrer"
-        target="_blank"
+        href="/"
       >
-        Powered by 
+        <img
+          alt="ACM at UCLA Logo"
+          src="https://design.uclaacm.com/assets/logos/acm-logo-wordmark-extended.png"
+        />
+      </a>
+    </div>
+    <div
+      class="navbar-items"
+    >
+      <div
+        class="navbar-link"
+      >
+        <a
+          href="/projects"
+        >
+          projects
+        </a>
+        <a
+          href="/contribute"
+        >
+          contribute
+        </a>
+        <button>
+          GitHub
+        </button>
+      </div>
+    </div>
+  </nav>
+  <main>
+    <div
+      class="container"
+    >
+      <h1>
+        open source at 
+        <a
+          href="https://uclaacm.com"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          ACM at UCLA
+        </a>
+      </h1>
+      <hr />
+      <p
+        class="knockout-description"
+      >
+        at the largest computer science community at UCLA,
+        <br />
+         
+        <b>
+          we care about open-source.
+        </b>
+      </p>
+      <div
+        class="row"
+      >
         <div
-          style="display: inline-block; max-width: 100%; overflow: hidden; position: relative; box-sizing: border-box; margin: 0px;"
+          class="col-6"
         >
           <div
-            style="box-sizing: border-box; display: block; max-width: 100%;"
+            class="card"
           >
-            <img
-              alt=""
-              aria-hidden="true"
-              role="presentation"
-              src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iMzIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmVyc2lvbj0iMS4xIi8+"
-              style="max-width: 100%; display: block; margin: 0px; padding: 0px;"
-            />
+            <div
+              class="card-body"
+            >
+              <a
+                href="/projects"
+              >
+                <h3>
+                  Projects →
+                </h3>
+                <p>
+                  All of our projects are open-source! Literally, all of them.
+                </p>
+              </a>
+            </div>
           </div>
-          <img
-            alt="Vercel Logo"
-            decoding="async"
-            src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-            style="visibility: hidden; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
-          />
         </div>
-      </a>
-    </footer>
-  </div>
+        <div
+          class="col-6"
+        >
+          <div
+            class="card"
+          >
+            <div
+              class="card-body"
+            >
+              <a
+                href="https://github.com/uclaacm/"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <h3>
+                  Learning →
+                </h3>
+                <p>
+                  Pick up the skills to write great software.
+                </p>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="row mt-2"
+      >
+        <div
+          class="col-6"
+        >
+          <div
+            class="card"
+          >
+            <div
+              class="card-body"
+            >
+              <a
+                href="https://github.com/uclaacm/"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <h3>
+                  Events →
+                </h3>
+                <p>
+                  We love talking about open-source. Come talk with us!
+                </p>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div
+          class="col-6"
+        >
+          <div
+            class="card"
+          >
+            <div
+              class="card-body"
+            >
+              <a
+                href="/contribute"
+              >
+                <h3>
+                  Contribute →
+                </h3>
+                <p>
+                  Make your first pull request with us!
+                </p>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr
+        class="mt-2"
+      />
+      <h2>
+        featured project
+      </h2>
+      <div
+        class="card"
+      >
+        <div
+          class="row"
+        >
+          <div
+            class="col-6"
+          >
+            <a
+              href="https://bufferbuffet.uclaacm.com/"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <div
+                style="display: block; overflow: hidden; position: relative; box-sizing: border-box; margin: 0px;"
+              >
+                <div
+                  style="display: block; box-sizing: border-box; padding-top: 80%;"
+                />
+                <noscript />
+                <img
+                  alt="buffer buffet landing splash"
+                  decoding="async"
+                  src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                  style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                />
+              </div>
+            </a>
+          </div>
+          <div
+            class="col-6"
+          >
+            <div
+              class="card-body"
+            >
+              <h3
+                class="mt-1"
+              >
+                <a
+                  href="https://bufferbuffet.uclaacm.com/"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  Buffer Buffet
+                </a>
+              </h3>
+              <p>
+                <span
+                  class="dev-language-badge lang-js"
+                />
+                 js
+                <span>
+                   • react, x86
+                </span>
+              </p>
+              <p>
+                All of our projects are open-source! Literally, all of them.
+              </p>
+              <a
+                href="https://github.com/uclaacm/buffer-buffet"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                GitHub Repository
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2>
+        what we've been doing recently...
+      </h2>
+      <p>
+        repositories: 0
+      </p>
+      <div
+        class="card"
+      >
+        <div
+          class="card-body"
+        >
+          <p>
+            see more activity 
+            <a
+              href="https://github.com/uclaacm/"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              on our org
+            </a>
+            !
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <div
+      class="container"
+    >
+      made by acm at ucla, with next
+    </div>
+  </footer>
 </DocumentFragment>
 `;
