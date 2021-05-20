@@ -16,10 +16,10 @@ function Projects(): JSX.Element {
         </p>
         <hr />
         <div className="row">
-          {projects.map((project) => {
+          {projects.map((project, i) => {
             return (
               <div className="col-4" key={project.name}>
-                <ProjectCard project={project} vertical />
+                <ProjectCard project={project} vertical preload={i < 3} />
               </div>
             );
           })}

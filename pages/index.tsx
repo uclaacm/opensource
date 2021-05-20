@@ -90,7 +90,7 @@ export default function Home({
         <hr className="mt-2" />
 
         <h2>featured project</h2>
-        <ProjectCard project={projects[0]} />
+        <ProjectCard project={projects[0]} preload={true} />
         <h2>what we&apos;ve been doing recently...</h2>
         <p>repositories: {numRepos}</p>
         <div className="card">
