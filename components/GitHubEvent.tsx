@@ -1,6 +1,5 @@
-import Link from 'next/link';
 import React from 'react';
-
+import ELink from './ELink';
 import GitHubEventAction from './GitHubEventAction';
 
 // TODO(mattxwang): get the official types from the type registry;
@@ -33,13 +32,13 @@ interface GitHubRepo {
 
 function GitHubEvent(props: GitHubEvent): JSX.Element {
   const {type, actor, repo, payload} = props;
-  const userLink = !actor.login.includes('[bot]') ? <Link href={`https://github.com/${actor.login}`}>{`@${actor.login}`}</Link> : actor.login;
+  const userLink = !actor.login.includes('[bot]') ? <ELink link={`https://github.com/${actor.login}`}>{`@${actor.login}`}</ELink> : actor.login;
   return (
     <>
       {/* <div className="card" style={{marginTop: "20px"}}> */}
       {/* <div className="card-body"> */}
       {userLink} <GitHubEventAction type={type} payload={payload} />{' '}
-      <Link href={`https://github.com/${repo.name}`}>{repo.name}</Link>
+      <ELink link={`https://github.com/${repo.name}`}>{repo.name}</ELink>
       <hr />
       {/*  </div> */}
       {/* // </div> */}
