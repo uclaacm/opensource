@@ -2,6 +2,7 @@ import { Octokit } from '@octokit/core';
 import { GetStaticProps } from 'next';
 import Link from 'next/link';
 import React from 'react';
+import ELink from '../components/ELink';
 import GitHubEvent from '../components/GitHubEvent';
 import Layout from '../components/Layout';
 import ProjectCard from '../components/ProjectCard';
@@ -17,18 +18,14 @@ export default function Home({
   numRepos,
   recentEvents,
 }: HomeProps): JSX.Element {
-  const linkProps = {
-    rel: 'noopener noreferrer',
-    target: '_blank',
-  };
   return (
     <Layout>
       <div className="container">
         <h1>
           open source at{' '}
-          <a href="https://uclaacm.com" {...linkProps}>
+          <ELink link="https://uclaacm.com">
             ACM at UCLA
-          </a>
+          </ELink>
         </h1>
         <hr />
         <p className="knockout-description">
@@ -54,10 +51,10 @@ export default function Home({
           <div className="col-6">
             <div className="card">
               <div className="card-body">
-                <a href="https://github.com/uclaacm/" {...linkProps}>
+                <ELink link="https://github.com/uclaacm/">
                   <h3>Learning &rarr;</h3>
                   <p>Pick up the skills to write great software.</p>
-                </a>
+                </ELink>
               </div>
             </div>
           </div>
@@ -67,10 +64,10 @@ export default function Home({
           <div className="col-6">
             <div className="card">
               <div className="card-body">
-                <a href="https://github.com/uclaacm/" {...linkProps}>
+                <ELink link="https://github.com/uclaacm/">
                   <h3>Events &rarr;</h3>
                   <p>We love talking about open-source. Come talk with us!</p>
-                </a>
+                </ELink>
               </div>
             </div>
           </div>
@@ -100,9 +97,9 @@ export default function Home({
             ))}
             <p>
               see more activity{' '}
-              <a href="https://github.com/uclaacm/" {...linkProps}>
+              <ELink link="https://github.com/uclaacm/">
                 on our org
-              </a>
+              </ELink>
               !
             </p>
           </div>

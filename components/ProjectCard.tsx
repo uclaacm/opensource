@@ -1,8 +1,8 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import React from 'react';
 
 import { Project } from '../util/';
+import ELink from './ELink';
 
 interface ProjectCardProps {
   project: Project
@@ -15,26 +15,19 @@ interface ProjectCardImageProps {
   preload: boolean
 }
 
-const linkProps = {
-  rel: 'noopener noreferrer',
-  target: '_blank',
-};
-
 function ProjectCardImage({project, preload}: ProjectCardImageProps) {
   const { image, alt, link } = project;
   return (
-    <Link href={link}>
-      <a {...linkProps}>
-        <Image
-          src={image}
-          alt={alt}
-          width="1000"
-          height="800"
-          layout="responsive"
-          priority={preload}
-        />
-      </a>
-    </Link>
+    <ELink link={link}>
+      <Image
+        src={image}
+        alt={alt}
+        width="1000"
+        height="800"
+        layout="responsive"
+        priority={preload}
+      />
+    </ELink>
   );
 }
 
@@ -42,20 +35,18 @@ function ProjectCardBody({ name, description, repo, link, lang, tech }: Project)
   return (
     <div className="card-body">
       <h3 className="mt-1">
-        <Link href={link} >
-          <a {...linkProps}>
-            {name}
-          </a>
-        </Link>
+        <ELink link={link} >
+          {name}
+        </ELink>
       </h3>
       <p>
         <span className={`dev-language-badge lang-${lang}`}></span> {lang}
         {tech && <span> • {tech.join(', ')}</span>}
       </p>
       <p>{description}</p>
-      <Link href={repo}>
-        <a {...linkProps}>GitHub Repository</a>
-      </Link>
+      <ELink link={repo}>
+        GitHub Repository
+      </ELink>
     </div>
   );
 }

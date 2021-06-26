@@ -1,4 +1,5 @@
 import React from 'react';
+import ELink from './ELink';
 // TODO(mattxwang): fix the payload thing to actually use a type, maybe
 // from the octokit types
 interface GitHubEventActionProps {
@@ -9,10 +10,6 @@ interface GitHubEventActionProps {
 // TODO(mattxwang): this doesn't seem like the best way to do this ://
 // returns a string of form: <verb> <location/type of action> <preposition>
 function GitHubEventAction({type, payload}: GitHubEventActionProps): JSX.Element {
-  const linkProps = {
-    rel: 'noopener noreferrer',
-    target: '_blank',
-  };
   const unknown = <span>did a {type} on</span>;
   switch(type){
     case 'CreateEvent':
@@ -35,7 +32,7 @@ function GitHubEventAction({type, payload}: GitHubEventActionProps): JSX.Element
       }
       const issueText = issueNum ? `issue #${issueNum}` : 'an issue';
       const actionStr = action === 'created' ? 'commented on' : action;
-      return <span>{actionStr} <a href={issueURL} {...linkProps}>{issueText}</a> in</span>;
+      return <span>{actionStr} <ELink link={issueURL}>{issueText}</ELink> in</span>;
     }
     case 'IssuesEvent': {
       const action = payload?.action;
@@ -46,7 +43,7 @@ function GitHubEventAction({type, payload}: GitHubEventActionProps): JSX.Element
         return unknown;
       }
       const issueText = issueNum ? `issue #${issueNum}` : 'an issue';
-      return <span>{action} <a href={issueURL} {...linkProps}>{issueText}</a> in</span>;
+      return <span>{action} <ELink link={issueURL}>{issueText}</ELink> in</span>;
     }
     case 'PullRequestEvent': {
       const action = payload?.action;
@@ -55,7 +52,7 @@ function GitHubEventAction({type, payload}: GitHubEventActionProps): JSX.Element
       if (!action || !prNum || !prURL) {
         return unknown;
       }
-      return <span>{action} <a href={prURL} {...linkProps}>pull request #{prNum}</a> in</span>;
+      return <span>{action} <ELink link={prURL}>pull request #{prNum}</ELink> in</span>;
     }
     case 'PullRequestReviewEvent': {
       const action = payload?.action;
@@ -65,7 +62,7 @@ function GitHubEventAction({type, payload}: GitHubEventActionProps): JSX.Element
         return unknown;
       }
       const actionStr = action === 'created' ? 'reviewed' : action;
-      return <span>{actionStr} <a href={prURL} {...linkProps}>pull request #{prNum}</a> in</span>;
+      return <span>{actionStr} <ELink link={prURL}>pull request #{prNum}</ELink> in</span>;
     }
     case 'PushEvent': {
       const size = payload?.size; // should this be distinct_size?
