@@ -272,7 +272,22 @@ exports[`Home page matches snapshot 1`] = `
     <div
       class="container"
     >
-      made by acm at ucla, with next
+      made by 
+      <a
+        href="https://uclaacm.com"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        ACM at UCLA
+      </a>
+      , with 
+      <a
+        href="https://nextjs.org/docs"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        Next.js
+      </a>
     </div>
   </footer>
 </DocumentFragment>
