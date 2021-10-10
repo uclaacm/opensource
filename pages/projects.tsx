@@ -12,7 +12,7 @@ function Projects(): JSX.Element {
           projects
         </h1>
         <p>
-          a heads-up overview of the projects that power ACM at UCLA.
+          a (work-in-progress) heads-up overview of the projects that power ACM at UCLA.
         </p>
         <hr />
         <div className="row">

@@ -51,7 +51,7 @@ export default function Home({
           <div className="col-6">
             <div className="card">
               <div className="card-body">
-                <ELink link="https://github.com/uclaacm/">
+                <ELink link="https://dev-pathways.netlify.app/">
                   <h3>Learning &rarr;</h3>
                   <p>Pick up the skills to write great software.</p>
                 </ELink>
@@ -64,7 +64,7 @@ export default function Home({
           <div className="col-6">
             <div className="card">
               <div className="card-body">
-                <ELink link="https://github.com/uclaacm/">
+                <ELink link="https://uclaacm.com/events">
                   <h3>Events &rarr;</h3>
                   <p>We love talking about open-source. Come talk with us!</p>
                 </ELink>
@@ -89,7 +89,7 @@ export default function Home({
         <h2>featured project</h2>
         <ProjectCard project={projects[0]} preload={true} />
         <h2>what we&apos;ve been doing recently...</h2>
-        <p>repositories: {numRepos}</p>
+        <p>this is a live feed of our {numRepos} repositories</p>
         <div className="card">
           <div className="card-body">
             {recentEvents.map((event) => (
