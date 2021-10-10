@@ -99,7 +99,7 @@ exports[`Home page matches snapshot 1`] = `
               class="card-body"
             >
               <a
-                href="https://github.com/uclaacm/"
+                href="https://dev-pathways.netlify.app/"
                 rel="noopener noreferrer"
                 target="_blank"
               >
@@ -127,7 +127,7 @@ exports[`Home page matches snapshot 1`] = `
               class="card-body"
             >
               <a
-                href="https://github.com/uclaacm/"
+                href="https://uclaacm.com/events"
                 rel="noopener noreferrer"
                 target="_blank"
               >
@@ -245,7 +245,7 @@ exports[`Home page matches snapshot 1`] = `
         what we've been doing recently...
       </h2>
       <p>
-        repositories: 0
+        this is a live feed of our 0 repositories
       </p>
       <div
         class="card"
