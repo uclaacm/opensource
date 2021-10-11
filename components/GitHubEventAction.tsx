@@ -22,6 +22,15 @@ function GitHubEventAction({type, payload}: GitHubEventActionProps): JSX.Element
       const action = type === 'CreateEvent'? 'created' : 'deleted';
       return <span>{action} {targetType} <code>{target}</code> in</span>;
     }
+    case 'ForkEvent': {
+      const forkee = payload?.forkee;
+      const full_name = forkee?.full_name;
+      const html_url = forkee?.html_url;
+      if (!forkee || !full_name || !html_url) {
+        return unknown;
+      }
+      return <span>forked <ELink link={html_url}>{full_name}</ELink> from</span>;
+    }
     case 'IssueCommentEvent': {
       const action = payload?.action;
       const issue = payload?.issue;
