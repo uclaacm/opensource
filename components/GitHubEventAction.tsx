@@ -78,6 +78,9 @@ function GitHubEventAction({type, payload}: GitHubEventActionProps): JSX.Element
       const sizeStr = size ? size : '1'; // should we use 'a'?
       return <span>pushed {sizeStr} commit{size !== 1 && 's'} to</span>;
     }
+    case 'PublicEvent': {
+      return <span>made a new repository public:</span>;
+    }
     default:
       return unknown;
   }
