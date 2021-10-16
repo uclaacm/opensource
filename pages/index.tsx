@@ -10,8 +10,8 @@ import ProjectCard from '../components/ProjectCard';
 import projects from '../data/projects';
 
 interface HomeProps {
-  numRepos: number
-  recentEvents: GitHubEvent[]
+  numRepos: number;
+  recentEvents: GitHubEvent[];
 }
 
 export default function Home({
@@ -22,10 +22,7 @@ export default function Home({
     <Layout>
       <div className="container">
         <h1>
-          open source at{' '}
-          <ELink link="https://uclaacm.com">
-            ACM at UCLA
-          </ELink>
+          open source at <ELink link="https://uclaacm.com">ACM at UCLA</ELink>
         </h1>
         <hr />
         <p className="knockout-description">
@@ -89,7 +86,7 @@ export default function Home({
         <h2>featured project</h2>
         <ProjectCard project={projects[0]} preload={true} />
         <h2>what we&apos;ve been doing recently...</h2>
-        <p>this is a live feed of our {numRepos} repositories</p>
+        <p>this is a live feed of our {numRepos} sssrepositories</p>
         <div className="card">
           <div className="card-body">
             {recentEvents.map((event) => (
@@ -97,10 +94,7 @@ export default function Home({
             ))}
             <p>
               see more activity{' '}
-              <ELink link="https://github.com/uclaacm/">
-                on our org
-              </ELink>
-              !
+              <ELink link="https://github.com/uclaacm/">on our org</ELink>!
             </p>
           </div>
         </div>
