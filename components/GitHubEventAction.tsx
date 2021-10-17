@@ -64,13 +64,15 @@ function GitHubEventAction({type, payload}: GitHubEventActionProps): JSX.Element
       return <span>{action} <ELink link={prURL}>pull request #{prNum}</ELink> in</span>;
     }
     case 'PullRequestReviewCommentEvent': {
-      const action = payload.action;
-      const prNum = payload.comment.number;
-      const prLink = payload.comment.pull_request_url;
+      const action = payload?.action;
+      const actionStr = action === 'created' ? 'reviewed' : action;
+      const prNum = payload?.pull_request?.number;
+      const prURL = payload?.comment?.pull_request_url;
+      if (!action || !prNum || !prURL) {
+        return unknown;
+      }
       return (
-        <span>
-          {action} <ELink link={prLink}> pull request #{prNum}</ELink> in
-        </span>
+        <span>{actionStr} <ELink link={prURL}> pull request #{prNum}</ELink> in</span>
       );
     }
     case 'PullRequestReviewEvent': {
