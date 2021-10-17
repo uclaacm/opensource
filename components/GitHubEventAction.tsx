@@ -65,14 +65,14 @@ function GitHubEventAction({type, payload}: GitHubEventActionProps): JSX.Element
     }
     case 'PullRequestReviewCommentEvent': {
       const action = payload?.action;
-      const actionStr = action === 'created' ? 'reviewed' : action;
+      const actionStr = action === 'created' ? 'commented' : action;
       const prNum = payload?.pull_request?.number;
       const prURL = payload?.comment?.pull_request_url;
       if (!action || !prNum || !prURL) {
         return unknown;
       }
       return (
-        <span>{actionStr} <ELink link={prURL}> pull request #{prNum}</ELink> in</span>
+        <span>{actionStr} on <ELink link={prURL}> pull request #{prNum}</ELink> in</span>
       );
     }
     case 'PullRequestReviewEvent': {
