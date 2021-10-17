@@ -67,7 +67,7 @@ function GitHubEventAction({type, payload}: GitHubEventActionProps): JSX.Element
       const action = payload?.action;
       const actionStr = action === 'created' ? 'commented' : action;
       const prNum = payload?.pull_request?.number;
-      const prURL = payload?.comment?.pull_request_url;
+      const prURL = payload?.comment?.html_url;
       if (!action || !prNum || !prURL) {
         return unknown;
       }
