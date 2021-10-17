@@ -63,6 +63,18 @@ function GitHubEventAction({type, payload}: GitHubEventActionProps): JSX.Element
       }
       return <span>{action} <ELink link={prURL}>pull request #{prNum}</ELink> in</span>;
     }
+    case 'PullRequestReviewCommentEvent': {
+      const action = payload?.action;
+      const actionStr = action === 'created' ? 'commented' : action;
+      const prNum = payload?.pull_request?.number;
+      const prURL = payload?.comment?.html_url;
+      if (!action || !prNum || !prURL) {
+        return unknown;
+      }
+      return (
+        <span>{actionStr} on <ELink link={prURL}> pull request #{prNum}</ELink> in</span>
+      );
+    }
     case 'PullRequestReviewEvent': {
       const action = payload?.action;
       const prNum = payload?.pull_request?.number;
