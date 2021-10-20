@@ -93,6 +93,13 @@ function GitHubEventAction({type, payload}: GitHubEventActionProps): JSX.Element
     case 'PublicEvent': {
       return <span>made a new repository public:</span>;
     }
+    case 'WatchEvent': {
+      const userLogin = payload?.sender.login;
+      const userProfileURL = payload?.sender.html_url;
+      const repoFullName = payload?.repository.full_name;
+
+      return <span><ELink link={userProfileURL}>@{userLogin}</ELink> watched {repoFullName}</span>;  
+    }
     default:
       return unknown;
   }
