@@ -1,0 +1,31 @@
+{
+  "id": "18562886179",
+  "type": "DeleteEvent",
+  "actor": {
+    "id": 15240801,
+    "login": "dtjanaka",
+    "display_login": "dtjanaka",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/dtjanaka",
+    "avatar_url": "https://avatars.githubusercontent.com/u/15240801?"
+  },
+  "repo": {
+    "id": 103854310,
+    "name": "uclaacm/website",
+    "url": "https://api.github.com/repos/uclaacm/website"
+  },
+  "payload": {
+    "ref": "jedis-typo",
+    "ref_type": "branch",
+    "pusher_type": "user"
+  },
+  "public": true,
+  "created_at": "2021-10-22T22:59:22Z",
+  "org": {
+    "id": 8324381,
+    "login": "uclaacm",
+    "gravatar_id": "",
+    "url": "https://api.github.com/orgs/uclaacm",
+    "avatar_url": "https://avatars.githubusercontent.com/u/8324381?"
+  }
+}

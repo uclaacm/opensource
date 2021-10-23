@@ -1,0 +1,92 @@
+{
+  "id": "18550107052",
+  "type": "IssuesEvent",
+  "actor": {
+    "id": 14893287,
+    "login": "mattxwang",
+    "display_login": "mattxwang",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/mattxwang",
+    "avatar_url": "https://avatars.githubusercontent.com/u/14893287?"
+  },
+  "repo": {
+    "id": 293555777,
+    "name": "uclaacm/icpc-website",
+    "url": "https://api.github.com/repos/uclaacm/icpc-website"
+  },
+  "payload": {
+    "action": "opened",
+    "issue": {
+      "url": "https://api.github.com/repos/uclaacm/icpc-website/issues/106",
+      "repository_url": "https://api.github.com/repos/uclaacm/icpc-website",
+      "labels_url": "https://api.github.com/repos/uclaacm/icpc-website/issues/106/labels{/name}",
+      "comments_url": "https://api.github.com/repos/uclaacm/icpc-website/issues/106/comments",
+      "events_url": "https://api.github.com/repos/uclaacm/icpc-website/issues/106/events",
+      "html_url": "https://github.com/uclaacm/icpc-website/issues/106",
+      "id": 1033238029,
+      "node_id": "I_kwDOEX9OQc49lfYN",
+      "number": 106,
+      "title": "ICPC Events Page is Broken",
+      "user": {
+        "login": "mattxwang",
+        "id": 14893287,
+        "node_id": "MDQ6VXNlcjE0ODkzMjg3",
+        "avatar_url": "https://avatars.githubusercontent.com/u/14893287?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/mattxwang",
+        "html_url": "https://github.com/mattxwang",
+        "followers_url": "https://api.github.com/users/mattxwang/followers",
+        "following_url": "https://api.github.com/users/mattxwang/following{/other_user}",
+        "gists_url": "https://api.github.com/users/mattxwang/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/mattxwang/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/mattxwang/subscriptions",
+        "organizations_url": "https://api.github.com/users/mattxwang/orgs",
+        "repos_url": "https://api.github.com/users/mattxwang/repos",
+        "events_url": "https://api.github.com/users/mattxwang/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/mattxwang/received_events",
+        "type": "User",
+        "site_admin": false
+      },
+      "labels": [
+
+      ],
+      "state": "open",
+      "locked": false,
+      "assignee": null,
+      "assignees": [
+
+      ],
+      "milestone": null,
+      "comments": 0,
+      "created_at": "2021-10-22T06:49:00Z",
+      "updated_at": "2021-10-22T06:49:00Z",
+      "closed_at": null,
+      "author_association": "MEMBER",
+      "active_lock_reason": null,
+      "body": "If I visit the [events page](https://icpc.uclaacm.com/events), I get a white screen and a console error:\r\n![Screen Shot 2021-10-21 at 11 47 44 PM](https://user-images.githubusercontent.com/14893287/138406316-cf91c98b-c956-4534-bf72-ad00fdf01be1.png)\r\n\r\n```\r\nchunk.vendors.ff91338915dc2380eb1e.js:2 TypeError: Cannot read properties of undefined (reading 'split')\r\n    at chunk.3.4cfceba45c917d707407.js:1\r\n    at Array.map (<anonymous>)\r\n    at v (chunk.3.4cfceba45c917d707407.js:1)\r\n    at Qi (chunk.vendors.ff91338915dc2380eb1e.js:2)\r\n    at Ou (chunk.vendors.ff91338915dc2380eb1e.js:2)\r\n    at gl (chunk.vendors.ff91338915dc2380eb1e.js:2)\r\n    at ml (chunk.vendors.ff91338915dc2380eb1e.js:2)\r\n    at ul (chunk.vendors.ff91338915dc2380eb1e.js:2)\r\n    at chunk.vendors.ff91338915dc2380eb1e.js:2\r\n    at UdKW.t.unstable_runWithPriority (chunk.vendors.ff91338915dc2380eb1e.js:2)\r\nou @ chunk.vendors.ff91338915dc2380eb1e.js:2\r\nchunk.vendors.ff91338915dc2380eb1e.js:2 Uncaught TypeError: Cannot read properties of undefined (reading 'split')\r\n    at chunk.3.4cfceba45c917d707407.js:1\r\n    at Array.map (<anonymous>)\r\n    at v (chunk.3.4cfceba45c917d707407.js:1)\r\n    at Qi (chunk.vendors.ff91338915dc2380eb1e.js:2)\r\n    at Ou (chunk.vendors.ff91338915dc2380eb1e.js:2)\r\n    at gl (chunk.vendors.ff91338915dc2380eb1e.js:2)\r\n    at ml (chunk.vendors.ff91338915dc2380eb1e.js:2)\r\n    at ul (chunk.vendors.ff91338915dc2380eb1e.js:2)\r\n    at chunk.vendors.ff91338915dc2380eb1e.js:2\r\n    at UdKW.t.unstable_runWithPriority (chunk.vendors.ff91338915dc2380eb1e.js:2)\r\n```\r\n\r\nThe code is minified and looks generated, so not sure how much help the error message is. Is this perhaps an error with the way the events are loaded?\r\n",
+      "reactions": {
+        "url": "https://api.github.com/repos/uclaacm/icpc-website/issues/106/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "timeline_url": "https://api.github.com/repos/uclaacm/icpc-website/issues/106/timeline",
+      "performed_via_github_app": null
+    }
+  },
+  "public": true,
+  "created_at": "2021-10-22T06:49:01Z",
+  "org": {
+    "id": 8324381,
+    "login": "uclaacm",
+    "gravatar_id": "",
+    "url": "https://api.github.com/orgs/uclaacm",
+    "avatar_url": "https://avatars.githubusercontent.com/u/8324381?"
+  }
+}
