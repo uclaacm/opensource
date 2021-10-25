@@ -1,25 +1,32 @@
 import React from 'react';
 import GitHubEventAction from '../../components/GitHubEventAction';
-import createEventData from '../fixtures/createEvent.json';
-import deleteEventData from '../fixtures/deleteEvent.json';
-import forkEventData from '../fixtures/forkEvent.json';
-import issueCommentEventData from '../fixtures/issueCommentEvent.json';
-import issuesEventData from '../fixtures/issuesEvent.json';
-import pullRequestEventData from '../fixtures/pullRequestEvent.json';
-import pullRequestReviewCommentEventData from '../fixtures/pullRequestReviewCommentEvent.json';
-import pullRequestReviewEventData from '../fixtures/pullRequestReviewEvent.json';
-import pushEventData from '../fixtures/pushEvent.json';
+import createEventBranchData from '../fixtures/CreateEvent-Branch.json';
+import deleteEventBranchData from '../fixtures/DeleteEvent-Branch.json';
+import forkEventData from '../fixtures/ForkEvent.json';
+import issueCommentEventData from '../fixtures/IssueCommentEvent.json';
+
+import issuesEventClosedData from '../fixtures/IssuesEvent-Closed.json';
+import issuesEventOpenedData from '../fixtures/IssuesEvent-Opened.json';
+
+import pullRequestEventClosedData from '../fixtures/PullRequestEvent-Closed.json';
+import pullRequestEventOpenedData from '../fixtures/PullRequestEvent-Opened.json';
+
+import pullRequestReviewCommentEventData from '../fixtures/PullRequestReviewCommentEvent.json';
+import pullRequestReviewEventData from '../fixtures/PullRequestReviewEvent.json';
+
+import pushEventMultipleCommitsData from '../fixtures/PushEvent-MultipleCommits.json';
+import pushEventSingleCommitData from '../fixtures/PushEvent-SingleCommit.json';
 
 import { render } from '../testUtils';
 
 
 const testCases = [
   {
-    data: createEventData,
+    data: createEventBranchData,
     expectedOutput: 'created branch town-hall-f21 in',
   },
   {
-    data: deleteEventData,
+    data: deleteEventBranchData,
     expectedOutput: 'deleted branch jedis-typo in',
   },
   {
@@ -33,13 +40,23 @@ const testCases = [
     expectedHref: 'https://github.com/uclaacm/membership-portal/pull/45',
   },
   {
-    data: issuesEventData,
+    data: issuesEventOpenedData,
     expectedOutput: 'opened issue #106 in',
     expectedHref: 'https://github.com/uclaacm/icpc-website/issues/106',
   },
   {
-    data: pullRequestEventData,
+    data: issuesEventClosedData,
+    expectedOutput: 'closed issue #321 in',
+    expectedHref: 'https://github.com/uclaacm/website/issues/321',
+  },
+  {
+    data: pullRequestEventOpenedData,
     expectedOutput: 'opened pull request #324 in',
+    expectedHref: 'https://github.com/uclaacm/website/pull/324',
+  },
+  {
+    data: pullRequestEventClosedData,
+    expectedOutput: 'closed pull request #324 in',
     expectedHref: 'https://github.com/uclaacm/website/pull/324',
   },
   {
@@ -53,14 +70,18 @@ const testCases = [
     expectedHref: 'https://github.com/uclaacm/hack.uclaacm.com/pull/262#discussion_r734235143',
   },
   {
-    data: pushEventData,
+    data: pushEventSingleCommitData,
     expectedOutput: 'pushed 1 commit to',
+  },
+  {
+    data: pushEventMultipleCommitsData,
+    expectedOutput: 'pushed 2 commits to',
   },
 ];
 
 describe('GitHub Event Action', () => {
   testCases.forEach(({data ,expectedOutput, expectedHref}) => {
-    it(`renders correct string for ${data.type}}`, () => {
+    it(`renders correct string for ${data.type}`, () => {
       const {container} = render(<GitHubEventAction payload={data.payload} type={data.type} />, {});
 
       const element = container.querySelector('span');
