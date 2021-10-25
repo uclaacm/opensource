@@ -4,16 +4,12 @@ import createEventBranchData from '../fixtures/CreateEvent-Branch.json';
 import deleteEventBranchData from '../fixtures/DeleteEvent-Branch.json';
 import forkEventData from '../fixtures/ForkEvent.json';
 import issueCommentEventData from '../fixtures/IssueCommentEvent.json';
-
 import issuesEventClosedData from '../fixtures/IssuesEvent-Closed.json';
 import issuesEventOpenedData from '../fixtures/IssuesEvent-Opened.json';
-
 import pullRequestEventClosedData from '../fixtures/PullRequestEvent-Closed.json';
 import pullRequestEventOpenedData from '../fixtures/PullRequestEvent-Opened.json';
-
 import pullRequestReviewCommentEventData from '../fixtures/PullRequestReviewCommentEvent.json';
 import pullRequestReviewEventData from '../fixtures/PullRequestReviewEvent.json';
-
 import pushEventMultipleCommitsData from '../fixtures/PushEvent-MultipleCommits.json';
 import pushEventSingleCommitData from '../fixtures/PushEvent-SingleCommit.json';
 

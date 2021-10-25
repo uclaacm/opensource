@@ -1,6 +1,6 @@
 {
-  "id": "18549131931",
-  "type": "PullRequestReviewCommentEvent",
+  "id": "18549131899",
+  "type": "PullRequestReviewEvent",
   "actor": {
     "id": 1538624,
     "login": "TimothyGu",
@@ -16,17 +16,9 @@
   },
   "payload": {
     "action": "created",
-    "comment": {
-      "url": "https://api.github.com/repos/uclaacm/hack.uclaacm.com/pulls/comments/734235143",
-      "pull_request_review_id": 786428629,
-      "id": 734235143,
-      "node_id": "PRRC_kwDOCenC084rw4oH",
-      "diff_hunk": "@@ -0,0 +1,79 @@\n+import React from 'react';\n+\n+import PropTypes from 'prop-types';\n+import { withStyles } from '@material-ui/core/styles';\n+import { Container, Typography, Grid } from '@material-ui/core';\n+\n+export const alumni = {\n+\t2021: ['Lea Blum', 'Connie Chen', 'Shirly Fang', 'Timothy Gu', 'Kristie Lim', 'Tim Rediehs', 'Galen Wong'],\n+\t2020: ['Yvonne Chen', 'Jeanette Lin', 'Dustin Newman', 'Prateek Singh', 'Kevin Tan', 'Furn Techalertumpai'],\n+\t2019: ['Dmitri Brereton', 'Char McGinn', 'Astrid Wang', 'Nathan Yang'],\n+\t2018: ['Shashank Khanna', 'Breanna Nery', 'Shannon Phu', 'Kelvin Wong'],\n+\t2017: ['Vic Yeh']\n+};\n+\n+const alumniYears = Object.keys(alumni).sort((a, b) => b - a);\n+\n+const styles = theme => ({\n+\ttitle: {\n+\t\tfontFamily: ['Poppins', 'sans-serif'],\n+\t\tfontWeight: 700,\n+\t\tfontSize: theme.typography.fontSize * 3,\n+\t\tborderStyle: 'solid',\n+\t\tborderWidth: `0 0 ${theme.typography.fontSize * 1.5}px 0`,\n+\t\tborderColor: theme.palette.secondary.main,\n+\t\twidth: 'fit-content',\n+\t\tmargin: theme.spacing(4, 'auto'),\n+\t\t[theme.breakpoints.down('xs')]: {\n+\t\t\tfontSize: theme.typography.fontSize * 1.2,\n+\t\t\tborderWidth: `0 0 ${theme.typography.fontSize * 0.6}px 0`\n+\t\t}\n+\t},\n+\tyearContainer: {\n+\t\tmargin: theme.spacing(3, 0)\n+\t},\n+\tcontainer: {\n+\t\tdisplay: 'flex',\n+\t\tjustifyContent: 'center'\n+\t},\n+\tcaption: {\n+\t\tfontFamily: theme.typography.body1.fontFamily,\n+\t\tfontSize: theme.typography.fontSize * 1.3,\n+\t\tlineHeight: 1.76,\n+\t\t[theme.breakpoints.down('xs')]: {\n+\t\t\tfontSize: theme.typography.fontSize,\n+\t\t\tlineHeight: 1.57\n+\t\t}\n+\t}\n+});\n+\n+function Alumni({ classes }) {\n+\tconst list = alumniYears.map(year =>\n+\t\t<Grid item className={classes.yearContainer} key={year} sm={12} lg={4}>\n+\t\t\t<Typography variant=\"h4\" align=\"center\">{year}</Typography>\n+\t\t\t<Typography variant=\"body\"> {\n+\t\t\t\talumni[year].map(alumniNames =>\n+\t\t\t\t\t<Typography variant=\"body1\" align=\"center\" key={alumniNames}>{alumniNames}</Typography>)\n+\t\t\t}\n+\t\t\t</Typography>\n+\t\t</Grid>);\n+\n+\treturn (\n+\t\t<Container maxWidth='md' className={classes.caption}>\n+\t\t\t<Typography variant=\"h3\" align=\"center\" className={classes.title}>Alumni</Typography>\n+\t\t\t<Typography variant=\"body1\" align=\"center\" className={classes.caption}>\n+\t\t\t\tHack wouldn&apos;t be what it is today without our awesome alumni!\n+\t\t\t\tEven though these officers have graduated, they will always be part of the Hack family.",
-      "path": "src/data/events/alumni.js",
-      "position": 66,
-      "original_position": 66,
-      "commit_id": "620b59d2e62d4bdace19c60131229eeabb69b05f",
-      "original_commit_id": "620b59d2e62d4bdace19c60131229eeabb69b05f",
+    "review": {
+      "id": 786428629,
+      "node_id": "PRR_kwDOCenC084u3_LV",
       "user": {
         "login": "TimothyGu",
         "id": 1538624,
@@ -47,41 +39,21 @@
         "type": "User",
         "site_admin": false
       },
-      "body": "<3",
-      "created_at": "2021-10-22T04:59:04Z",
-      "updated_at": "2021-10-22T04:59:08Z",
-      "html_url": "https://github.com/uclaacm/hack.uclaacm.com/pull/262#discussion_r734235143",
+      "body": "",
+      "commit_id": "620b59d2e62d4bdace19c60131229eeabb69b05f",
+      "submitted_at": "2021-10-22T04:59:08Z",
+      "state": "commented",
+      "html_url": "https://github.com/uclaacm/hack.uclaacm.com/pull/262#pullrequestreview-786428629",
       "pull_request_url": "https://api.github.com/repos/uclaacm/hack.uclaacm.com/pulls/262",
       "author_association": "MEMBER",
       "_links": {
-        "self": {
-          "href": "https://api.github.com/repos/uclaacm/hack.uclaacm.com/pulls/comments/734235143"
-        },
         "html": {
-          "href": "https://github.com/uclaacm/hack.uclaacm.com/pull/262#discussion_r734235143"
+          "href": "https://github.com/uclaacm/hack.uclaacm.com/pull/262#pullrequestreview-786428629"
         },
         "pull_request": {
           "href": "https://api.github.com/repos/uclaacm/hack.uclaacm.com/pulls/262"
         }
-      },
-      "reactions": {
-        "url": "https://api.github.com/repos/uclaacm/hack.uclaacm.com/pulls/comments/734235143/reactions",
-        "total_count": 0,
-        "+1": 0,
-        "-1": 0,
-        "laugh": 0,
-        "hooray": 0,
-        "confused": 0,
-        "heart": 0,
-        "rocket": 0,
-        "eyes": 0
-      },
-      "start_line": null,
-      "original_start_line": null,
-      "start_side": null,
-      "line": 66,
-      "original_line": 66,
-      "side": "RIGHT"
+      }
     },
     "pull_request": {
       "url": "https://api.github.com/repos/uclaacm/hack.uclaacm.com/pulls/262",
@@ -454,7 +426,7 @@
     }
   },
   "public": true,
-  "created_at": "2021-10-22T04:59:04Z",
+  "created_at": "2021-10-22T04:59:09Z",
   "org": {
     "id": 8324381,
     "login": "uclaacm",
