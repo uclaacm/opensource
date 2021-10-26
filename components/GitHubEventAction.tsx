@@ -72,7 +72,7 @@ function GitHubEventAction({type, payload}: GitHubEventActionProps): JSX.Element
         return unknown;
       }
       return (
-        <span>{actionStr} on <ELink link={prURL}> pull request #{prNum}</ELink> in</span>
+        <span>{actionStr} on<ELink link={prURL}> pull request #{prNum}</ELink> in</span>
       );
     }
     case 'PullRequestReviewEvent': {
