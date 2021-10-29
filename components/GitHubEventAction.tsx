@@ -12,11 +12,11 @@ interface GitHubEventActionProps {
 function GitHubEventAction({type, payload}: GitHubEventActionProps): JSX.Element {
   const unknown = <span>did a {type} on</span>;
   switch(type){
-    case 'CreateEvent': 
+    case 'CreateEvent':
     case 'DeleteEvent': {
       const target = payload?.ref;
       const targetType = payload?.ref_type;
-      const action = type === 'CreateEvent'? 'created' : 'deleted'; 
+      const action = type === 'CreateEvent'? 'created' : 'deleted';
       if (!target) {
         return <span>{action} the {targetType} </span>;
       }
