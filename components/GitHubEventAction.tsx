@@ -103,6 +103,9 @@ function GitHubEventAction({type, payload}: GitHubEventActionProps): JSX.Element
     case 'PublicEvent': {
       return <span>made a new repository public:</span>;
     }
+    case 'WatchEvent': {
+      return <span>watched</span>;
+    }
     default:
       return unknown;
   }
