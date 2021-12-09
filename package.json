@@ -30,7 +30,7 @@
     "@netlify/plugin-nextjs": "^4.0.0-rc.1",
     "@testing-library/react": "^11.2.5",
     "@types/jest": "^27.0.3",
-    "@types/node": "^14.14.25",
+    "@types/node": "^16.11.12",
     "@types/react": "^17.0.37",
     "@typescript-eslint/eslint-plugin": "^4.14.2",
     "@typescript-eslint/parser": "^4.14.2",
