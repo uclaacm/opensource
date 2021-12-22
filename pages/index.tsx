@@ -7,7 +7,6 @@ import GitHubEvent from '../components/GitHubEvent';
 import Layout from '../components/Layout';
 import ProjectCard from '../components/ProjectCard';
 import { Project } from '../util';
-//import projects from "../data/projects";
 
 interface HomeProps {
   numRepos: number;
@@ -24,7 +23,10 @@ export default function Home({
     <Layout>
       <div className="container">
         <h1>
-          open source at <ELink link="https://uclaacm.com">ACM at UCLA</ELink>
+          open source at{' '}
+          <ELink link="https://uclaacm.com">
+            ACM at UCLA
+          </ELink>
         </h1>
         <hr />
         <p className="knockout-description">
@@ -96,7 +98,10 @@ export default function Home({
             ))}
             <p>
               see more activity{' '}
-              <ELink link="https://github.com/uclaacm/">on our org</ELink>!
+              <ELink link="https://github.com/uclaacm/">
+                on our org
+              </ELink>
+              !
             </p>
           </div>
         </div>

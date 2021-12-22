@@ -6,7 +6,7 @@ export interface ELinkProps {
   children: React.ReactNode;
 }
 
-function ELink({ link, children }: ELinkProps): JSX.Element {
+function ELink ({link, children}: ELinkProps): JSX.Element {
   const linkProps = {
     rel: 'noopener noreferrer',
     target: '_blank',

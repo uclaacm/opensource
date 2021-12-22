@@ -13,10 +13,11 @@ function Projects({ projects }: ProjectsProps): JSX.Element {
   return (
     <Layout>
       <div className="container">
-        <h1>projects</h1>
+        <h1>
+          projects
+        </h1>
         <p>
-          a (work-in-progress) heads-up overview of the projects that power ACM
-          at UCLA.
+          a (work-in-progress) heads-up overview of the projects that power ACM at UCLA.
         </p>
         <hr />
         <div className="row">
@@ -57,7 +58,6 @@ export const getStaticProps: GetStaticProps<ProjectsProps> = async () => {
         topics: repo.topics,
         image: repo.owner.avatar_url,
         alt: repo.owner.name || null,
-        updated_at: repo.updated_at,
       } as Project),
   );
 
