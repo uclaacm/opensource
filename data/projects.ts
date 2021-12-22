@@ -11,7 +11,7 @@ const projects: Array<Project> = [
     image: '/projects/buffer-buffet.png',
     alt: 'buffer buffet landing splash',
     lang: Language.JS,
-    tech: [
+    topics: [
       'react', 'x86',
     ],
   },
@@ -23,7 +23,7 @@ const projects: Array<Project> = [
     image: '/projects/styleguide.png',
     alt: 'ACM at UCLA Styleguide homepage',
     lang: Language.SCSS,
-    tech: [
+    topics: [
       'eleventy',
     ],
   },
@@ -35,7 +35,7 @@ const projects: Array<Project> = [
     image: '/projects/dev-pathways.png',
     alt: 'Dev pathways homepage',
     lang: Language.JS,
-    tech: [
+    topics: [
       'react',
     ],
   },
@@ -47,7 +47,7 @@ const projects: Array<Project> = [
     image: '/projects/cyber-platform.png',
     alt: 'Cyber Web Platform challenges page',
     lang: Language.RUST,
-    tech: [
+    topics: [
       'flask', 'postgres', 'warp',
     ],
   },
@@ -59,7 +59,7 @@ const projects: Array<Project> = [
     image: '/projects/playnet.png',
     alt: 'Lost in translation game on playnet platform',
     lang: Language.TS,
-    tech: [
+    topics: [
       'anime.js', 'lottie', 'react',
     ],
   },
@@ -71,7 +71,7 @@ const projects: Array<Project> = [
     image: '/projects/tla-editor-go.png',
     alt: 'Postman documentation for the teach la editor',
     lang: Language.GO,
-    tech: [
+    topics: [
       'firebase',
     ],
   },

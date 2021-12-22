@@ -6,26 +6,25 @@ import ELink from '../components/ELink';
 import GitHubEvent from '../components/GitHubEvent';
 import Layout from '../components/Layout';
 import ProjectCard from '../components/ProjectCard';
-
-import projects from '../data/projects';
+import { Project } from '../util';
+//import projects from "../data/projects";
 
 interface HomeProps {
-  numRepos: number
-  recentEvents: GitHubEvent[]
+  numRepos: number;
+  recentEvents: GitHubEvent[];
+  projects: Project[];
 }
 
 export default function Home({
   numRepos,
   recentEvents,
+  projects,
 }: HomeProps): JSX.Element {
   return (
     <Layout>
       <div className="container">
         <h1>
-          open source at{' '}
-          <ELink link="https://uclaacm.com">
-            ACM at UCLA
-          </ELink>
+          open source at <ELink link="https://uclaacm.com">ACM at UCLA</ELink>
         </h1>
         <hr />
         <p className="knockout-description">
@@ -97,10 +96,7 @@ export default function Home({
             ))}
             <p>
               see more activity{' '}
-              <ELink link="https://github.com/uclaacm/">
-                on our org
-              </ELink>
-              !
+              <ELink link="https://github.com/uclaacm/">on our org</ELink>!
             </p>
           </div>
         </div>
@@ -123,10 +119,32 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
   });
   const recentEvents = eventResponse.data;
 
+  const projectsResponse = await octokit.request('GET /orgs/{org}/repos', {
+    org: 'uclaacm',
+  });
+  const sortedData = projectsResponse.data.sort(
+    (a, b) =>
+      new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime(),
+  );
+  const projects = sortedData.map(
+    (repo) =>
+      ({
+        name: repo.name,
+        description: repo.description,
+        link: repo.homepage || null,
+        repo: repo.html_url,
+        lang: repo.language,
+        topics: repo.topics,
+        image: repo.owner.avatar_url,
+        alt: repo.owner.name || null,
+      } as Project),
+  );
+
   return {
     props: {
       numRepos,
       recentEvents,
+      projects,
     },
     revalidate: 60,
   };

@@ -31,7 +31,7 @@ function ProjectCardImage({project, preload}: ProjectCardImageProps) {
   );
 }
 
-function ProjectCardBody({ name, description, repo, link, lang, tech }: Project) {
+function ProjectCardBody({ name, description, repo, link, lang, topics }: Project) {
   return (
     <div className="card-body">
       <h3 className="mt-1">
@@ -41,7 +41,7 @@ function ProjectCardBody({ name, description, repo, link, lang, tech }: Project)
       </h3>
       <p>
         <span className={`dev-language-badge lang-${lang}`}></span> {lang}
-        {tech && <span> • {tech.join(', ')}</span>}
+        {topics && <span> • {topics.join(', ')}</span>}
       </p>
       <p>{description}</p>
       <ELink link={repo}>
