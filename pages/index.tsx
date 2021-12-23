@@ -6,7 +6,7 @@ import ELink from '../components/ELink';
 import GitHubEvent from '../components/GitHubEvent';
 import Layout from '../components/Layout';
 import ProjectCard from '../components/ProjectCard';
-import { Project } from '../util';
+import { Project, getProjects } from '../util';
 
 interface HomeProps {
   numRepos: number;
@@ -124,26 +124,7 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
   });
   const recentEvents = eventResponse.data;
 
-  const projectsResponse = await octokit.request('GET /orgs/{org}/repos', {
-    org: 'uclaacm',
-  });
-  const sortedData = projectsResponse.data.sort(
-    (a, b) =>
-      new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime(),
-  );
-  const projects = sortedData.map(
-    (repo) =>
-      ({
-        name: repo.name,
-        description: repo.description,
-        link: repo.homepage || null,
-        repo: repo.html_url,
-        lang: repo.language,
-        topics: repo.topics,
-        image: repo.owner.avatar_url,
-        alt: repo.owner.name || null,
-      } as Project),
-  );
+  const projects = await getProjects();
 
   return {
     props: {
