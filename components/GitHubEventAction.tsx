@@ -4,7 +4,9 @@ import ELink from './ELink';
 // from the octokit types
 interface GitHubEventActionProps {
   type: string,
+  /* eslint-disable  @typescript-eslint/no-explicit-any */
   payload: any,
+  /* eslint-enable  @typescript-eslint/no-explicit-any */
 }
 
 // TODO(mattxwang): this doesn't seem like the best way to do this ://

@@ -12,7 +12,10 @@ interface GitHubEvent {
   actor: GitHubActor
   repo: GitHubRepo
   created_at: string
+  //NOTE: payload is any even in the octokit response
+  /* eslint-disable  @typescript-eslint/no-explicit-any */
   payload: any
+  /* eslint-enable  @typescript-eslint/no-explicit-any */
 }
 
 interface GitHubActor {

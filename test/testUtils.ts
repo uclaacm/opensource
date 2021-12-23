@@ -13,9 +13,10 @@ const Providers = ({ children }) => {
   //   </ThemeProvider>
   // )
 };
-
-const customRender = (ui, options = {}) =>
+/* eslint-disable  @typescript-eslint/explicit-module-boundary-types */
+const customRender = (ui : JSX.Element, options = {}) =>
   render(ui, { wrapper: Providers, ...options });
+/* eslint-enable  @typescript-eslint/explicit-module-boundary-types */
 
 // re-export everything
 export * from '@testing-library/react';
