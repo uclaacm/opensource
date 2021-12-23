@@ -180,26 +180,16 @@ exports[`Home page matches snapshot 1`] = `
             class="col-6"
           >
             <a
-              href="http://members.uclaacm.com"
+              href="https://editor.uclaacm.com"
               rel="noopener noreferrer"
               target="_blank"
             >
-              <div
-                style="display: block; overflow: hidden; position: relative; box-sizing: border-box; margin: 0px;"
-              >
-                <div
-                  style="display: block; box-sizing: border-box; padding-top: 80%;"
-                />
-                <img
-                  data-nimg="responsive"
-                  decoding="async"
-                  sizes="100vw"
-                  src="/_next/image?url=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F8324381%3Fv%3D4&w=3840&q=75"
-                  srcset="/_next/image?url=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F8324381%3Fv%3D4&w=640&q=75 640w, /_next/image?url=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F8324381%3Fv%3D4&w=750&q=75 750w, /_next/image?url=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F8324381%3Fv%3D4&w=828&q=75 828w, /_next/image?url=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F8324381%3Fv%3D4&w=1080&q=75 1080w, /_next/image?url=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F8324381%3Fv%3D4&w=1200&q=75 1200w, /_next/image?url=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F8324381%3Fv%3D4&w=1920&q=75 1920w, /_next/image?url=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F8324381%3Fv%3D4&w=2048&q=75 2048w, /_next/image?url=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F8324381%3Fv%3D4&w=3840&q=75 3840w"
-                  style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
-                />
-                <noscript />
-              </div>
+              <iframe
+                height="100%"
+                src="https://editor.uclaacm.com"
+                title="TeachLAFrontend"
+                width="100%"
+              />
             </a>
           </div>
           <div
@@ -212,11 +202,11 @@ exports[`Home page matches snapshot 1`] = `
                 class="mt-1"
               >
                 <a
-                  href="http://members.uclaacm.com"
+                  href="https://editor.uclaacm.com"
                   rel="noopener noreferrer"
                   target="_blank"
                 >
-                  membership-portal-ui
+                  TeachLAFrontend
                 </a>
               </h3>
               <p>
@@ -225,14 +215,14 @@ exports[`Home page matches snapshot 1`] = `
                 />
                  JavaScript
                 <span>
-                   • 
+                   • education, firebase, ide, react, redux, teach-la
                 </span>
               </p>
               <p>
-                react front end for the acm internal tooling
+                🌱the frontend for Teach LA's online IDE, designed to teach kids how to code!
               </p>
               <a
-                href="https://github.com/uclaacm/membership-portal-ui"
+                href="https://github.com/uclaacm/TeachLAFrontend"
                 rel="noopener noreferrer"
                 target="_blank"
               >

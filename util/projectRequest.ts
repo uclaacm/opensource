@@ -1,9 +1,10 @@
 import { Octokit } from '@octokit/core';
 import { Project } from './types';
-export async function getProjects() : Promise<Project[]>{
+export async function getProjects(): Promise<Project[]> {
   const octokit = new Octokit();
   const projectsResponse = await octokit.request('GET /orgs/{org}/repos', {
     org: 'uclaacm',
+    per_page: 100,
   });
   const sortedData = projectsResponse.data.sort(
     (a, b) =>

@@ -5,60 +5,71 @@ import { Project } from '../util/';
 import ELink from './ELink';
 
 interface ProjectCardProps {
-  project: Project
-  vertical?: boolean
-  preload?: boolean
+  project: Project;
+  vertical?: boolean;
+  preload?: boolean;
 }
 
 interface ProjectCardImageProps {
-  project: Project
-  preload: boolean
+  project: Project;
+  preload: boolean;
 }
 
-function ProjectCardImage({project, preload}: ProjectCardImageProps) {
-  const { image, alt, link } = project;
+function ProjectCardImage({ project, preload }: ProjectCardImageProps) {
+  const { image, alt, link, name } = project;
   return (
     <ELink link={link}>
-      <Image
-        src={image}
-        alt={alt}
-        width="1000"
-        height="800"
-        layout="responsive"
-        priority={preload}
-      />
+      {project.link ? (
+        <iframe src={link} title={name} width="100%" height="100%" />
+      ) : (
+        <Image
+          src={image}
+          alt={alt}
+          width="1000"
+          height="800"
+          layout="responsive"
+          priority={preload}
+        />
+      )}
     </ELink>
   );
 }
 
-function ProjectCardBody({ name, description, repo, link, lang, topics }: Project) {
+function ProjectCardBody({
+  name,
+  description,
+  repo,
+  link,
+  lang,
+  topics,
+}: Project) {
   return (
     <div className="card-body">
       <h3 className="mt-1">
-        <ELink link={link} >
-          {name}
-        </ELink>
+        <ELink link={link}>{name}</ELink>
       </h3>
       <p>
         <span className={`dev-language-badge lang-${lang}`}></span> {lang}
         {topics && <span> • {topics.join(', ')}</span>}
       </p>
       <p>{description}</p>
-      <ELink link={repo}>
-        GitHub Repository
-      </ELink>
+      <ELink link={repo}>GitHub Repository</ELink>
     </div>
   );
 }
 
 // TODO(mattxwang): consider revisiting how this component works
 // TODO(mattxwang): Mobile responsiveness (waiting on WestwoodCSS)
-function ProjectCard({project, vertical = false, preload = false}: ProjectCardProps): JSX.Element {
+function ProjectCard({
+  project,
+  vertical = false,
+  preload = false,
+}: ProjectCardProps): JSX.Element {
   if (vertical) {
     return (
       <div className="card">
-        <ProjectCardImage project={project} preload={preload}/>
-        <ProjectCardBody {...project}/>
+        <ProjectCardImage project={project} preload={preload} />
+        <ProjectCardBody {...project} />
       </div>
     );
   }
@@ -66,10 +77,10 @@ function ProjectCard({project, vertical = false, preload = false}: ProjectCardPr
     <div className="card">
       <div className="row">
         <div className="col-6">
-          <ProjectCardImage project={project} preload={preload}/>
+          <ProjectCardImage project={project} preload={preload} />
         </div>
         <div className="col-6">
-          <ProjectCardBody {...project}/>
+          <ProjectCardBody {...project} />
         </div>
       </div>
     </div>
