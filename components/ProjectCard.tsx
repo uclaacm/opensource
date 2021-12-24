@@ -16,21 +16,17 @@ interface ProjectCardImageProps {
 }
 
 function ProjectCardImage({ project, preload }: ProjectCardImageProps) {
-  const { image, alt, link, name } = project;
+  const { image, alt, link } = project;
   return (
     <ELink link={link}>
-      {project.link ? (
-        <iframe src={link} title={name} width="100%" height="100%" />
-      ) : (
-        <Image
-          src={image}
-          alt={alt}
-          width="1000"
-          height="800"
-          layout="responsive"
-          priority={preload}
-        />
-      )}
+      <Image
+        src={image}
+        alt={alt}
+        width="1000"
+        height="800"
+        layout="responsive"
+        priority={preload}
+      />
     </ELink>
   );
 }
