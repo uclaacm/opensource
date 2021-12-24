@@ -222,7 +222,8 @@ exports[`Home page matches snapshot 1`] = `
               </h3>
               <p>
                 <span
-                  class="dev-language-badge lang-JavaScript"
+                  class="dev-language-badge"
+                  style="background-color: rgb(241, 224, 90);"
                 />
                  JavaScript
                 <span>
