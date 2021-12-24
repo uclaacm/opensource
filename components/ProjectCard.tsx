@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import React from 'react';
+import githubColors from '../data/githubColors.json';
 
 import { Project } from '../util/';
 import ELink from './ELink';
@@ -45,7 +46,15 @@ function ProjectCardBody({
         <ELink link={link}>{name}</ELink>
       </h3>
       <p>
-        <span className={`dev-language-badge lang-${lang}`}></span> {lang}
+        <span
+          className="dev-language-badge"
+          style={{
+            backgroundColor: githubColors[lang]
+              ? githubColors[lang].color
+              : 'black',
+          }}
+        ></span>{' '}
+        {lang}
         {topics && <span> • {topics.join(', ')}</span>}
       </p>
       <p>{description}</p>
