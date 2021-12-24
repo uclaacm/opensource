@@ -1,13 +1,15 @@
 import { Octokit } from '@octokit/core';
+import { paginateRest } from '@octokit/plugin-paginate-rest';
 import { Project, ACMCommitteeTopics } from './types';
 
 export async function getProjects(): Promise<Project[]> {
-  const octokit = new Octokit();
-  const projectsResponse = await octokit.request('GET /orgs/{org}/repos', {
+  const PaginatedOctokit = Octokit.plugin(paginateRest);
+  const octokit = new PaginatedOctokit();
+  const projectsResponse = await octokit.paginate('GET /orgs/{org}/repos', {
     org: 'uclaacm',
     per_page: 100,
   });
-  const sortedData = projectsResponse.data.sort(
+  const sortedData = projectsResponse.sort(
     (a, b) =>
       new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime(),
   );

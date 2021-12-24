@@ -179,29 +179,23 @@ exports[`Home page matches snapshot 1`] = `
           <div
             class="col-6"
           >
-            <a
-              href="https://editor.uclaacm.com"
-              rel="noopener noreferrer"
-              target="_blank"
+            <div
+              style="display: block; overflow: hidden; position: relative; box-sizing: border-box; margin: 0px;"
             >
               <div
-                style="display: block; overflow: hidden; position: relative; box-sizing: border-box; margin: 0px;"
-              >
-                <div
-                  style="display: block; box-sizing: border-box; padding-top: 80%;"
-                />
-                <img
-                  alt="ACM Teach LA Logo"
-                  data-nimg="responsive"
-                  decoding="async"
-                  sizes="100vw"
-                  src="/_next/image?url=%2Fcommittee-logos%2Fteachla-logo.png&w=3840&q=75"
-                  srcset="/_next/image?url=%2Fcommittee-logos%2Fteachla-logo.png&w=640&q=75 640w, /_next/image?url=%2Fcommittee-logos%2Fteachla-logo.png&w=750&q=75 750w, /_next/image?url=%2Fcommittee-logos%2Fteachla-logo.png&w=828&q=75 828w, /_next/image?url=%2Fcommittee-logos%2Fteachla-logo.png&w=1080&q=75 1080w, /_next/image?url=%2Fcommittee-logos%2Fteachla-logo.png&w=1200&q=75 1200w, /_next/image?url=%2Fcommittee-logos%2Fteachla-logo.png&w=1920&q=75 1920w, /_next/image?url=%2Fcommittee-logos%2Fteachla-logo.png&w=2048&q=75 2048w, /_next/image?url=%2Fcommittee-logos%2Fteachla-logo.png&w=3840&q=75 3840w"
-                  style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
-                />
-                <noscript />
-              </div>
-            </a>
+                style="display: block; box-sizing: border-box; padding-top: 80%;"
+              />
+              <img
+                alt="ACM @ UCLA's Logo"
+                data-nimg="responsive"
+                decoding="async"
+                sizes="100vw"
+                src="/_next/image?url=%2Flogo.png&w=3840&q=75"
+                srcset="/_next/image?url=%2Flogo.png&w=640&q=75 640w, /_next/image?url=%2Flogo.png&w=750&q=75 750w, /_next/image?url=%2Flogo.png&w=828&q=75 828w, /_next/image?url=%2Flogo.png&w=1080&q=75 1080w, /_next/image?url=%2Flogo.png&w=1200&q=75 1200w, /_next/image?url=%2Flogo.png&w=1920&q=75 1920w, /_next/image?url=%2Flogo.png&w=2048&q=75 2048w, /_next/image?url=%2Flogo.png&w=3840&q=75 3840w"
+                style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+              />
+              <noscript />
+            </div>
           </div>
           <div
             class="col-6"
@@ -212,29 +206,23 @@ exports[`Home page matches snapshot 1`] = `
               <h3
                 class="mt-1"
               >
-                <a
-                  href="https://editor.uclaacm.com"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  TeachLAFrontend
-                </a>
+                centralized-intern-training
               </h3>
               <p>
                 <span
                   class="dev-language-badge"
-                  style="background-color: rgb(241, 224, 90);"
+                  style="background-color: black;"
                 />
-                 JavaScript
+                 
                 <span>
-                   • education, firebase, ide, react, redux, teach-la
+                   • education, react, web-development
                 </span>
               </p>
               <p>
-                🌱the frontend for Teach LA's online IDE, designed to teach kids how to code!
+                Notes & Examples From ACM's Intern Training Plan focused on Web Dev and Project Development!
               </p>
               <a
-                href="https://github.com/uclaacm/TeachLAFrontend"
+                href="https://github.com/uclaacm/centralized-intern-training"
                 rel="noopener noreferrer"
                 target="_blank"
               >
