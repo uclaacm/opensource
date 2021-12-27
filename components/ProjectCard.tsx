@@ -1,14 +1,13 @@
 import Image from 'next/image';
 import React from 'react';
-import githubColors from '../data/githubColors.json';
-
-import { Project } from '../util/';
+import { Project, GitHubColors } from '../util/';
 import ELink from './ELink';
 
 interface ProjectCardProps {
   project: Project;
   vertical?: boolean;
   preload?: boolean;
+  githubColors: GitHubColors
 }
 
 interface ProjectCardImageProps {
@@ -18,7 +17,7 @@ interface ProjectCardImageProps {
 
 function ProjectCardImage({ project, preload }: ProjectCardImageProps) {
   const { image, alt, link } = project;
-  return (
+  return link ? (
     <ELink link={link}>
       <Image
         src={image}
@@ -29,33 +28,50 @@ function ProjectCardImage({ project, preload }: ProjectCardImageProps) {
         priority={preload}
       />
     </ELink>
+  ) : (
+    <>
+      <Image
+        src={image}
+        alt={alt}
+        width="1000"
+        height="800"
+        layout="responsive"
+        priority={preload}
+      />
+    </>
   );
 }
 
-function ProjectCardBody({
-  name,
-  description,
-  repo,
-  link,
-  lang,
-  topics,
-}: Project) {
+interface ProjectCardBodyProps {
+  githubColors: GitHubColors,
+  project: Project
+}
+
+function ProjectCardBody(props: ProjectCardBodyProps) {
+  const {
+    name,
+    description,
+    repo,
+    link,
+    lang,
+    topics,
+  } = props.project;
   return (
     <div className="card-body">
       <h3 className="mt-1">
-        <ELink link={link}>{name}</ELink>
+        {link ? <ELink link={link}>{name}</ELink> : name}
       </h3>
       <p>
         <span
           className="dev-language-badge"
           style={{
-            backgroundColor: githubColors[lang]
-              ? githubColors[lang].color
+            backgroundColor: props.githubColors[lang]
+              ? props.githubColors[lang].color
               : 'black',
           }}
         ></span>{' '}
-        {lang}
-        {topics && <span> • {topics.join(', ')}</span>}
+        {lang || 'Markdown'}
+        {topics.length > 0 && <span> • {topics.join(', ')}</span>}
       </p>
       <p>{description}</p>
       <ELink link={repo}>GitHub Repository</ELink>
@@ -69,12 +85,13 @@ function ProjectCard({
   project,
   vertical = false,
   preload = false,
+  githubColors,
 }: ProjectCardProps): JSX.Element {
   if (vertical) {
     return (
       <div className="card">
         <ProjectCardImage project={project} preload={preload} />
-        <ProjectCardBody {...project} />
+        <ProjectCardBody project = {project} githubColors = {githubColors} />
       </div>
     );
   }
@@ -85,7 +102,7 @@ function ProjectCard({
           <ProjectCardImage project={project} preload={preload} />
         </div>
         <div className="col-6">
-          <ProjectCardBody {...project} />
+          <ProjectCardBody project = {project} githubColors={githubColors} />
         </div>
       </div>
     </div>

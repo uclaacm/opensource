@@ -6,18 +6,20 @@ import ELink from '../components/ELink';
 import GitHubEvent from '../components/GitHubEvent';
 import Layout from '../components/Layout';
 import ProjectCard from '../components/ProjectCard';
-import { Project, getProjects } from '../util';
+import { Project, getProjects, GitHubColors, getGithubColors } from '../util';
 
 interface HomeProps {
   numRepos: number;
   recentEvents: GitHubEvent[];
   projects: Project[];
+  githubColors: GitHubColors
 }
 
 export default function Home({
   numRepos,
   recentEvents,
   projects,
+  githubColors,
 }: HomeProps): JSX.Element {
   return (
     <Layout>
@@ -88,7 +90,7 @@ export default function Home({
         <hr className="mt-2" />
 
         <h2>featured project</h2>
-        <ProjectCard project={projects[0]} preload={true} />
+        <ProjectCard project={projects[0]} preload={true} githubColors={githubColors} />
         <h2>what we&apos;ve been doing recently...</h2>
         <p>this is a live feed of our {numRepos} repositories</p>
         <div className="card">
@@ -124,6 +126,8 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
   });
   const recentEvents = eventResponse.data;
 
+  const githubColors = await getGithubColors();
+
   const projects = await getProjects();
 
   return {
@@ -131,6 +135,7 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
       numRepos,
       recentEvents,
       projects,
+      githubColors,
     },
     revalidate: 60,
   };

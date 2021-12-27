@@ -2,13 +2,15 @@ import { GetStaticProps } from 'next';
 import React from 'react';
 import Layout from '../components/Layout';
 import ProjectCard from '../components/ProjectCard';
-import { getProjects, Project } from '../util';
+import { getProjects, Project, GitHubColors, getGithubColors } from '../util';
+
 
 interface ProjectsProps {
   projects: Project[];
+  githubColors: GitHubColors
 }
 
-function Projects({ projects }: ProjectsProps): JSX.Element {
+function Projects({ projects, githubColors }: ProjectsProps): JSX.Element {
   return (
     <Layout>
       <div className="container">
@@ -19,11 +21,11 @@ function Projects({ projects }: ProjectsProps): JSX.Element {
           a (work-in-progress) heads-up overview of the projects that power ACM at UCLA.
         </p>
         <hr />
-        <div className="row">
+        <div className="row same-height-grid">
           {projects.map((project, i) => {
             return (
               <div className="col-4" key={project.name}>
-                <ProjectCard project={project} vertical preload={i < 3} />
+                <ProjectCard project={project} vertical preload={i < 3} githubColors={githubColors} />
               </div>
             );
           })}
@@ -37,10 +39,11 @@ export default Projects;
 
 export const getStaticProps: GetStaticProps<ProjectsProps> = async () => {
   const projects = await getProjects();
-
+  const githubColors = await getGithubColors();
   return {
     props: {
       projects,
+      githubColors: githubColors,
     },
     revalidate: 60,
   };

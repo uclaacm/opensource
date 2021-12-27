@@ -14,10 +14,19 @@ body {
 
 .mt-1 {
   margin-top: 1rem;
+  overflow-wrap: break-word;
 }
 
 .mt-2 {
   margin-top: 2rem;
+}
+
+.row.same-height-grid {
+  grid-auto-rows: 1fr;
+}
+
+.card {
+  height: 100%;
 }
 
 /* overriding the WestwoodCSS default */

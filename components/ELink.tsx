@@ -2,7 +2,7 @@ import Link from 'next/link';
 import React from 'react';
 
 export interface ELinkProps {
-  link: string | null;
+  link: string;
   children: React.ReactNode;
 }
 
@@ -11,13 +11,12 @@ function ELink ({link, children}: ELinkProps): JSX.Element {
     rel: 'noopener noreferrer',
     target: '_blank',
   };
-  return link ? (
+  return (
     <Link href={link}>
       <a {...linkProps}>{children}</a>
     </Link>
-  ) : (
-    <>{children}</>
   );
+
 }
 
 export default ELink;
