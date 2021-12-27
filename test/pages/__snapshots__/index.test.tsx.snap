@@ -226,9 +226,6 @@ exports[`Home page matches snapshot 1`] = `
                   style="background-color: rgb(241, 224, 90);"
                 />
                  JavaScript
-                <span>
-                   • 
-                </span>
               </p>
               <p>
                 react front end for the acm internal tooling
