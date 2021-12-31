@@ -1,7 +1,17 @@
 import React from 'react';
 import ELink from './ELink';
+
+// Was just messing around with octokit imports. Prob not correct
+import { Octokit } from '@octokit/core';
+import {GetResponseDataTypeFromEndpointMethod } from '@octokit/types';
+
 // TODO(mattxwang): fix the payload thing to actually use a type, maybe
 // from the octokit types
+
+// Also messing around with octokit. Prob not correct.
+const octokit = new Octokit();
+// type PayloadType = Octokit.
+
 interface GitHubEventActionProps {
   type: string,
   payload: any,
@@ -10,6 +20,9 @@ interface GitHubEventActionProps {
 // TODO(mattxwang): this doesn't seem like the best way to do this ://
 // returns a string of form: <verb> <location/type of action> <preposition>
 function GitHubEventAction({type, payload}: GitHubEventActionProps): JSX.Element {
+  // print out payload for every component
+  console.log(JSON.stringify(payload.action));
+
   const unknown = <span>did a {type} on</span>;
   switch(type){
     case 'CreateEvent':
