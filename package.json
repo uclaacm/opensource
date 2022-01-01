@@ -15,10 +15,7 @@
     "prepare": "husky install"
   },
   "lint-staged": {
-    "*.@(ts|tsx)": [
-      "yarn lint",
-      "yarn format"
-    ]
+    "*.(ts|tsx)": "eslint --cache --fix"
   },
   "dependencies": {
     "@octokit/core": "^3.5.1",
