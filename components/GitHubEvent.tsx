@@ -2,7 +2,6 @@ import React from 'react';
 import ELink from './ELink';
 import GitHubEventAction from './GitHubEventAction';
 import moment from 'moment';
-import { time } from 'console';
 moment().format();
 
 // TODO(mattxwang): get the official types from the type registry;
@@ -34,13 +33,12 @@ interface GitHubRepo {
 }
 
 function GitHubEvent(props: GitHubEvent): JSX.Element {
-  const {type, actor, repo, payload, created_at} = props;
-  moment.defaultFormat = "YYYY-MM-DD HH:mm:ss";
 
-  var timePassed = moment(created_at).fromNow();
-  console.log(timePassed);
-  
-  //console.log(created_at);
+  moment.defaultFormat = 'YYYY-MM-DD HH:mm:ss';
+
+  const {type, actor, repo, payload, created_at} = props;
+  const timePassed = moment(created_at).fromNow();
+
   const userLink = !actor.login.includes('[bot]') ? <ELink link={`https://github.com/${actor.login}`}>{`@${actor.login}`}</ELink> : actor.login;
   return (
     <>
@@ -51,10 +49,6 @@ function GitHubEvent(props: GitHubEvent): JSX.Element {
         <ELink link={`https://github.com/${repo.name}`}>{repo.name}</ELink>
         <span style = {{float: 'right'}}>{timePassed}</span>
       </div>
-       
-
-  
-      
       <hr />
       {/*  </div> */}
       {/* // </div> */}

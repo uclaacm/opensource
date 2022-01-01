@@ -16,15 +16,7 @@ interface GitHubEventActionProps {
 // TODO(mattxwang): this doesn't seem like the best way to do this ://
 // returns a string of form: <verb> <location/type of action> <preposition>
 function GitHubEventAction({type, payload, created_at}: GitHubEventActionProps): JSX.Element {
-  
-  //2021-12-31T03:03:03Z;
-  
-  moment.defaultFormat = "YYYY-MM-DD HH:mm:ss";
-
-  var timePassed = moment(created_at).fromNow();
-
-  //console.log(timePassed);
-  
+    
   const unknown = <span>did a {type} on</span>;
   switch(type){
     case 'CreateEvent':
