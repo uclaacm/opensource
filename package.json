@@ -12,10 +12,8 @@
     "lint": "eslint . --ext ts --ext tsx --ext js",
     "test": "jest",
     "test-all": "yarn lint && yarn type-check && yarn test",
+    "pre-commit": "yarn format",
     "prepare": "husky install"
-  },
-  "lint-staged": {
-    "*.(ts|tsx)": "eslint --cache --fix"
   },
   "dependencies": {
     "@octokit/core": "^3.5.1",
