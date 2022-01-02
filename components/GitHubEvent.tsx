@@ -45,7 +45,7 @@ function GitHubEvent(props: GitHubEvent): JSX.Element {
       {/* <div className="card" style={{marginTop: "20px"}}> */}
       {/* <div className="card-body"> */}
       <div style = {{overflow: 'hidden'}}>
-        {userLink} <GitHubEventAction type={type} payload={payload} created_at = {created_at}/>{' '}
+        {userLink} <GitHubEventAction type={type} payload={payload}/>{' '}
         <ELink link={`https://github.com/${repo.name}`}>{repo.name}</ELink>
         <span style = {{float: 'right'}}>{timePassed}</span>
       </div>
