@@ -1,7 +1,7 @@
+import moment from 'moment';
 import React from 'react';
 import ELink from './ELink';
 import GitHubEventAction from './GitHubEventAction';
-import moment from 'moment';
 moment().format();
 
 // TODO(mattxwang): get the official types from the type registry;
