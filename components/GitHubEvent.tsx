@@ -2,7 +2,7 @@ import moment from 'moment';
 import React from 'react';
 import ELink from './ELink';
 import GitHubEventAction from './GitHubEventAction';
-moment().format();
+//moment().format();
 
 // TODO(mattxwang): get the official types from the type registry;
 // see https://github.com/octokit/types.ts
@@ -33,7 +33,7 @@ interface GitHubRepo {
 }
 
 function GitHubEvent(props: GitHubEvent): JSX.Element {
-  moment.defaultFormat = 'YYYY-MM-DD HH:mm:ss';
+ // moment.defaultFormat = 'YYYY-MM-DD HH:mm:ss';
 
   const {type, actor, repo, payload, created_at} = props;
   const timePassed = moment(created_at).fromNow();

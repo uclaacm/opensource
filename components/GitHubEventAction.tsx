@@ -1,8 +1,5 @@
-import moment from 'moment';
 import React from 'react';
 import ELink from './ELink';
-moment().format();
-
 
 // TODO(mattxwang): fix the payload thing to actually use a type, maybe
 // from the octokit types
