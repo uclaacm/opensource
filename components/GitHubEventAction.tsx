@@ -4,9 +4,6 @@ import { getStaticProps } from '../pages';
 import { CreateEvent, DeleteEvent, ForkEvent, IssueCommentEvent, IssuesEvent, MemberEvent, PullRequestEvent, PullRequestReviewCommentEvent, 
   PullRequestReviewEvent, PushEvent, PublicEvent, WatchEvent } from "@octokit/webhooks-types";
 
-// TODO(mattxwang): fix the payload thing to actually use a type, maybe
-// from the octokit types
-
 type payloadType = 
 | CreateEvent 
 | DeleteEvent 
@@ -111,13 +108,12 @@ function GitHubEventAction({type, payload}: GitHubEventActionProps): JSX.Element
       if (!action || !prNum || !prURL) {
         return unknown;
       }
-      const actionStr = action === 'created' ? 'reviewed' : action;
+      const actionStr = 'reviewed';
       return <span>{actionStr} <ELink link={prURL}>pull request #{prNum}</ELink> in</span>;
     }
     case 'PushEvent': {
-      const size = (payload as PushEvent).size; // should this be distinct_size?
-      const sizeStr = size ? size : '1'; // should we use 'a'?
-      return <span>pushed {sizeStr} commit{size !== 1 && 's'} to</span>;
+      const sizeStr = 'a';
+      return <span>pushed {sizeStr} commit to</span>
     }
     case 'PublicEvent': {
       return <span>made a new repository public:</span>;
