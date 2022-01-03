@@ -1,34 +1,40 @@
 import React from 'react';
 import ELink from './ELink';
-
-// Was just messing around with octokit imports. Prob not correct
-import { Octokit } from '@octokit/core';
-import {GetResponseDataTypeFromEndpointMethod } from '@octokit/types';
+import { getStaticProps } from '../pages';
+import { CreateEvent, DeleteEvent, ForkEvent, IssueCommentEvent, IssuesEvent, MemberEvent, PullRequestEvent, PullRequestReviewCommentEvent, 
+  PullRequestReviewEvent, PushEvent, PublicEvent, WatchEvent } from "@octokit/webhooks-types";
 
 // TODO(mattxwang): fix the payload thing to actually use a type, maybe
 // from the octokit types
 
-// Also messing around with octokit. Prob not correct.
-const octokit = new Octokit();
-// type PayloadType = Octokit.
+type payloadType = 
+| CreateEvent 
+| DeleteEvent 
+| ForkEvent 
+| IssueCommentEvent 
+| IssuesEvent 
+| MemberEvent 
+| PullRequestEvent 
+| PullRequestReviewCommentEvent 
+| PullRequestReviewEvent 
+| PushEvent 
+| PublicEvent 
+| WatchEvent;
 
 interface GitHubEventActionProps {
   type: string,
-  payload: any,
+  payload: payloadType,
 }
 
 // TODO(mattxwang): this doesn't seem like the best way to do this ://
 // returns a string of form: <verb> <location/type of action> <preposition>
 function GitHubEventAction({type, payload}: GitHubEventActionProps): JSX.Element {
-  // print out payload for every component
-  console.log(JSON.stringify(payload.action));
-
-  const unknown = <span>did a {type} on</span>;
+  const unknown = <span>did a {type} on</span>;  
   switch(type){
     case 'CreateEvent':
     case 'DeleteEvent': {
-      const target = payload?.ref;
-      const targetType = payload?.ref_type;
+      const target = (payload as DeleteEvent).ref;
+      const targetType = (payload as DeleteEvent).ref_type;
       const action = type === 'CreateEvent'? 'created' : 'deleted';
       if (!target) {
         return <span>{action} the {targetType} </span>;
@@ -39,7 +45,7 @@ function GitHubEventAction({type, payload}: GitHubEventActionProps): JSX.Element
       return <span>{action} {targetType} <code>{target}</code> in</span>;
     }
     case 'ForkEvent': {
-      const forkee = payload?.forkee;
+      const forkee = (payload as ForkEvent).forkee;
       const full_name = forkee?.full_name;
       const html_url = forkee?.html_url;
       if (!forkee || !full_name || !html_url) {
@@ -48,8 +54,8 @@ function GitHubEventAction({type, payload}: GitHubEventActionProps): JSX.Element
       return <span>forked <ELink link={html_url}>{full_name}</ELink> from</span>;
     }
     case 'IssueCommentEvent': {
-      const action = payload?.action;
-      const issue = payload?.issue;
+      const action = (payload as IssueCommentEvent).action;
+      const issue = (payload as IssueCommentEvent).issue;
       const issueURL = issue?.html_url;
       const issueNum = issue?.number;
       if (!action || !issue || !issueURL) {
@@ -60,8 +66,8 @@ function GitHubEventAction({type, payload}: GitHubEventActionProps): JSX.Element
       return <span>{actionStr} <ELink link={issueURL}>{issueText}</ELink> in</span>;
     }
     case 'IssuesEvent': {
-      const action = payload?.action;
-      const issue = payload?.issue;
+      const action = (payload as IssuesEvent).action;
+      const issue = (payload as IssuesEvent).issue;
       const issueURL = issue?.html_url;
       const issueNum = issue?.number;
       if (!action || !issue || !issueURL) {
@@ -71,26 +77,26 @@ function GitHubEventAction({type, payload}: GitHubEventActionProps): JSX.Element
       return <span>{action} <ELink link={issueURL}>{issueText}</ELink> in</span>;
     }
     case 'MemberEvent': {
-      const action = payload?.action;
-      const targetName = payload?.member.login;
-      const targetUrl = payload?.member.html_url;
+      const action = (payload as MemberEvent).action;
+      const targetName = (payload as MemberEvent).member.login;
+      const targetUrl = (payload as MemberEvent).member.html_url;
       const editedMessage = action === 'edited' ? ' permissions for ' : '';
       return <span>{action}{editedMessage}<ELink link={targetUrl}>@{targetName}</ELink> as a collaborator on</span>;
     }
     case 'PullRequestEvent': {
-      const action = payload?.action;
-      const prNum = payload?.number;
-      const prURL = payload?.pull_request?.html_url;
+      const action = (payload as PullRequestEvent).action;
+      const prNum = (payload as PullRequestEvent).number;
+      const prURL = (payload as PullRequestEvent).pull_request.html_url;
       if (!action || !prNum || !prURL) {
         return unknown;
       }
       return <span>{action} <ELink link={prURL}>pull request #{prNum}</ELink> in</span>;
     }
     case 'PullRequestReviewCommentEvent': {
-      const action = payload?.action;
+      const action = (payload as PullRequestReviewCommentEvent).action;
       const actionStr = action === 'created' ? 'commented' : action;
-      const prNum = payload?.pull_request?.number;
-      const prURL = payload?.comment?.html_url;
+      const prNum = (payload as PullRequestReviewCommentEvent).pull_request.number;
+      const prURL = (payload as PullRequestReviewCommentEvent).comment.html_url;
       if (!action || !prNum || !prURL) {
         return unknown;
       }
@@ -99,9 +105,9 @@ function GitHubEventAction({type, payload}: GitHubEventActionProps): JSX.Element
       );
     }
     case 'PullRequestReviewEvent': {
-      const action = payload?.action;
-      const prNum = payload?.pull_request?.number;
-      const prURL = payload?.pull_request?.html_url;
+      const action = (payload as PullRequestReviewEvent).action;
+      const prNum = (payload as PullRequestReviewEvent).pull_request.number;
+      const prURL = (payload as PullRequestReviewEvent).pull_request.html_url;
       if (!action || !prNum || !prURL) {
         return unknown;
       }
@@ -109,7 +115,7 @@ function GitHubEventAction({type, payload}: GitHubEventActionProps): JSX.Element
       return <span>{actionStr} <ELink link={prURL}>pull request #{prNum}</ELink> in</span>;
     }
     case 'PushEvent': {
-      const size = payload?.size; // should this be distinct_size?
+      const size = (payload as PushEvent).size; // should this be distinct_size?
       const sizeStr = size ? size : '1'; // should we use 'a'?
       return <span>pushed {sizeStr} commit{size !== 1 && 's'} to</span>;
     }
