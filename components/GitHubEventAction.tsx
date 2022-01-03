@@ -1,9 +1,10 @@
+import { CreateEvent, DeleteEvent, ForkEvent, IssueCommentEvent, IssuesEvent, MemberEvent, 
+  PullRequestEvent, PullRequestReviewCommentEvent, PullRequestReviewEvent, 
+  PushEvent, PublicEvent, WatchEvent, WebhookEvent } from "@octokit/webhooks-types";
 import React from 'react';
 import ELink from './ELink';
-import { getStaticProps } from '../pages';
-import { CreateEvent, DeleteEvent, ForkEvent, IssueCommentEvent, IssuesEvent, MemberEvent, PullRequestEvent, PullRequestReviewCommentEvent, 
-  PullRequestReviewEvent, PushEvent, PublicEvent, WatchEvent } from "@octokit/webhooks-types";
 
+/*
 type payloadType = 
 | CreateEvent 
 | DeleteEvent 
@@ -17,11 +18,12 @@ type payloadType =
 | PushEvent 
 | PublicEvent 
 | WatchEvent;
+*/
 
 interface GitHubEventActionProps {
   type: string,
-  payload: payloadType,
-}
+  payload: WebhookEvent,
+};
 
 // TODO(mattxwang): this doesn't seem like the best way to do this ://
 // returns a string of form: <verb> <location/type of action> <preposition>
