@@ -1,28 +1,26 @@
 import { CreateEvent, DeleteEvent, ForkEvent, IssueCommentEvent, IssuesEvent, MemberEvent, 
   PullRequestEvent, PullRequestReviewCommentEvent, PullRequestReviewEvent, 
-  PushEvent, PublicEvent, WatchEvent, WebhookEvent } from "@octokit/webhooks-types";
+  PushEvent, PublicEvent, WatchEvent } from "@octokit/webhooks-types";
 import React from 'react';
 import ELink from './ELink';
 
-/*
-type payloadType = 
-| CreateEvent 
-| DeleteEvent 
-| ForkEvent 
-| IssueCommentEvent 
-| IssuesEvent 
-| MemberEvent 
-| PullRequestEvent 
-| PullRequestReviewCommentEvent 
-| PullRequestReviewEvent 
-| PushEvent 
-| PublicEvent 
+type payloadType =
+| CreateEvent
+| DeleteEvent
+| ForkEvent
+| IssueCommentEvent
+| IssuesEvent
+| MemberEvent
+| PullRequestEvent
+| PullRequestReviewCommentEvent
+| PullRequestReviewEvent
+| PushEvent
+| PublicEvent
 | WatchEvent;
-*/
 
 interface GitHubEventActionProps {
   type: string,
-  payload: WebhookEvent,
+  payload: payloadType,
 };
 
 // TODO(mattxwang): this doesn't seem like the best way to do this ://
