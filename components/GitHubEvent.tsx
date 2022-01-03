@@ -33,7 +33,6 @@ interface GitHubRepo {
 }
 
 function GitHubEvent(props: GitHubEvent): JSX.Element {
-
   moment.defaultFormat = 'YYYY-MM-DD HH:mm:ss';
 
   const {type, actor, repo, payload, created_at} = props;
