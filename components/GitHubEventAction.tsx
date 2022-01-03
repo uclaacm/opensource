@@ -1,6 +1,6 @@
-import { CreateEvent, DeleteEvent, ForkEvent, IssueCommentEvent, IssuesEvent, MemberEvent, 
-  PullRequestEvent, PullRequestReviewCommentEvent, PullRequestReviewEvent, 
-  PushEvent, PublicEvent, WatchEvent } from "@octokit/webhooks-types";
+import { CreateEvent, DeleteEvent, ForkEvent, IssueCommentEvent, IssuesEvent, MemberEvent,
+  PullRequestEvent, PullRequestReviewCommentEvent, PullRequestReviewEvent,
+  PushEvent, PublicEvent, WatchEvent } from '@octokit/webhooks-types';
 import React from 'react';
 import ELink from './ELink';
 
@@ -21,12 +21,12 @@ type payloadType =
 interface GitHubEventActionProps {
   type: string,
   payload: payloadType,
-};
+}
 
 // TODO(mattxwang): this doesn't seem like the best way to do this ://
 // returns a string of form: <verb> <location/type of action> <preposition>
 function GitHubEventAction({type, payload}: GitHubEventActionProps): JSX.Element {
-  const unknown = <span>did a {type} on</span>;  
+  const unknown = <span>did a {type} on</span>;
   switch(type){
     case 'CreateEvent':
     case 'DeleteEvent': {
@@ -113,7 +113,7 @@ function GitHubEventAction({type, payload}: GitHubEventActionProps): JSX.Element
     }
     case 'PushEvent': {
       const sizeStr = 'a';
-      return <span>pushed {sizeStr} commit to</span>
+      return <span>pushed {sizeStr} commit to</span>;
     }
     case 'PublicEvent': {
       return <span>made a new repository public:</span>;
