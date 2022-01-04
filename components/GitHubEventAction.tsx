@@ -30,8 +30,9 @@ function GitHubEventAction({type, payload}: GitHubEventActionProps): JSX.Element
   switch(type){
     case 'CreateEvent':
     case 'DeleteEvent': {
-      const target = (payload as DeleteEvent).ref;
-      const targetType = (payload as DeleteEvent).ref_type;
+      const payloadNarrowed = payload as DeleteEvent;
+      const target = (payloadNarrowed).ref;
+      const targetType = (payloadNarrowed).ref_type;
       const action = type === 'CreateEvent'? 'created' : 'deleted';
       if (!target) {
         return <span>{action} the {targetType} </span>;
@@ -42,19 +43,21 @@ function GitHubEventAction({type, payload}: GitHubEventActionProps): JSX.Element
       return <span>{action} {targetType} <code>{target}</code> in</span>;
     }
     case 'ForkEvent': {
-      const forkee = (payload as ForkEvent).forkee;
-      const full_name = forkee?.full_name;
-      const html_url = forkee?.html_url;
+      const payloadNarrowed = payload as ForkEvent;
+      const forkee = (payloadNarrowed).forkee;
+      const full_name = forkee.full_name;
+      const html_url = forkee.html_url;
       if (!forkee || !full_name || !html_url) {
         return unknown;
       }
       return <span>forked <ELink link={html_url}>{full_name}</ELink> from</span>;
     }
     case 'IssueCommentEvent': {
-      const action = (payload as IssueCommentEvent).action;
-      const issue = (payload as IssueCommentEvent).issue;
-      const issueURL = issue?.html_url;
-      const issueNum = issue?.number;
+      const payloadNarrowed = payload as IssueCommentEvent;
+      const action = (payloadNarrowed).action;
+      const issue = (payloadNarrowed).issue;
+      const issueURL = issue.html_url;
+      const issueNum = issue.number;
       if (!action || !issue || !issueURL) {
         return unknown;
       }
@@ -63,10 +66,11 @@ function GitHubEventAction({type, payload}: GitHubEventActionProps): JSX.Element
       return <span>{actionStr} <ELink link={issueURL}>{issueText}</ELink> in</span>;
     }
     case 'IssuesEvent': {
-      const action = (payload as IssuesEvent).action;
-      const issue = (payload as IssuesEvent).issue;
-      const issueURL = issue?.html_url;
-      const issueNum = issue?.number;
+      const payloadNarrowed = payload as IssuesEvent;
+      const action = (payloadNarrowed).action;
+      const issue = (payloadNarrowed).issue;
+      const issueURL = issue.html_url;
+      const issueNum = issue.number;
       if (!action || !issue || !issueURL) {
         return unknown;
       }
@@ -74,26 +78,29 @@ function GitHubEventAction({type, payload}: GitHubEventActionProps): JSX.Element
       return <span>{action} <ELink link={issueURL}>{issueText}</ELink> in</span>;
     }
     case 'MemberEvent': {
-      const action = (payload as MemberEvent).action;
-      const targetName = (payload as MemberEvent).member.login;
-      const targetUrl = (payload as MemberEvent).member.html_url;
+      const payloadNarrowed = payload as MemberEvent;
+      const action = (payloadNarrowed).action;
+      const targetName = (payloadNarrowed).member.login;
+      const targetUrl = (payloadNarrowed).member.html_url;
       const editedMessage = action === 'edited' ? ' permissions for ' : '';
       return <span>{action}{editedMessage}<ELink link={targetUrl}>@{targetName}</ELink> as a collaborator on</span>;
     }
     case 'PullRequestEvent': {
-      const action = (payload as PullRequestEvent).action;
-      const prNum = (payload as PullRequestEvent).number;
-      const prURL = (payload as PullRequestEvent).pull_request.html_url;
+      const payloadNarrowed = payload as PullRequestEvent;
+      const action = (payloadNarrowed).action;
+      const prNum = (payloadNarrowed).number;
+      const prURL = (payloadNarrowed).pull_request.html_url;
       if (!action || !prNum || !prURL) {
         return unknown;
       }
       return <span>{action} <ELink link={prURL}>pull request #{prNum}</ELink> in</span>;
     }
     case 'PullRequestReviewCommentEvent': {
-      const action = (payload as PullRequestReviewCommentEvent).action;
+      const payloadNarrowed = payload as PullRequestReviewCommentEvent;
+      const action = (payloadNarrowed).action;
       const actionStr = action === 'created' ? 'commented' : action;
-      const prNum = (payload as PullRequestReviewCommentEvent).pull_request.number;
-      const prURL = (payload as PullRequestReviewCommentEvent).comment.html_url;
+      const prNum = (payloadNarrowed).pull_request.number;
+      const prURL = (payloadNarrowed).comment.html_url;
       if (!action || !prNum || !prURL) {
         return unknown;
       }
@@ -102,18 +109,18 @@ function GitHubEventAction({type, payload}: GitHubEventActionProps): JSX.Element
       );
     }
     case 'PullRequestReviewEvent': {
-      const action = (payload as PullRequestReviewEvent).action;
-      const prNum = (payload as PullRequestReviewEvent).pull_request.number;
-      const prURL = (payload as PullRequestReviewEvent).pull_request.html_url;
+      const payloadNarrowed = payload as PullRequestReviewEvent;
+      const action = (payloadNarrowed).action;
+      const prNum = (payloadNarrowed).pull_request.number;
+      const prURL = (payloadNarrowed).pull_request.html_url;
       if (!action || !prNum || !prURL) {
         return unknown;
       }
-      const actionStr = 'reviewed';
+      const actionStr = action === 'submitted' ? 'reviewed' : action;
       return <span>{actionStr} <ELink link={prURL}>pull request #{prNum}</ELink> in</span>;
     }
     case 'PushEvent': {
-      const sizeStr = 'a';
-      return <span>pushed {sizeStr} commit to</span>;
+      return <span>pushed a commit to</span>;
     }
     case 'PublicEvent': {
       return <span>made a new repository public:</span>;
