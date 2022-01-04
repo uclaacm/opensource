@@ -108,7 +108,7 @@ function GitHubEventAction({type, payload}: GitHubEventActionProps): JSX.Element
       if (!action || !prNum || !prURL) {
         return unknown;
       }
-      const actionStr = 'reviewed';
+      const actionStr = action === 'submitted' ? 'reviewed' : action;```
       return <span>{actionStr} <ELink link={prURL}>pull request #{prNum}</ELink> in</span>;
     }
     case 'PushEvent': {
