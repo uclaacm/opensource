@@ -120,7 +120,10 @@ function GitHubEventAction({type, payload}: GitHubEventActionProps): JSX.Element
       return <span>{actionStr} <ELink link={prURL}>pull request #{prNum}</ELink> in</span>;
     }
     case 'PushEvent': {
-      return <span>pushed a commit to</span>;
+      const payloadNarrowed = payload as PushEvent;
+      const size = payloadNarrowed.commits.length;
+      const sizeStr = size ? size : '1';
+      return <span>pushed {sizeStr} commit{size !== 1 && 's'} to</span>;
     }
     case 'PublicEvent': {
       return <span>made a new repository public:</span>;
