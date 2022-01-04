@@ -61,8 +61,8 @@ function GitHubEventAction({type, payload}: GitHubEventActionProps): JSX.Element
       const action = payload?.action;
       const targetName = payload?.member.login;
       const targetUrl = payload?.member.html_url;
-      const editedMessage = action === 'edited' ? ' permissions for ' : '';
-      return <span>{action}{editedMessage}<ELink link={targetUrl}>@{targetName}</ELink> as a collaborator on</span>;
+      const editedMessage = action === 'edited' ? ' permissions for' : '';
+      return <span>{action}{editedMessage} <ELink link={targetUrl}>@{targetName}</ELink> as a collaborator on</span>;
     }
     case 'PullRequestEvent': {
       const action = payload?.action;
