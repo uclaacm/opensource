@@ -27,9 +27,6 @@ module.exports = {
     react: {
       version: 'detect',
     },
-    'import/resolver': {
-      'typescript': {},
-    },
   },
   rules: {
     'linebreak-style': [ 'error', 'unix' ],
