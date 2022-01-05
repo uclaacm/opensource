@@ -2,7 +2,6 @@ import moment from 'moment';
 import React from 'react';
 import ELink from './ELink';
 import GitHubEventAction from './GitHubEventAction';
-//moment().format();
 
 // TODO(mattxwang): get the official types from the type registry;
 // see https://github.com/octokit/types.ts
