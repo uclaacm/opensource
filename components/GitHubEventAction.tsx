@@ -1,4 +1,4 @@
-import type { CreateEvent, DeleteEvent, ForkEvent, IssueCommentEvent, IssuesEvent, 
+import type { CreateEvent, DeleteEvent, ForkEvent, IssueCommentEvent, IssuesEvent,
   MemberEvent, PullRequestEvent, PullRequestReviewCommentEvent, PullRequestReviewEvent,
   PushEvent, PublicEvent, WatchEvent } from '@octokit/webhooks-types';
 import React from 'react';
