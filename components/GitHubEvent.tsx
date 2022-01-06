@@ -1,18 +1,16 @@
 import React from 'react';
 import ELink from './ELink';
-import GitHubEventAction, { GitHubEventPayloadType } from './GitHubEventAction';
+import GitHubEventAction from './GitHubEventAction';
 
-// TODO(#74): Remove disclaimer when types are accurate
-// DISCLAIMER: Some types for GitHubEvent may not be exactly accurate.
-// Take a look at https://docs.github.com/en/developers/webhooks-and-events/events/github-event-types
-// for more accurate typing.
 interface GitHubEvent {
   id: string
   type: string
   actor: GitHubActor
   repo: GitHubRepo
   created_at: string
-  payload: GitHubEventPayloadType
+  // TODO(#74): Change payload to GitHubEventPayloadType when types are accurate
+  // payload: GitHubEventPayloadType
+  payload: any
 }
 
 interface GitHubActor {
