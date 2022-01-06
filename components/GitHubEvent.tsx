@@ -2,6 +2,9 @@ import React from 'react';
 import ELink from './ELink';
 import GitHubEventAction from './GitHubEventAction';
 
+// TODO: to edit w Nick
+// TODO(#74)
+
 // TODO(mattxwang): get the official types from the type registry;
 // see https://github.com/octokit/types.ts
 // and https://docs.github.com/en/rest/reference/activity#list-public-events

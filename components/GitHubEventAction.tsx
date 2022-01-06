@@ -1,3 +1,9 @@
+// TODO(#74): switch over to events-types if it ever gets released
+// https://github.com/octokit/webhooks.js/issues/474
+
+// DISCLAIMER: Some types for GitHubEvent may not be exactly accurate.
+// Take a look at https://docs.github.com/en/developers/webhooks-and-events/events/github-event-types
+// for more accurate typing.
 import type { CreateEvent, DeleteEvent, ForkEvent, IssueCommentEvent, IssuesEvent,
   MemberEvent, PullRequestEvent, PullRequestReviewCommentEvent, PullRequestReviewEvent,
   PushEvent, PublicEvent, WatchEvent } from '@octokit/webhooks-types';
@@ -116,7 +122,10 @@ function GitHubEventAction({type, payload}: GitHubEventActionProps): JSX.Element
       if (!action || !prNum || !prURL) {
         return unknown;
       }
-      const actionStr = action === 'submitted' ? 'reviewed' : action;
+      // TODO(#74): remove these lines when typing is fixed
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      const actionStr = action === 'created' ? 'reviewed' : action;
       return <span>{actionStr} <ELink link={prURL}>pull request #{prNum}</ELink> in</span>;
     }
     case 'PushEvent': {
