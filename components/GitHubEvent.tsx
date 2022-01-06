@@ -2,16 +2,14 @@ import React from 'react';
 import ELink from './ELink';
 import GitHubEventAction from './GitHubEventAction';
 
-// TODO(mattxwang): get the official types from the type registry;
-// see https://github.com/octokit/types.ts
-// and https://docs.github.com/en/rest/reference/activity#list-public-events
-// and https://docs.github.com/en/developers/webhooks-and-events/github-event-types
 interface GitHubEvent {
   id: string
   type: string
   actor: GitHubActor
   repo: GitHubRepo
   created_at: string
+  // TODO(#74): Change payload to GitHubEventPayloadType when types are accurate
+  // payload: GitHubEventPayloadType
   payload: any
 }
 
