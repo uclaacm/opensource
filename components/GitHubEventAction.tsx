@@ -10,7 +10,7 @@ import type { CreateEvent, DeleteEvent, ForkEvent, IssueCommentEvent, IssuesEven
 import React from 'react';
 import ELink from './ELink';
 
-type payloadType =
+export type GitHubEventPayloadType =
 | CreateEvent
 | DeleteEvent
 | ForkEvent
@@ -26,7 +26,7 @@ type payloadType =
 
 interface GitHubEventActionProps {
   type: string,
-  payload: payloadType,
+  payload: GitHubEventPayloadType,
 }
 
 // TODO(mattxwang): this doesn't seem like the best way to do this ://

@@ -1,21 +1,18 @@
 import React from 'react';
 import ELink from './ELink';
-import GitHubEventAction from './GitHubEventAction';
+import GitHubEventAction, { GitHubEventPayloadType } from './GitHubEventAction';
 
-// TODO: to edit w Nick
-// TODO(#74)
-
-// TODO(mattxwang): get the official types from the type registry;
-// see https://github.com/octokit/types.ts
-// and https://docs.github.com/en/rest/reference/activity#list-public-events
-// and https://docs.github.com/en/developers/webhooks-and-events/github-event-types
+// TODO(#74): Remove disclaimer when types are accurate
+// DISCLAIMER: Some types for GitHubEvent may not be exactly accurate.
+// Take a look at https://docs.github.com/en/developers/webhooks-and-events/events/github-event-types
+// for more accurate typing.
 interface GitHubEvent {
   id: string
   type: string
   actor: GitHubActor
   repo: GitHubRepo
   created_at: string
-  payload: any
+  payload: GitHubEventPayloadType
 }
 
 interface GitHubActor {
