@@ -30,7 +30,6 @@ interface GitHubRepo {
 }
 
 function GitHubEvent(props: GitHubEvent): JSX.Element {
-
   const {type, actor, repo, payload, created_at} = props;
   const timePassed = moment(created_at).fromNow();
 
