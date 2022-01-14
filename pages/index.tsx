@@ -1,5 +1,6 @@
 import { Octokit } from '@octokit/core';
 import { GetStaticProps } from 'next';
+import { NextSeo } from 'next-seo';
 import Link from 'next/link';
 import React from 'react';
 import ELink from '../components/ELink';
@@ -21,6 +22,19 @@ export default function Home({
   return (
     <Layout>
       <div className="container">
+        <NextSeo
+          title="open source at ACM at UCLA"
+          description="at the largest computer science community at UCLA, we care about open-source"
+          openGraph={{
+            images: [{
+              url: 'https://opensource.uclaacm.com/logo.png',
+              width: 1200,
+              height: 1200,
+              alt: 'The ACM at UCLA logo',
+            }],
+            site_name: 'open source at ACM at UCLA',
+          }}
+        />
         <h1>
           open source at{' '}
           <ELink link="https://uclaacm.com">
