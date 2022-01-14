@@ -32,7 +32,7 @@ export default function Home({
               height: 1200,
               alt: 'The ACM at UCLA logo',
             }],
-            site_name: 'open source at ACM at UCLA'
+            site_name: 'open source at ACM at UCLA',
           }}
         />
         <h1>

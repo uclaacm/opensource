@@ -1,5 +1,5 @@
-import React from 'react';
 import { NextSeo } from 'next-seo';
+import React from 'react';
 import Layout from '../components/Layout';
 import ProjectCard from '../components/ProjectCard';
 
@@ -19,7 +19,7 @@ function Projects(): JSX.Element {
               height: 1200,
               alt: 'The ACM at UCLA logo',
             }],
-            site_name: 'open source at ACM at UCLA'
+            site_name: 'open source at ACM at UCLA',
           }}
         />
         <h1>
