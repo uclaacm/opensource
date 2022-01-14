@@ -27,7 +27,7 @@ export default function Home({
           description="at the largest computer science community at UCLA, we care about open-source"
           openGraph={{
             images: [{
-              url: 'https://www.uclaacm.com/images/logo.png',
+              url: 'https://opensource.uclaacm.com/logo.png',
               width: 1200,
               height: 1200,
               alt: 'The ACM at UCLA logo',
@@ -111,7 +111,7 @@ export default function Home({
             ))}
             <p>
               see more activity{' '}
-              <ELink link="https://opensource.uclaacm.com/logo.png">
+              <ELink link="https://github.com/uclaacm/">
                 on our org
               </ELink>
               !
