@@ -14,7 +14,7 @@ function Projects(): JSX.Element {
           description="a heads-up overview of the projects that power ACM at UCLA"
           openGraph={{
             images: [{
-              url: 'https://www.uclaacm.com/images/logo.png',
+              url: 'https://opensource.uclaacm.com/logo.png',
               width: 1200,
               height: 1200,
               alt: 'The ACM at UCLA logo',

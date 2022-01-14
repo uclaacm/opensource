@@ -111,7 +111,7 @@ export default function Home({
             ))}
             <p>
               see more activity{' '}
-              <ELink link="https://github.com/uclaacm/">
+              <ELink link="https://opensource.uclaacm.com/logo.png">
                 on our org
               </ELink>
               !
