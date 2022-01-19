@@ -105,7 +105,7 @@ export default function Home({
         <hr className="mt-2" />
 
         <h2>featured project</h2>
-        <ProjectCard project={projects[getRandomProj()]} preload={true} />
+        <ProjectCard project={projects[getRandomProj()]} preload={false} />
         <h2>what we&apos;ve been doing recently...</h2>
         <p>this is a live feed of our {numRepos} repositories</p>
         <div className="card">
