@@ -12,7 +12,8 @@ import projects from '../data/projects';
 
 interface HomeProps {
   numRepos: number
-  recentEvents: GitHubEvent[]
+  recentEvents: GitHubEvent[],
+  projNumToDisplay: number
 }
 
 function getRandomProj() {
@@ -22,6 +23,7 @@ function getRandomProj() {
 export default function Home({
   numRepos,
   recentEvents,
+  projNumToDisplay,
 }: HomeProps): JSX.Element {
   return (
     <Layout>
@@ -105,7 +107,7 @@ export default function Home({
         <hr className="mt-2" />
 
         <h2>featured project</h2>
-        <ProjectCard project={projects[getRandomProj()]} preload={false} />
+        <ProjectCard project={projects[projNumToDisplay]} preload={true} />
         <h2>what we&apos;ve been doing recently...</h2>
         <p>this is a live feed of our {numRepos} repositories</p>
         <div className="card">
@@ -135,16 +137,17 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
     org: 'uclaacm',
   });
   const numRepos = orgResponse.data.public_repos;
-
   const eventResponse = await octokit.request('GET /orgs/{org}/events', {
     org: 'uclaacm',
   });
   const recentEvents = eventResponse.data;
+  const projNumToDisplay = getRandomProj();
 
   return {
     props: {
       numRepos,
       recentEvents,
+      projNumToDisplay,
     },
     revalidate: 60,
   };
