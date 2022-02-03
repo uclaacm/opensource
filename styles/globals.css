@@ -22,6 +22,11 @@ body {
   margin-top: 2rem;
 }
 
+/* this overrides a child div's display, which is useful for nullifying next/image's wrapper */
+.force-child-display-block > div {
+  display: block !important;
+}
+
 /* overriding the WestwoodCSS default */
 .navbar-link a {
   padding-left: 1em !important;
