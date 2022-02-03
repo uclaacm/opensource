@@ -14,7 +14,9 @@ const Providers = ({ children }) => {
   // )
 };
 
-const customRender = (ui, options = {}) =>
+// boilerplate code
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const customRender = (ui: JSX.Element, options = {}): any =>
   render(ui, { wrapper: Providers, ...options });
 
 // re-export everything

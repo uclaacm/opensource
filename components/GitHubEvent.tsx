@@ -9,8 +9,10 @@ interface GitHubEvent {
   actor: GitHubActor
   repo: GitHubRepo
   created_at: string
-  // TODO(#74): Change payload to GitHubEventPayloadType when types are accurate
+  // TODO(#74): Change payload to GitHubEventPayloadType when types are accurate;
+  // being resolved in https://github.com/uclaacm/opensource/pull/57
   // payload: GitHubEventPayloadType
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   payload: any
 }
 
