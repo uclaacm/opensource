@@ -1,5 +1,5 @@
 import { Octokit } from '@octokit/core';
-import { GetStaticProps } from 'next';
+import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { NextSeo } from 'next-seo';
 import Link from 'next/link';
 import React from 'react';
@@ -10,12 +10,6 @@ import ProjectCard from '../components/ProjectCard';
 
 import projects from '../data/projects';
 
-interface HomeProps {
-  numRepos: number
-  recentEvents: GitHubEvent[],
-  projNumToDisplay: number
-}
-
 function getRandomProj() {
   return Math.floor(Math.random() * projects.length);
 }
@@ -24,7 +18,7 @@ export default function Home({
   numRepos,
   recentEvents,
   projNumToDisplay,
-}: HomeProps): JSX.Element {
+}: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
   return (
     <Layout>
       <div className="container">
@@ -112,7 +106,7 @@ export default function Home({
         <p>this is a live feed of our {numRepos} repositories</p>
         <div className="card">
           <div className="card-body">
-            {recentEvents.map((event) => (
+            {recentEvents.map((event: GitHubEvent) => (
               <GitHubEvent {...event} key={event.id} />
             ))}
             <p>
@@ -129,7 +123,7 @@ export default function Home({
   );
 }
 
-export const getStaticProps: GetStaticProps<HomeProps> = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   // TODO(mattxwang): change the auth scope and get members, etc.
   // see: https://docs.github.com/en/rest/reference/orgs
   const octokit = new Octokit();

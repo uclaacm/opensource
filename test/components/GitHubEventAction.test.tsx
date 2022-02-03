@@ -84,10 +84,11 @@ describe('GitHub Event Action', () => {
       const {container} = render(<GitHubEventAction payload={data.payload} type={data.type} />, {});
 
       const element = container.querySelector('span');
-      expect(element.textContent).toBe(expectedOutput);
+      expect(element?.textContent).toBe(expectedOutput);
 
       if (expectedHref) {
-        expect(element.querySelector('a').href).toBe(expectedHref);
+        const linkElement = element?.querySelector('a');
+        expect(linkElement?.href).toBe(expectedHref);
       }
     });
   });
