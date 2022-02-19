@@ -18,7 +18,6 @@ function Layout(props: LayoutProps): JSX.Element {
 
         <title>open source at acm at ucla</title>
         <link rel="icon" href="/logo.png" />
-        <link href="/westwood.min.css" rel="stylesheet" key="westwood-sans"/>
       </Head>
       <Navbar />
       <main>

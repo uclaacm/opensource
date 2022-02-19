@@ -78,13 +78,17 @@ const testCases = [
 describe('GitHub Event Action', () => {
   testCases.forEach(({data ,expectedOutput, expectedHref}) => {
     it(`renders correct string for ${data.type}`, () => {
+      // TODO(#74): remove these lines when typing is fixed
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       const {container} = render(<GitHubEventAction payload={data.payload} type={data.type} />, {});
 
       const element = container.querySelector('span');
-      expect(element.textContent).toBe(expectedOutput);
+      expect(element?.textContent).toBe(expectedOutput);
 
       if (expectedHref) {
-        expect(element.querySelector('a').href).toBe(expectedHref);
+        const linkElement = element?.querySelector('a');
+        expect(linkElement?.href).toBe(expectedHref);
       }
     });
   });

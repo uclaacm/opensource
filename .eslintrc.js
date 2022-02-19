@@ -8,6 +8,7 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:import/typescript',
     'plugin:@typescript-eslint/recommended',
+    'plugin:@next/next/recommended',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -26,7 +27,7 @@ module.exports = {
   settings: {
     react: {
       version: 'detect',
-    }
+    },
   },
   rules: {
     'linebreak-style': [ 'error', 'unix' ],

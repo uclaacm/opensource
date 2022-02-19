@@ -9,11 +9,12 @@ exports[`Home page matches snapshot 1`] = `
       class="navbar-brand"
     >
       <a
+        class="force-child-display-block"
         href="/"
       >
         <img
-          alt="ACM at UCLA Logo"
-          src="https://design.uclaacm.com/assets/logos/acm-logo-wordmark-extended.png"
+          alt="Open Source at ACM Home"
+          src="test-file-stub"
         />
       </a>
     </div>
@@ -33,7 +34,9 @@ exports[`Home page matches snapshot 1`] = `
         >
           contribute
         </a>
-        <button>
+        <button
+          href="https://github.com/uclaacm"
+        >
           GitHub
         </button>
       </div>
@@ -184,6 +187,7 @@ exports[`Home page matches snapshot 1`] = `
               rel="noopener noreferrer"
               target="_blank"
             >
+<<<<<<< HEAD
               <div
                 style="display: block; overflow: hidden; position: relative; box-sizing: border-box; margin: 0px;"
               >
@@ -201,6 +205,12 @@ exports[`Home page matches snapshot 1`] = `
                 />
                 <noscript />
               </div>
+=======
+              <img
+                alt="buffer buffet landing splash"
+                src="/projects/buffer-buffet.png"
+              />
+>>>>>>> main
             </a>
           </div>
           <div

@@ -1,3 +1,6 @@
+import { Endpoints } from '@octokit/types';
+import GitHubEvent from '../components/GitHubEvent';
+
 export interface Project {
   name: string;
   description: string;
@@ -22,11 +25,16 @@ export enum ACMCommitteeTopics {
 }
 
 export interface GitHubColors {
-  [lang : string] : GitHubColorData
+  [lang: string]: GitHubColorData
 }
 
 interface GitHubColorData {
   color: string;
   url: string;
 }
+
+export type GitHubEvent =
+  Endpoints['GET /orgs/{org}/events']['response']['data'][number];
+
+export type GitHubEventPayload = GitHubEvent['payload'];
 

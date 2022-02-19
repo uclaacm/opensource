@@ -1,3 +1,5 @@
+@import 'westwood.min.css';
+
 html,
 body {
   padding: 0;
@@ -27,6 +29,10 @@ body {
 
 .card {
   height: 100%;
+}
+/* this overrides a child div's display, which is useful for nullifying next/image's wrapper */
+.force-child-display-block > div {
+  display: block !important;
 }
 
 /* overriding the WestwoodCSS default */

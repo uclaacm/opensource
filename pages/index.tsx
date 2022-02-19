@@ -1,18 +1,16 @@
 import { Octokit } from '@octokit/core';
-import { GetStaticProps } from 'next';
+import { GetStaticProps, InferGetStaticPropsType } from 'next';
+import { NextSeo } from 'next-seo';
 import Link from 'next/link';
 import React from 'react';
 import ELink from '../components/ELink';
-import GitHubEvent from '../components/GitHubEvent';
+import GitHubEventComponent from '../components/GitHubEvent';
 import Layout from '../components/Layout';
 import ProjectCard from '../components/ProjectCard';
-import { Project, getProjects, GitHubColors, getGithubColors } from '../util';
+import { Project, getProjects, getGithubColors, GitHubEvent } from '../util';
 
-interface HomeProps {
-  numRepos: number;
-  recentEvents: GitHubEvent[];
-  projects: Project[];
-  githubColors: GitHubColors
+function getRandomProj(projects: Project[]) {
+  return Math.floor(Math.random() * projects.length);
 }
 
 export default function Home({
@@ -20,10 +18,24 @@ export default function Home({
   recentEvents,
   projects,
   githubColors,
-}: HomeProps): JSX.Element {
+  projNumToDisplay,
+}: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
   return (
     <Layout>
       <div className="container">
+        <NextSeo
+          title="open source at ACM at UCLA"
+          description="at the largest computer science community at UCLA, we care about open-source"
+          openGraph={{
+            images: [{
+              url: 'https://opensource.uclaacm.com/logo.png',
+              width: 1200,
+              height: 1200,
+              alt: 'The ACM at UCLA logo',
+            }],
+            site_name: 'open source at ACM at UCLA',
+          }}
+        />
         <h1>
           open source at{' '}
           <ELink link="https://uclaacm.com">
@@ -90,13 +102,13 @@ export default function Home({
         <hr className="mt-2" />
 
         <h2>featured project</h2>
-        <ProjectCard project={projects[0]} preload={true} githubColors={githubColors} />
+        <ProjectCard project={projects[projNumToDisplay]} preload={true} githubColors={githubColors} />
         <h2>what we&apos;ve been doing recently...</h2>
         <p>this is a live feed of our {numRepos} repositories</p>
         <div className="card">
           <div className="card-body">
-            {recentEvents.map((event) => (
-              <GitHubEvent {...event} key={event.id} />
+            {recentEvents.map((event: GitHubEvent) => (
+              <GitHubEventComponent {...event} key={event.id} />
             ))}
             <p>
               see more activity{' '}
@@ -107,12 +119,12 @@ export default function Home({
             </p>
           </div>
         </div>
-      </div>
-    </Layout>
+      </div >
+    </Layout >
   );
 }
 
-export const getStaticProps: GetStaticProps<HomeProps> = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   // TODO(mattxwang): change the auth scope and get members, etc.
   // see: https://docs.github.com/en/rest/reference/orgs
   const octokit = new Octokit();
@@ -120,15 +132,16 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
     org: 'uclaacm',
   });
   const numRepos = orgResponse.data.public_repos;
-
   const eventResponse = await octokit.request('GET /orgs/{org}/events', {
     org: 'uclaacm',
   });
   const recentEvents = eventResponse.data;
 
+
   const githubColors = await getGithubColors();
 
   const projects = await getProjects();
+  const projNumToDisplay = getRandomProj(projects);
 
   return {
     props: {
@@ -136,6 +149,7 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
       recentEvents,
       projects,
       githubColors,
+      projNumToDisplay,
     },
     revalidate: 60,
   };

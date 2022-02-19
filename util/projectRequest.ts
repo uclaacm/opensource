@@ -14,26 +14,26 @@ export async function getProjects(): Promise<Project[]> {
   const filteredData = projectsResponse.filter((repo) => !repo.archived);
   const sortedData = filteredData.sort(
     (a, b) =>
-      new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime(),
+      new Date(b.updated_at as string).getTime() - new Date(a.updated_at as string).getTime(),
   );
   return sortedData.map((repo) =>
     repo.homepage
       ? {
         name: repo.name,
-        description: repo.description,
-        link: repo.homepage || null,
+        description: repo.description ?? '',
+        link: repo.homepage ?? '',
         repo: repo.html_url,
-        lang: repo.language,
-        topics: repo.topics,
+        lang: repo.language ?? '',
+        topics: repo.topics ?? [],
         image: getImageFromTopics(repo.topics).image,
         alt: getImageFromTopics(repo.topics).alt,
       }
       : {
         name: repo.name,
-        description: repo.description,
-        repo: repo.html_url,
-        lang: repo.language,
-        topics: repo.topics,
+        description: repo.description ?? '',
+        repo: repo.html_url ?? '',
+        lang: repo.language ?? '',
+        topics: repo.topics ?? [],
         image: getImageFromTopics(repo.topics).image,
         alt: getImageFromTopics(repo.topics).alt,
       },
@@ -100,10 +100,12 @@ function topicToImg(topic: string): ImageInfo | false {
   }
 }
 
-export function getImageFromTopics(topics: string[]): ImageInfo {
-  for (const topic of topics) {
-    const committeeImg = topicToImg(topic);
-    if (committeeImg) return committeeImg;
+export function getImageFromTopics(topics: string[] | undefined): ImageInfo {
+  if (topics) {
+    for (const topic of topics) {
+      const committeeImg = topicToImg(topic);
+      if (committeeImg) return committeeImg;
+    }
   }
   //return acm logo if no committee topics
   return {
