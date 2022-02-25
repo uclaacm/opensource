@@ -187,7 +187,6 @@ exports[`Home page matches snapshot 1`] = `
               rel="noopener noreferrer"
               target="_blank"
             >
-<<<<<<< HEAD
               <div
                 style="display: block; overflow: hidden; position: relative; box-sizing: border-box; margin: 0px;"
               >
@@ -205,12 +204,6 @@ exports[`Home page matches snapshot 1`] = `
                 />
                 <noscript />
               </div>
-=======
-              <img
-                alt="buffer buffet landing splash"
-                src="/projects/buffer-buffet.png"
-              />
->>>>>>> main
             </a>
           </div>
           <div

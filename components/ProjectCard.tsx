@@ -20,7 +20,7 @@ function ProjectCardImage({ project, preload }: ProjectCardImageProps) {
   return link ? (
     <ELink link={link}>
       <Image
-        src={image}
+        src={image ?? "/logo.png"}
         alt={alt}
         width="1000"
         height="800"
@@ -91,7 +91,7 @@ function ProjectCard({
     return (
       <div className="card">
         <ProjectCardImage project={project} preload={preload} />
-        <ProjectCardBody project = {project} githubColors = {githubColors} />
+        <ProjectCardBody project={project} githubColors={githubColors} />
       </div>
     );
   }
@@ -102,7 +102,7 @@ function ProjectCard({
           <ProjectCardImage project={project} preload={preload} />
         </div>
         <div className="col-6">
-          <ProjectCardBody project = {project} githubColors={githubColors} />
+          <ProjectCardBody project={project} githubColors={githubColors} />
         </div>
       </div>
     </div>

@@ -19,6 +19,7 @@ export default function Home({
   projects,
   githubColors,
   projNumToDisplay,
+  randomProject,
 }: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
   return (
     <Layout>
@@ -102,7 +103,10 @@ export default function Home({
         <hr className="mt-2" />
 
         <h2>featured project</h2>
-        <ProjectCard project={projects[projNumToDisplay]} preload={true} githubColors={githubColors} />
+        <ProjectCard
+          project={randomProject ? randomProject : projects[projNumToDisplay]} preload={true}
+          githubColors={githubColors}
+        />
         <h2>what we&apos;ve been doing recently...</h2>
         <p>this is a live feed of our {numRepos} repositories</p>
         <div className="card">
@@ -150,6 +154,7 @@ export const getStaticProps: GetStaticProps = async () => {
       projects,
       githubColors,
       projNumToDisplay,
+      randomProject: false,
     },
     revalidate: 60,
   };
