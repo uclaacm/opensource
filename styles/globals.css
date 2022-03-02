@@ -25,11 +25,14 @@ body {
 
 .row.same-height-grid {
   grid-auto-rows: 1fr;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
 
 .card {
   height: 100%;
 }
+
 /* this overrides a child div's display, which is useful for nullifying next/image's wrapper */
 .force-child-display-block > div {
   display: block !important;

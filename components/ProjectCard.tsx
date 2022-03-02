@@ -23,7 +23,7 @@ function ProjectCardImage({ project, preload }: ProjectCardImageProps) {
         src={image ?? '/logo.png'}
         alt={alt}
         width="1000"
-        height="800"
+        height="1000"
         layout="responsive"
         priority={preload}
       />
@@ -34,7 +34,7 @@ function ProjectCardImage({ project, preload }: ProjectCardImageProps) {
         src={image}
         alt={alt}
         width="1000"
-        height="800"
+        height="1000"
         layout="responsive"
         priority={preload}
       />
@@ -90,7 +90,7 @@ function ProjectCard({
   if (vertical) {
     return (
       <div className="card">
-        <ProjectCardImage project={project} preload={preload} />
+        <div><ProjectCardImage project={project} preload={preload} /></div>
         <ProjectCardBody project={project} githubColors={githubColors} />
       </div>
     );
