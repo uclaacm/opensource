@@ -20,7 +20,7 @@ function ProjectCardImage({ project, preload }: ProjectCardImageProps) {
   return link ? (
     <ELink link={link}>
       <Image
-        src={image ?? "/logo.png"}
+        src={image ?? '/logo.png'}
         alt={alt}
         width="1000"
         height="800"
