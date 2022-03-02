@@ -90,7 +90,7 @@ function ProjectCard({
   if (vertical) {
     return (
       <div className="card">
-        <div><ProjectCardImage project={project} preload={preload} /></div>
+        <ProjectCardImage project={project} preload={preload} />
         <ProjectCardBody project={project} githubColors={githubColors} />
       </div>
     );
