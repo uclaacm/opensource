@@ -24,7 +24,7 @@ body {
 }
 
 .row.same-height-grid {
-  grid-auto-rows: 1fr;
+  row-gap: 2rem;
   overflow-wrap: break-word;
   word-wrap: break-word;
 }
