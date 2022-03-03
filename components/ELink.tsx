@@ -13,11 +13,10 @@ function ELink ({link, children}: ELinkProps): JSX.Element {
   };
   return (
     <Link href={link}>
-      <a {...linkProps}>
-        {children}
-      </a>
+      <a {...linkProps}>{children}</a>
     </Link>
   );
+
 }
 
 export default ELink;

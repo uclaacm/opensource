@@ -4,20 +4,22 @@ import { NextSeo } from 'next-seo';
 import Link from 'next/link';
 import React from 'react';
 import ELink from '../components/ELink';
-import GitHubEvent from '../components/GitHubEvent';
+import GitHubEventComponent from '../components/GitHubEvent';
 import Layout from '../components/Layout';
 import ProjectCard from '../components/ProjectCard';
+import { Project, getProjects, getGithubColors, GitHubEvent } from '../util';
 
-import projects from '../data/projects';
-
-function getRandomProj() {
+function getRandomProj(projects: Project[]) {
   return Math.floor(Math.random() * projects.length);
 }
 
 export default function Home({
   numRepos,
   recentEvents,
+  projects,
+  githubColors,
   projNumToDisplay,
+  randomProject,
 }: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
   return (
     <Layout>
@@ -101,13 +103,16 @@ export default function Home({
         <hr className="mt-2" />
 
         <h2>featured project</h2>
-        <ProjectCard project={projects[projNumToDisplay]} preload={true} />
+        <ProjectCard
+          project={randomProject ? randomProject : projects[projNumToDisplay]} preload={true}
+          githubColors={githubColors}
+        />
         <h2>what we&apos;ve been doing recently...</h2>
         <p>this is a live feed of our {numRepos} repositories</p>
         <div className="card">
           <div className="card-body">
             {recentEvents.map((event: GitHubEvent) => (
-              <GitHubEvent {...event} key={event.id} />
+              <GitHubEventComponent {...event} key={event.id} />
             ))}
             <p>
               see more activity{' '}
@@ -118,8 +123,8 @@ export default function Home({
             </p>
           </div>
         </div>
-      </div>
-    </Layout>
+      </div >
+    </Layout >
   );
 }
 
@@ -135,13 +140,21 @@ export const getStaticProps: GetStaticProps = async () => {
     org: 'uclaacm',
   });
   const recentEvents = eventResponse.data;
-  const projNumToDisplay = getRandomProj();
+
+
+  const githubColors = await getGithubColors();
+
+  const projects = await getProjects();
+  const projNumToDisplay = getRandomProj(projects);
 
   return {
     props: {
       numRepos,
       recentEvents,
+      projects,
+      githubColors,
       projNumToDisplay,
+      randomProject: false,
     },
     revalidate: 60,
   };

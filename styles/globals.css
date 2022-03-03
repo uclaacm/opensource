@@ -16,10 +16,21 @@ body {
 
 .mt-1 {
   margin-top: 1rem;
+  overflow-wrap: break-word;
 }
 
 .mt-2 {
   margin-top: 2rem;
+}
+
+.row.same-height-grid {
+  row-gap: 2rem;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+.card {
+  height: 100%;
 }
 
 /* this overrides a child div's display, which is useful for nullifying next/image's wrapper */

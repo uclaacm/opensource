@@ -4,42 +4,45 @@
 // DISCLAIMER: Some types for GitHubEvent may not be exactly accurate.
 // Take a look at https://docs.github.com/en/developers/webhooks-and-events/events/github-event-types
 // for more accurate typing.
-import type { CreateEvent, DeleteEvent, ForkEvent, IssueCommentEvent, IssuesEvent,
+import type {
+  CreateEvent, DeleteEvent, ForkEvent, IssueCommentEvent, IssuesEvent,
   MemberEvent, PullRequestEvent, PullRequestReviewCommentEvent, PullRequestReviewEvent,
-  PushEvent, PublicEvent, WatchEvent } from '@octokit/webhooks-types';
+  PushEvent, PublicEvent, WatchEvent,
+} from '@octokit/webhooks-types';
 import React from 'react';
+import { GitHubEvent } from '../util';
 import ELink from './ELink';
 
 export type GitHubEventPayloadType =
-| CreateEvent
-| DeleteEvent
-| ForkEvent
-| IssueCommentEvent
-| IssuesEvent
-| MemberEvent
-| PullRequestEvent
-| PullRequestReviewCommentEvent
-| PullRequestReviewEvent
-| PushEvent
-| PublicEvent
-| WatchEvent;
+  | CreateEvent
+  | DeleteEvent
+  | ForkEvent
+  | IssueCommentEvent
+  | IssuesEvent
+  | MemberEvent
+  | PullRequestEvent
+  | PullRequestReviewCommentEvent
+  | PullRequestReviewEvent
+  | PushEvent
+  | PublicEvent
+  | WatchEvent;
 
 interface GitHubEventActionProps {
-  type: string,
-  payload: GitHubEventPayloadType,
+  type: GitHubEvent['type'],
+  payload: GitHubEvent['payload'],
 }
 
 // TODO(mattxwang): this doesn't seem like the best way to do this ://
 // returns a string of form: <verb> <location/type of action> <preposition>
-function GitHubEventAction({type, payload}: GitHubEventActionProps): JSX.Element {
+function GitHubEventAction({ type, payload }: GitHubEventActionProps): JSX.Element {
   const unknown = <span>did a {type} on</span>;
-  switch(type){
+  switch (type) {
     case 'CreateEvent':
     case 'DeleteEvent': {
       const payloadNarrowed = payload as DeleteEvent;
       const target = payloadNarrowed.ref;
       const targetType = payloadNarrowed.ref_type;
-      const action = type === 'CreateEvent'? 'created' : 'deleted';
+      const action = type === 'CreateEvent' ? 'created' : 'deleted';
       if (!target) {
         return <span>{action} the {targetType} </span>;
       }
@@ -102,7 +105,10 @@ function GitHubEventAction({type, payload}: GitHubEventActionProps): JSX.Element
       return <span>{action} <ELink link={prURL}>pull request #{prNum}</ELink> in</span>;
     }
     case 'PullRequestReviewCommentEvent': {
-      const payloadNarrowed = payload as PullRequestReviewCommentEvent;
+      //must do any since some fields are missing in the type declaration
+      // eslint-disable-next-line
+      const payloadNarrowed = payload as any as PullRequestReviewCommentEvent;
+
       const action = payloadNarrowed.action;
       const actionStr = action === 'created' ? 'commented' : action;
       const prNum = payloadNarrowed.pull_request.number;

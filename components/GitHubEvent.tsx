@@ -1,49 +1,22 @@
 import moment from 'moment';
 import React from 'react';
+import { GitHubEvent } from '../util';
 import ELink from './ELink';
 import GitHubEventAction from './GitHubEventAction';
 
-interface GitHubEvent {
-  id: string
-  type: string
-  actor: GitHubActor
-  repo: GitHubRepo
-  created_at: string
-  // TODO(#74): Change payload to GitHubEventPayloadType when types are accurate;
-  // being resolved in https://github.com/uclaacm/opensource/pull/57
-  // payload: GitHubEventPayloadType
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  payload: any
-}
 
-interface GitHubActor {
-  id: number
-  login: string
-  display_login?: string
-  gravatar_id: string
-  url: string
-  avatar_url: string
-}
-
-interface GitHubRepo {
-  id: number
-  name: string
-  url: string
-}
-
-function GitHubEvent(props: GitHubEvent): JSX.Element {
-  const {type, actor, repo, payload, created_at} = props;
+function GitHubEventComponent(props: GitHubEvent): JSX.Element {
+  const { type, actor, repo, payload, created_at } = props;
   const timePassed = moment(created_at).fromNow();
-
   const userLink = !actor.login.includes('[bot]') ? <ELink link={`https://github.com/${actor.login}`}>{`@${actor.login}`}</ELink> : actor.login;
   return (
     <>
       {/* <div className="card" style={{marginTop: "20px"}}> */}
       {/* <div className="card-body"> */}
-      <div style = {{overflow: 'hidden'}}>
-        {userLink} <GitHubEventAction type={type} payload={payload}/>{' '}
+      <div style={{ overflow: 'hidden' }}>
+        {userLink} <GitHubEventAction type={type} payload={payload} />{' '}
         <ELink link={`https://github.com/${repo.name}`}>{repo.name}</ELink>
-        <span style = {{float: 'right'}}>{timePassed}</span>
+        <span style={{ float: 'right' }}>{timePassed}</span>
       </div>
       <hr />
       {/*  </div> */}
@@ -52,4 +25,4 @@ function GitHubEvent(props: GitHubEvent): JSX.Element {
   );
 }
 
-export default GitHubEvent;
+export default GitHubEventComponent;
