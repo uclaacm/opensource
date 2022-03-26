@@ -36,5 +36,7 @@ interface GitHubColorData {
 export type GitHubEvent =
   Endpoints['GET /orgs/{org}/events']['response']['data'][number];
 
+export type GitHubRepo = Endpoints['GET /orgs/{org}/repos']['response']['data'][number];
+
 export type GitHubEventPayload = GitHubEvent['payload'];
 

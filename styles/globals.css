@@ -38,6 +38,12 @@ body {
   display: block !important;
 }
 
+.spaced-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 /* overriding the WestwoodCSS default */
 .navbar-link a {
   padding-left: 1em !important;

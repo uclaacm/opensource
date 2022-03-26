@@ -1,7 +1,7 @@
 import { Octokit } from '@octokit/core';
 import { paginateRest } from '@octokit/plugin-paginate-rest';
 import githubColorsFixture from '../data/githubColors.json';
-import { Project, ACMCommitteeTopics, GitHubColors } from './types';
+import { Project, ACMCommitteeTopics, GitHubColors, GitHubRepo } from './types';
 
 export async function getProjects(): Promise<Project[]> {
   const PaginatedOctokit = Octokit.plugin(paginateRest);
@@ -11,7 +11,25 @@ export async function getProjects(): Promise<Project[]> {
     per_page: 100,
   });
 
-  const filteredData = projectsResponse.filter((repo) => !repo.archived);
+  const projects = mapReposToProjects(projectsResponse);
+  return projects;
+}
+
+//search uclaacm org for repos with good first issues
+export async function getGoodFirstIssueProjects(): Promise<Project[]> {
+  const PaginatedOctokit = Octokit.plugin(paginateRest);
+  const octokit = new PaginatedOctokit();
+  const gfiSearchQuery = 'good-first-issues:>0+org:uclaacm';
+  const gfiReposResponse = await octokit.paginate('GET /search/repositories', {
+    q: gfiSearchQuery,
+  }) as GitHubRepo[];
+  const gfiProjects = mapReposToProjects(gfiReposResponse);
+  return gfiProjects;
+}
+
+function mapReposToProjects(repos: GitHubRepo[]): Project[] {
+  if (!repos || repos.length < 1) return [];
+  const filteredData = repos.filter((repo) => !repo.archived);
   const sortedData = filteredData.sort(
     (a, b) =>
       new Date(b.updated_at as string).getTime() - new Date(a.updated_at as string).getTime(),
@@ -39,6 +57,7 @@ export async function getProjects(): Promise<Project[]> {
       },
   );
 }
+
 export async function getGithubColors(): Promise<GitHubColors> {
   const githubColorsResponse = await fetch(
     'https://raw.githubusercontent.com/ozh/github-colors/master/colors.json',
