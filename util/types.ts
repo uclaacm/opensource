@@ -14,14 +14,14 @@ export interface Project {
 }
 
 export enum ACMCommitteeTopics {
-  AI = 'ai',
-  CYBER = 'cyber',
-  DESIGN = 'design',
-  HACK = 'hack',
-  ICPC = 'icpc',
-  STUDIO = 'studio',
+  AI = 'acm-ai',
+  CYBER = 'acm-cyber',
+  DESIGN = 'acm-design',
+  HACK = 'acm-hack',
+  ICPC = 'acm-icpc',
+  STUDIO = 'acm-studio',
   TEACH_LA = 'teach-la',
-  W = 'w',
+  W = 'acm-w',
 }
 
 export interface GitHubColors {
@@ -37,4 +37,3 @@ export type GitHubEvent =
   Endpoints['GET /orgs/{org}/events']['response']['data'][number];
 
 export type GitHubEventPayload = GitHubEvent['payload'];
-
