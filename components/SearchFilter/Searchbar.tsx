@@ -10,7 +10,8 @@ function Searchbar({value, onChange}: SearchbarProps): JSX.Element {
   return (
     <div className="searchbar">
       <input
-        type="text"
+        placeholder="search"
+        type="search"
         value={value}
         onChange={onChange}
       />

@@ -55,7 +55,7 @@ function Projects({ projects, githubColors }: ProjectsProps): JSX.Element {
                 </div>
               );
             })
-            : <h1>No results found</h1>
+            : <h2>No results found</h2>
           }
         </div>
       </div>

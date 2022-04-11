@@ -68,7 +68,6 @@ function SearchFilter({projects, setFilteredProjects}: SearchFilterProps): JSX.E
 
   return (
     <div>
-      <p>Filter projects</p>
       <Searchbar
         value={searchbarText}
         onChange={(e: ChangeEvent<HTMLInputElement>) => handleSearchInput(e)}
