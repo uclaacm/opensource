@@ -1,8 +1,9 @@
 import { GetStaticProps } from 'next';
 import { NextSeo } from 'next-seo';
-import React from 'react';
+import React, { useState } from 'react';
 import Layout from '../components/Layout';
 import ProjectCard from '../components/ProjectCard';
+import SearchFilter from '../components/SearchFilter/SearchFilter';
 import { getProjects, Project, GitHubColors, getGithubColors } from '../util';
 
 
@@ -12,6 +13,11 @@ interface ProjectsProps {
 }
 
 function Projects({ projects, githubColors }: ProjectsProps): JSX.Element {
+
+  // projects is a master list of all the projects that we fetched, filteredProjects is the one that we render
+  // to the user
+  const [filteredProjects, setFilteredProjects] = useState(projects);
+
   return (
     <Layout>
       <div className="container">
@@ -35,14 +41,22 @@ function Projects({ projects, githubColors }: ProjectsProps): JSX.Element {
           a (work-in-progress) heads-up overview of the projects that power ACM at UCLA.
         </p>
         <hr />
+        <SearchFilter
+          projects={projects}
+          setFilteredProjects={setFilteredProjects}
+        />
+        <hr/>
         <div className="row same-height-grid">
-          {projects.map((project, i) => {
-            return (
-              <div className="col-4" key={project.name}>
-                <ProjectCard project={project} vertical preload={i < 3} githubColors={githubColors} />
-              </div>
-            );
-          })}
+          {filteredProjects.length > 0
+            ? filteredProjects.map((project, i) => {
+              return (
+                <div className="col-4" key={project.name}>
+                  <ProjectCard project={project} vertical preload={i < 3} githubColors={githubColors} />
+                </div>
+              );
+            })
+            : <h2>No results found</h2>
+          }
         </div>
       </div>
     </Layout>
