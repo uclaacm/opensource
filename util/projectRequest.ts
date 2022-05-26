@@ -1,21 +1,31 @@
 import { Octokit } from '@octokit/core';
 import { paginateRest } from '@octokit/plugin-paginate-rest';
+import { writeJsonFile } from 'write-json-file';
 import githubColorsFixture from '../data/githubColors.json';
 import { Project, ACMCommitteeTopics, GitHubColors } from './types';
+import sortedDataJSON from '../test/fixtures/sortedData.json';
 
 export async function getProjects(): Promise<Project[]> {
   const PaginatedOctokit = Octokit.plugin(paginateRest);
   const octokit = new PaginatedOctokit();
-  const projectsResponse = await octokit.paginate('GET /orgs/{org}/repos', {
-    org: 'uclaacm',
-    per_page: 100,
-  });
+  var sortedData;
+  try {
+    const projectsResponse = await octokit.paginate('GET /orgs/{org}/repos', {
+      org: 'uclaacm',
+      per_page: 100,
+    });
+    
+    const filteredData = projectsResponse.filter((repo) => !repo.archived);
+    sortedData = filteredData.sort(
+      (a, b) =>
+        new Date(b.updated_at as string).getTime() - new Date(a.updated_at as string).getTime(),
+    );
+    await writeJsonFile('./test/fixtures/sortedData.json', sortedData);
+  } catch (err) {
+    sortedData = sortedDataJSON;
+  }
 
-  const filteredData = projectsResponse.filter((repo) => !repo.archived);
-  const sortedData = filteredData.sort(
-    (a, b) =>
-      new Date(b.updated_at as string).getTime() - new Date(a.updated_at as string).getTime(),
-  );
+  
   return sortedData.map((repo) =>
     repo.homepage
       ? {

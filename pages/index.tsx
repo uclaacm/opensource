@@ -3,23 +3,28 @@ import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { NextSeo } from 'next-seo';
 import Link from 'next/link';
 import React from 'react';
+import { writeJsonFile } from 'write-json-file';
 import ELink from '../components/ELink';
 import GitHubEventComponent from '../components/GitHubEvent';
 import Layout from '../components/Layout';
 import ProjectCard from '../components/ProjectCard';
-import { Project, getProjects, getGithubColors, GitHubEvent } from '../util';
+import eventResponseJSON from '../test/fixtures/eventResponse.json';
+import orgResponseJSON from '../test/fixtures/orgResponse.json';
+import RandomProjects from '../test/fixtures/RandomProjects.json';
+import { Project } from '../util';
+import { getGithubColors } from '../util/projectRequest';
+import { GitHubEvent } from '../util/types';
 
 function getRandomProj(projects: Project[]) {
+  // get the length of RandomProjects.json
   return Math.floor(Math.random() * projects.length);
 }
 
 export default function Home({
   numRepos,
   recentEvents,
-  projects,
   githubColors,
   projNumToDisplay,
-  randomProject,
 }: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
   return (
     <Layout>
@@ -104,16 +109,16 @@ export default function Home({
 
         <h2>featured project</h2>
         <ProjectCard
-          project={randomProject ? randomProject : projects[projNumToDisplay]} preload={true}
+          project={RandomProjects[projNumToDisplay]} preload={true}
           githubColors={githubColors}
         />
         <h2>what we&apos;ve been doing recently...</h2>
         <p>this is a live feed of our {numRepos} repositories</p>
         <div className="card">
           <div className="card-body">
-            {recentEvents.map((event: GitHubEvent) => (
+            {/* {recentEvents.map((event: GitHubEvent) => (
               <GitHubEventComponent {...event} key={event.id} />
-            ))}
+            ))} */}
             <p>
               see more activity{' '}
               <ELink link="https://github.com/uclaacm/">
@@ -131,30 +136,40 @@ export default function Home({
 export const getStaticProps: GetStaticProps = async () => {
   // TODO(mattxwang): change the auth scope and get members, etc.
   // see: https://docs.github.com/en/rest/reference/orgs
-  const octokit = new Octokit();
-  const orgResponse = await octokit.request('GET /orgs/{org}', {
-    org: 'uclaacm',
-  });
-  const numRepos = orgResponse.data.public_repos;
-  const eventResponse = await octokit.request('GET /orgs/{org}/events', {
-    org: 'uclaacm',
-  });
-  const recentEvents = eventResponse.data;
 
+  const octokit = new Octokit();
+  var numRepos;
+  try {
+    const orgResponse = await octokit.request('GET /orgs/{org}', {
+      org: 'uclaacm',
+    });
+    await writeJsonFile('./test/fixtures/orgResponse.json', orgResponse);
+    numRepos = orgResponse.data.public_repos;
+  } catch (err) {
+    numRepos = orgResponseJSON.data.public_repos;
+  }
+
+  var recentEvents;
+  try {
+    const eventResponse = await octokit.request('GET /orgs/{org}/events', {
+      org: 'uclaacm',
+    });
+    await writeJsonFile('./test/fixtures/eventResponse.json', eventResponse.data);
+    recentEvents = eventResponse.data;
+  } catch (err) {
+    recentEvents = eventResponseJSON;
+  }
 
   const githubColors = await getGithubColors();
 
-  const projects = await getProjects();
-  const projNumToDisplay = getRandomProj(projects);
+  const projNumToDisplay = getRandomProj(RandomProjects);
 
   return {
     props: {
       numRepos,
       recentEvents,
-      projects,
       githubColors,
       projNumToDisplay,
-      randomProject: false,
     },
     revalidate: 60,
   };
