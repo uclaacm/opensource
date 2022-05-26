@@ -116,9 +116,9 @@ export default function Home({
         <p>this is a live feed of our {numRepos} repositories</p>
         <div className="card">
           <div className="card-body">
-            {/* {recentEvents.map((event: GitHubEvent) => (
+            {recentEvents.map((event: GitHubEvent) => (
               <GitHubEventComponent {...event} key={event.id} />
-            ))} */}
+            ))}
             <p>
               see more activity{' '}
               <ELink link="https://github.com/uclaacm/">

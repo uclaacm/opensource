@@ -1,5 +1,15 @@
 [
 	{
+		"name": "opensource",
+		"description": "opensource @ acm, work-in-progress",
+		"link": "https://opensource.uclaacm.com",
+		"repo": "https://github.com/uclaacm/opensource",
+		"lang": "TypeScript",
+		"topics": [],
+		"image": "/logo.png",
+		"alt": "ACM @ UCLA's Logo"
+	},
+	{
 		"name": "hot-tech-tour-s22",
 		"description": "",
 		"repo": "https://github.com/uclaacm/hot-tech-tour-s22",
@@ -157,16 +167,6 @@
 		"name": "forloopslab",
 		"description": "",
 		"repo": "https://github.com/uclaacm/forloopslab",
-		"lang": "TypeScript",
-		"topics": [],
-		"image": "/logo.png",
-		"alt": "ACM @ UCLA's Logo"
-	},
-	{
-		"name": "opensource",
-		"description": "opensource @ acm, work-in-progress",
-		"link": "https://opensource.uclaacm.com",
-		"repo": "https://github.com/uclaacm/opensource",
 		"lang": "TypeScript",
 		"topics": [],
 		"image": "/logo.png",
