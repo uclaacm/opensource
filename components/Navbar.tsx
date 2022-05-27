@@ -21,6 +21,9 @@ function Navbar(): JSX.Element {
           <Link href="/contribute">
             <a>contribute</a>
           </Link>
+          <Link href="/ucla">
+            <a>ucla</a>
+          </Link>
           <Link href="https://github.com/uclaacm" passHref>
             <button>GitHub</button>
           </Link>
