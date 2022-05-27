@@ -72,10 +72,10 @@ export const getStaticProps: GetStaticProps<ProjectsProps> = async () => {
   const projects = await getProjects();
   const githubColors = await getGithubColors();
 
-    // await writeJsonFile('./test/fixtures/AllProjects.json', JSON.stringify(projects));
+  // await writeJsonFile('./test/fixtures/AllProjects.json', JSON.stringify(projects));
 
   await writeJsonFile('./test/fixtures/AllProjects.json', projects);
-  
+
   return {
     props: {
       projects,

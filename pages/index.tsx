@@ -138,7 +138,7 @@ export const getStaticProps: GetStaticProps = async () => {
   // see: https://docs.github.com/en/rest/reference/orgs
 
   const octokit = new Octokit();
-  var numRepos;
+  let numRepos;
   try {
     const orgResponse = await octokit.request('GET /orgs/{org}', {
       org: 'uclaacm',
@@ -149,7 +149,7 @@ export const getStaticProps: GetStaticProps = async () => {
     numRepos = orgResponseJSON.data.public_repos;
   }
 
-  var recentEvents;
+  let recentEvents;
   try {
     const eventResponse = await octokit.request('GET /orgs/{org}/events', {
       org: 'uclaacm',
