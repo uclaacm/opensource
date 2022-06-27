@@ -33,6 +33,13 @@ body {
   height: 100%;
 }
 
+.assignee-image {
+  border-radius: 50%;
+  overflow:  hidden;
+  width: 30px;
+  height: 30px;
+}
+
 /* this overrides a child div's display, which is useful for nullifying next/image's wrapper */
 .force-child-display-block > div {
   display: block !important;

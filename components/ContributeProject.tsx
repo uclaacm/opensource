@@ -1,9 +1,11 @@
+import Image from 'next/image';
 import React from 'react';
-import { Project, GitHubColors } from '../util';
+import { GFIProject, GitHubColors, GithubIssueAssignees } from '../util';
 import ELink from './ELink';
 
+
 interface ContributeProjectProps {
-  project: Project,
+  project: GFIProject,
   githubColors: GitHubColors
 }
 
@@ -11,14 +13,26 @@ export default function ContributeProject({
   project,
   githubColors,
 }: ContributeProjectProps): JSX.Element {
+  const {issues} = project;
+  const proppedProject = project.project;
   const {
     name,
     description,
     repo,
     lang,
     topics,
-  } = project;
-
+  } = proppedProject;
+  const displayedIssues = issues.map(issue=> (
+    <div style={{display: 'flex'}} key={issue.url}>
+      <p>#{issue.number}</p>
+      <p><ELink link={issue.url}>{issue.title}</ELink></p>
+      <AssignedIssueUsers assignees={issue.assignees ?? []}/>
+      <div>
+        <Image src={'/comment.svg'} height="15" width="15"/>
+        <span>{issue.comments}</span>
+      </div>
+    </div>
+  ));
   return (
     <>
       <div className="spaced-row">
@@ -37,7 +51,38 @@ export default function ContributeProject({
       </div>
       <div>{topics.length > 0 && <span> • {topics.join(', ')}</span>}</div>
       <div>{description}</div>
+      <h3>Issues</h3>
+      {displayedIssues}
       <hr />
     </>
+  );
+}
+
+interface AssignedIssueUsersProps {
+  assignees: GithubIssueAssignees
+}
+function AssignedIssueUsers(props: AssignedIssueUsersProps ){
+  const displayedAssignees = props.assignees.map(assignee =>
+    assignee ?
+      (<div key={assignee.login}>
+        <ELink link={assignee.html_url}>
+          <div className='assignee-image'>
+            <Image
+              src={assignee.avatar_url}
+              alt={`${assignee.login}'s profile picture`}
+              width="30"
+              height="30"
+              layout="responsive"
+            />
+          </div>
+        </ELink>
+      </div>
+      )
+      : <></>,
+  );
+  return(
+    <div  style={{display: 'flex'}}>
+      {displayedAssignees}
+    </div>
   );
 }

@@ -5,15 +5,15 @@ import React from 'react';
 import ContributeProject from '../components/ContributeProject';
 import ELink from '../components/ELink';
 import Layout from '../components/Layout';
-import { getGoodFirstIssueProjects, Project, getGithubColors, GitHubColors } from '../util';
+import { getGoodFirstIssueProjects, getGithubColors, GitHubColors, GFIProject } from '../util';
 interface ContributeProps {
-  gfiProjects: Project[],
+  gfiProjects: GFIProject[],
   githubColors: GitHubColors
 }
 
 function Contribute({ gfiProjects, githubColors }: ContributeProps): JSX.Element {
   const displayedgfiProjects = gfiProjects.map((project) =>
-    <ContributeProject project={project} githubColors={githubColors} key={project.repo} />,
+    <ContributeProject project={project} githubColors={githubColors} key={project.project.repo} />,
   );
   return (
     <Layout>
