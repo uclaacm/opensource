@@ -19,10 +19,10 @@ function UCLA(): JSX.Element {
             site_name: 'open source at ACM at UCLA',
           }}
         />
-        <h1>have you wanted to work on projects used by ucla students??
-          here are all the projects you can satsify your cravings with!
-          Any project with the ucla-opensource topic tag will be available to work on.</h1>
-        <h6>this page is currently a work in progress</h6>
+        <h1> ucla opensource</h1>
+        <p style={{fontSize: '24px'}}>opensource projects by all ucla students. any project with the
+        ucla-opensource tag will be available to work on.</p>
+        <p style={{fontSize: '18px'}}>this page is currently a work in progress</p>
       </div>
     </Layout>
   );

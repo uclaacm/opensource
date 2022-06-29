@@ -5,10 +5,8 @@ import { writeJsonFile } from 'write-json-file';
 import Layout from '../components/Layout';
 import ProjectCard from '../components/ProjectCard';
 import SearchFilter from '../components/SearchFilter/SearchFilter';
-// Issue when these were all imported from '../util', idk what went wrong
-import { Project } from '../util';
-import { getProjects, getGithubColors } from '../util/projectRequest';
-import { GitHubColors } from '../util/types';
+import { getProjects, Project, GitHubColors, getGithubColors, REVALIDATE_DAILY } from '../util';
+
 
 interface ProjectsProps {
   projects: Project[];
@@ -72,8 +70,6 @@ export const getStaticProps: GetStaticProps<ProjectsProps> = async () => {
   const projects = await getProjects();
   const githubColors = await getGithubColors();
 
-  // await writeJsonFile('./test/fixtures/AllProjects.json', JSON.stringify(projects));
-
   await writeJsonFile('./test/fixtures/AllProjects.json', projects);
 
   return {
@@ -81,6 +77,6 @@ export const getStaticProps: GetStaticProps<ProjectsProps> = async () => {
       projects,
       githubColors: githubColors,
     },
-    revalidate: 86400,
+    revalidate: REVALIDATE_DAILY,
   };
 };

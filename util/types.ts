@@ -37,3 +37,6 @@ export type GitHubEvent =
   Endpoints['GET /orgs/{org}/events']['response']['data'][number];
 
 export type GitHubEventPayload = GitHubEvent['payload'];
+
+// Revalidate every three hours (in seconds)
+export const REVALIDATE_DAILY = 3 * 60 * 60;
