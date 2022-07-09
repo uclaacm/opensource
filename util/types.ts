@@ -36,4 +36,20 @@ interface GitHubColorData {
 export type GitHubEvent =
   Endpoints['GET /orgs/{org}/events']['response']['data'][number];
 
+export type GitHubRepo = Endpoints['GET /orgs/{org}/repos']['response']['data'][number];
+
+export interface GFIProject {
+  repoURL: string;
+  project: Project,
+  issues: GitHubIssue[]
+}
+
+export type GitHubIssues = Endpoints['GET /search/issues']['response']['data'];
+
+export type GitHubIssue = GitHubIssues['items'][number];
+
+export type GithubIssueAssignee = GitHubIssue['assignee'];
+
+export type GithubIssueAssignees = GithubIssueAssignee[];
+
 export type GitHubEventPayload = GitHubEvent['payload'];
