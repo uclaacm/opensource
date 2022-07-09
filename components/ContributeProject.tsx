@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import React from 'react';
+import React, { useState } from 'react';
 import { GFIProject, GitHubColors, GithubIssueAssignees } from '../util';
 import ELink from './ELink';
 
@@ -22,17 +22,32 @@ export default function ContributeProject({
     lang,
     topics,
   } = proppedProject;
-  const displayedIssues = issues.map(issue=> (
-    <div style={{display: 'flex'}} key={issue.url}>
-      <p>#{issue.number}</p>
-      <p><ELink link={issue.url}>{issue.title}</ELink></p>
-      <AssignedIssueUsers assignees={issue.assignees ?? []}/>
-      <div>
-        <Image src={'/comment.svg'} height="15" width="15"/>
-        <span>{issue.comments}</span>
-      </div>
-    </div>
-  ));
+
+  const numIssues = issues.length;
+
+  const [displayGfis, setDisplayGfis] = useState(false);
+
+  const displayedIssues = (
+    <table>
+      <tbody>
+        {
+          issues.map(issue=> (
+            <tr key={issue.url} >
+              <td>#{issue.number}</td>
+              <td><ELink link={issue.html_url}>{issue.title}</ELink></td>
+              <td><AssignedIssueUsers assignees={issue.assignees ?? []}/></td>
+              <td>
+                <span className='vertically-aligned-row'>
+                  <span className='comment-icon'><Image src={'/comment.svg'} height="15" width="15"/></span>
+                  {issue.comments}
+                </span>
+              </td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  );
   return (
     <>
       <div className="spaced-row">
@@ -49,10 +64,26 @@ export default function ContributeProject({
           {lang || 'Markdown'}
         </p>
       </div>
-      <div>{topics.length > 0 && <span> • {topics.join(', ')}</span>}</div>
+      {topics.length > 0 &&
+      <span>
+        <dl>
+          <dt>Topics • </dt>
+          <dd>  {topics.join(', ')}</dd>
+        </dl>
+      </span>
+      }
       <div>{description}</div>
-      <h3>Issues</h3>
-      {displayedIssues}
+      <div className='spaced-row vertically-aligned-row'>
+        <h4>good first issues</h4>
+        <button
+          type='button'
+          onClick={() => setDisplayGfis(prevVal => !prevVal)}
+          className={displayGfis ? 'gfi-button-displayed' : 'gfi-button'}
+        >
+          {numIssues} {numIssues > 1 ? ' issues' : ' issue'}
+        </button>
+      </div>
+      { displayGfis && displayedIssues}
       <hr />
     </>
   );
@@ -73,6 +104,7 @@ function AssignedIssueUsers(props: AssignedIssueUsersProps ){
               width="30"
               height="30"
               layout="responsive"
+              title={assignee.login}
             />
           </div>
         </ELink>

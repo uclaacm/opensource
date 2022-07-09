@@ -1,10 +1,12 @@
 
+import { writeFile } from 'fs';
 import { GetStaticProps } from 'next';
 import { NextSeo } from 'next-seo';
 import React from 'react';
 import ContributeProject from '../components/ContributeProject';
 import ELink from '../components/ELink';
 import Layout from '../components/Layout';
+
 import { getGoodFirstIssueProjects, getGithubColors, GitHubColors, GFIProject } from '../util';
 interface ContributeProps {
   gfiProjects: GFIProject[],
@@ -41,22 +43,22 @@ function Contribute({ gfiProjects, githubColors }: ContributeProps): JSX.Element
         </h2>
         <p>
           Open source software is code that is made freely available for <b>anyone</b> to
-          use or enhance! Here at ACM, we take pride in <b>all</b> of our projects being open-source
+          use or enhance! Here at ACM, we take pride in <strong>all</strong> of our projects being open-source
           and open for anyone to work on.
         </p>
         <h2>
           what makes open source possible?
         </h2>
         <p>
-          The main back bone of open source initiatives are tools that can make collaboration and sharing of code as
-          simple as possible. Git and <ELink link='https://github.com/'>Github</ELink> are two really popular tools
-          that do just that used by companies like Google, Meta, and more, and is what we use at ACM as well.
+        The main backbone of open source initiatives are tools that simplify collaboration and sharing of code.
+        Git and <ELink link='https://github.com/'>Github</ELink> are two popular tools used by researchers,
+        companies, and students; at ACM, we use both.
         </p>
         <h2>
           how can i contribute?
         </h2>
         <p>
-          We&apos;ll quickly go over how we can use git/github to work on some open source projects, and if
+          We&apos;ll quickly go over how we can use git/github to work on some open source projects. If
           you want to learn more about the specifics of what we&apos;ll cover, you can check out {' '}
           <ELink link='https://git-scm.com/doc'>git&apos;s documentation</ELink>
           {' '} or our writeups on {' '}
@@ -74,20 +76,13 @@ function Contribute({ gfiProjects, githubColors }: ContributeProps): JSX.Element
           jumping into contributing on a project
         </h3>
         <p>
-          There are thousands of open-source projects out there that it can get hard to even find where to start!
+          There are thousands of open-source projects out there - it&apos;s hard to even find out where to start!
           Luckily, some <strong>repositories</strong>, or the main hub of projects, have <strong>issues</strong>, or
           project tasks, marked as <strong>good first issue</strong>.
           These are great starting points for people to hop in and contribute!
         </p>
 
-        <h2 id='good-first-issues'>
-          acm&apos;s projects w/ good first issues
-        </h2>
-        <div className='card'>
-          <div className='card-body'>
-            {displayedgfiProjects}
-          </div>
-        </div>
+        <p className='spaced-row'>Check out some of our projects tagged with good first issues here!<a href='#good-first-issues'><button>ACM&apos;s Good First Issues</button></a></p>
 
         <h2>contribution workflow</h2>
         <p>
@@ -101,8 +96,10 @@ function Contribute({ gfiProjects, githubColors }: ContributeProps): JSX.Element
         <h3>forking and cloning a repo</h3>
         <p>By clicking fork on a project that you want to contribute to, GitHub generates a personal copy of that
           repo under your account. To clone it onto your computer, you can click the code button above the list of files
-          and run <code>git clone PROJECT_URL</code> to get it onto your machine.
+          and run
         </p>
+        <p><code>$ git clone git@github.com:uclaacm/opensource.git</code></p>
+        <p>to get it onto your machine.</p>
         <h3>branching, making changes</h3>
         <p>
           Generally, when you want to make a specific change to a project, you make a branch,
@@ -127,8 +124,25 @@ function Contribute({ gfiProjects, githubColors }: ContributeProps): JSX.Element
           and request changes as necessary. Once they approve your changes however, you can merge your changes
           in and you&apos;ve successfully contributed to the project!
         </p>
-        <h2>what are you waiting for? go work on some projects!</h2>
+        <p className='action'>what are you waiting for? go work on some projects!</p>
 
+        <h2 id='good-first-issues'>
+          acm&apos;s projects w/ good first issues
+        </h2>
+        <p>
+          <span>acm currently has </span>
+          <strong>{displayedgfiProjects.length}</strong>
+          {
+            `
+          ${displayedgfiProjects.length>1 ? 'projects' : 'project' }
+          with good first issues!`
+          }
+        </p>
+        <div className='card'>
+          <div className='card-body'>
+            {displayedgfiProjects}
+          </div>
+        </div>
       </div>
     </Layout >
   );
@@ -140,14 +154,19 @@ export default Contribute;
 export const getStaticProps: GetStaticProps = async () => {
   // TODO(mattxwang): change the auth scope and get members, etc.
   // see: https://docs.github.com/en/rest/reference/orgs
+
   const gfiProjects = await getGoodFirstIssueProjects();
+  const gfisJson = JSON.stringify(gfiProjects);
+  writeFile('./test/fixtures/gfiProjects.json', gfisJson, () => {
+    return;
+  });
+
   const githubColors = await getGithubColors();
   return {
     props: {
       gfiProjects,
       githubColors,
     },
-    revalidate: 60,
+    revalidate: 3600,
   };
 };
-

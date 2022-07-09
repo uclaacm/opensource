@@ -94,3 +94,40 @@ body {
 .dev-language-badge.lang-rust {
   background-color: #DEA584;
 }
+
+.vertically-aligned-row {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  align-items: center;
+}
+
+.vertically-aligned-row > * {
+  align-items: center;
+  align-content: center;
+}
+
+.gfi-button {
+  background-color: #1E6CFF;
+  color: white;
+}
+
+.gfi-button-displayed {
+  color: #1E6CFF;
+  background-color: rgb(244, 244, 244);
+}
+
+.comment-icon {
+  margin-right: 5px;
+}
+
+dl * {
+  display: inline;
+  margin: 0;
+}
+
+.action {
+  font-weight: bold;
+  color: black;
+  font-size: 36px;
+}
