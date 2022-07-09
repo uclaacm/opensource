@@ -21,7 +21,7 @@ export enum ACMCommitteeTopics {
   ICPC = 'acm-icpc',
   STUDIO = 'acm-studio',
   TEACH_LA = 'teach-la',
-  W = 'w',
+  W = 'acm-w',
 }
 
 export interface GitHubColors {
