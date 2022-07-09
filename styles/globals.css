@@ -107,6 +107,25 @@ body {
   align-content: center;
 }
 
+.gfi-title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+  vertical-align: top;
+  text-align: center;
+}
+
+.gfi-title > h3 {
+  margin: 0
+}
+
+.gfi-image {
+  width: 75px;
+  height: 75px;
+}
+
 .gfi-button {
   background-color: #1E6CFF;
   color: white;

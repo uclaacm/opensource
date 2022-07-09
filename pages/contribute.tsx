@@ -6,8 +6,8 @@ import React from 'react';
 import ContributeProject from '../components/ContributeProject';
 import ELink from '../components/ELink';
 import Layout from '../components/Layout';
-
 import { getGoodFirstIssueProjects, getGithubColors, GitHubColors, GFIProject } from '../util';
+
 interface ContributeProps {
   gfiProjects: GFIProject[],
   githubColors: GitHubColors

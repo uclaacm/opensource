@@ -21,6 +21,8 @@ export default function ContributeProject({
     repo,
     lang,
     topics,
+    image,
+    alt,
   } = proppedProject;
 
   const numIssues = issues.length;
@@ -51,7 +53,19 @@ export default function ContributeProject({
   return (
     <>
       <div className="spaced-row">
-        <h3><ELink link={repo + '/issues'}>{name}</ELink></h3>
+        <div className='gfi-title'>
+          <div className='gfi-image'>
+            <Image
+              src={ image ?? '/logo.png'}
+              alt={alt}
+              width="75"
+              height="75"
+              layout="responsive"
+            />
+          </div>
+          <h3><ELink link={repo + '/issues'}>{name}</ELink></h3>
+        </div>
+
         <p>
           <span
             className="dev-language-badge"
