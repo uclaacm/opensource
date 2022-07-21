@@ -18,6 +18,9 @@ function Navbar(): JSX.Element {
           <Link href="/projects">
             <a>projects</a>
           </Link>
+          <Link href="/ucla-opensource">
+            <a>ucla-opensource</a>
+          </Link>
           <Link href="/contribute">
             <a>contribute</a>
           </Link>

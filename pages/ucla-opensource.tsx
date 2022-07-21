@@ -1,0 +1,78 @@
+import { GetStaticProps } from 'next';
+import { NextSeo } from 'next-seo';
+import React, { useState } from 'react';
+import Layout from '../components/Layout';
+import ProjectCard from '../components/ProjectCard';
+import SearchFilter from '../components/SearchFilter/SearchFilter';
+import { getUclaOpenSource, Project, GitHubColors, getGithubColors } from '../util';
+
+
+interface ProjectsProps {
+  projects: Project[];
+  githubColors: GitHubColors
+}
+
+function Projects({ projects, githubColors }: ProjectsProps): JSX.Element {
+
+  // projects is a master list of all the projects that we fetched, filteredProjects is the one that we render
+  // to the user
+  const [filteredProjects, setFilteredProjects] = useState(projects);
+
+  return (
+    <Layout>
+      <div className="container">
+        <NextSeo
+          title="ucla-opensource | open source at UCLA"
+          description="a heads-up overview of open source projects at UCLA"
+          openGraph={{
+            images: [{
+              url: 'https://opensource.uclaacm.com/logo.png',
+              width: 1200,
+              height: 1200,
+              alt: 'The ACM at UCLA logo',
+            }],
+            site_name: 'open source at UCLA',
+          }}
+        />
+        <h1>
+          ucla-opensource
+        </h1>
+        <p>
+          a (work-in-progress) heads-up overview of open source projects at UCLA.
+        </p>
+        <hr />
+        <SearchFilter
+          projects={projects}
+          setFilteredProjects={setFilteredProjects}
+        />
+        <hr/>
+        <div className="row same-height-grid">
+          {filteredProjects.length > 0
+            ? filteredProjects.map((project, i) => {
+              return (
+                <div className="col-4" key={project.name}>
+                  <ProjectCard project={project} vertical preload={i < 3} githubColors={githubColors} />
+                </div>
+              );
+            })
+            : <h2>No results found</h2>
+          }
+        </div>
+      </div>
+    </Layout>
+  );
+}
+
+export default Projects;
+
+export const getStaticProps: GetStaticProps<ProjectsProps> = async () => {
+  const projects = await getUclaOpenSource();
+  const githubColors = await getGithubColors();
+  return {
+    props: {
+      projects,
+      githubColors: githubColors,
+    },
+    revalidate: 3600,
+  };
+};

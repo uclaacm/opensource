@@ -3,6 +3,43 @@ import { paginateRest } from '@octokit/plugin-paginate-rest';
 import githubColorsFixture from '../data/githubColors.json';
 import { Project, ACMCommitteeTopics, GitHubColors } from './types';
 
+export async function getUclaOpenSource(): Promise<Project[]> {
+  const PaginatedOctokit = Octokit.plugin(paginateRest);
+  const octokit = new PaginatedOctokit();
+  const response = await octokit.paginate('GET /search/repositories', {
+    q: 'ucla-opensource+in:topics',
+    per_page: 100,
+  });
+
+  const filteredData = response.filter((repo) => !repo.archived);
+  const sortedData = filteredData.sort(
+    (a, b) =>
+      new Date(b.updated_at as string).getTime() - new Date(a.updated_at as string).getTime(),
+  );
+  return sortedData.map((repo) =>
+    repo.homepage
+      ? {
+        name: repo.name,
+        description: repo.description ?? '',
+        link: repo.homepage ?? '',
+        repo: repo.html_url,
+        lang: repo.language ?? '',
+        topics: repo.topics ?? [],
+        image: getImageFromTopics(repo.topics).image,
+        alt: getImageFromTopics(repo.topics).alt,
+      }
+      : {
+        name: repo.name,
+        description: repo.description ?? '',
+        repo: repo.html_url ?? '',
+        lang: repo.language ?? '',
+        topics: repo.topics ?? [],
+        image: getImageFromTopics(repo.topics).image,
+        alt: getImageFromTopics(repo.topics).alt,
+      },
+  );
+}
+
 export async function getProjects(): Promise<Project[]> {
   const PaginatedOctokit = Octokit.plugin(paginateRest);
   const octokit = new PaginatedOctokit();
@@ -39,6 +76,7 @@ export async function getProjects(): Promise<Project[]> {
       },
   );
 }
+
 export async function getGithubColors(): Promise<GitHubColors> {
   const githubColorsResponse = await fetch(
     'https://raw.githubusercontent.com/ozh/github-colors/master/colors.json',
