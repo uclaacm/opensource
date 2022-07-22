@@ -40,14 +40,14 @@ Some small notes on how I've been writing the app so far:
 * I use [octokit](https://github.com/octokit/octokit.js) to wrap GitHub's API to get information about the `uclaacm` org. So far, all of this is ISR'd :)
 * [WestwoodCSS](https://github.com/uclaacm/WestwoodCSS) is still in early alpha, so:
   * there is no documentation (other than reading the source file)
-  * there is no guarantee of forwards*compatability with new versions of WestwoodCSS
+  * there is no guarantee of forwards-compatability with new versions of WestwoodCSS
 * so far, there is no unified types file; most component types live in the component file, and there is some relevant typing in `util/types.ts`
-* the mapping of event data to human*readable components in `components/GitHubEventAction.tsx` is manually done (and currently, manually typed). I haven't _really_ looked into it, but...
+* the mapping of event data to human-readable components in `components/GitHubEventAction.tsx` is manually done (and currently, manually typed). I haven't *really* looked into it, but...
   * I'm sure there are ways we can use the generated types for `octokit` to flesh out the event types, instead of manually picking/resolving fields
   * there may even be a way to programatically explore types and do the string generation in a much more natural way!
-* most of the actual copy isn't here yet! i'm mostly just fiddling with code :)
-* to ensure the website doesn't break if the Octokit api fails, the information from the api calls are generated in getStaticProps() for both projects.tsx and index.tsx and stored statically in /test/fixtures
-  * All projects, generated in projects.tsx, are stored in /test/fixtures/AllProjects.json, while info about Events and ACM as an org, generated in index.tsx, are stored in /test/fixtures/eventResponse.json and /test/fixtures/orgResponse.json
+  * most of the actual copy isn't here yet! i'm mostly just fiddling with code :)
+  * to ensure the website doesn't break if the Octokit api fails, the information from the api calls are generated in getStaticProps() for both projects.tsx and index.tsx and stored statically in /test/fixtures
+  * All of ACM's projects, generated in projects.tsx, are stored in /test/fixtures/AllProjects.json, while info about Events and ACM as an org, generated in index.tsx, are stored in /test/fixtures/eventResponse.json and /test/fixtures/orgResponse.json
 
 Want to give a quick shoutout to [Bryan Pan](https://bryanpan.co/) of [Creative Labs](https://www.creativelabsucla.com/) - he's been a big pusher of Next and a great friend to ACM!
 
