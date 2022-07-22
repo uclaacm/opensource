@@ -2,15 +2,9 @@ import { GetStaticProps } from 'next';
 import { NextSeo } from 'next-seo';
 import React, { useState } from 'react';
 import Layout from '../components/Layout';
-import ProjectCard from '../components/ProjectCard';
+import ProjectGrid, {ProjectsProps} from '../components/ProjectGrid';
 import SearchFilter from '../components/SearchFilter/SearchFilter';
-import { getProjects, Project, GitHubColors, getGithubColors } from '../util';
-
-
-interface ProjectsProps {
-  projects: Project[];
-  githubColors: GitHubColors
-}
+import { getProjects, getGithubColors } from '../util';
 
 function Projects({ projects, githubColors }: ProjectsProps): JSX.Element {
 
@@ -46,18 +40,7 @@ function Projects({ projects, githubColors }: ProjectsProps): JSX.Element {
           setFilteredProjects={setFilteredProjects}
         />
         <hr/>
-        <div className="row same-height-grid">
-          {filteredProjects.length > 0
-            ? filteredProjects.map((project, i) => {
-              return (
-                <div className="col-4" key={project.name}>
-                  <ProjectCard project={project} vertical preload={i < 3} githubColors={githubColors} />
-                </div>
-              );
-            })
-            : <h2>No results found</h2>
-          }
-        </div>
+        <ProjectGrid projects={filteredProjects} githubColors = {githubColors}/>
       </div>
     </Layout>
   );
