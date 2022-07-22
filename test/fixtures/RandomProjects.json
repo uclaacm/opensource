@@ -1,0 +1,5 @@
+[
+  {"name":"ctf-starter","description":"A template for deploying challenges to ACM Cyber's CTF platform for Cyber Academy & CTF After Dark.","repo":"https://github.com/uclaacm/ctf-starter","lang":"","topics":[],"image":"/logo.png","alt":"ACM @ UCLA's Logo"},
+  {"name":"TeachLAFrontend","description":"🌱the frontend for Teach LA's online IDE, designed to teach kids how to code!","link":"https://editor.uclaacm.com","repo":"https://github.com/uclaacm/TeachLAFrontend","lang":"JavaScript","topics":["education","firebase","ide","react","redux","teach-la"],"image":"/committee-logos/teachla-logo.png","alt":"ACM Teach LA Logo"},
+  {"name":"hoth.uclaacm.com","description":"ACM Hack's Hack on the Hill website","link":"https://hoth.uclaacm.com/","repo":"https://github.com/uclaacm/hoth.uclaacm.com","lang":"JavaScript","topics":["acm-hack","hackathon","hoth","ucla"],"image":"/committee-logos/hack-logo.png","alt":"ACM Hack Logo"}
+]
