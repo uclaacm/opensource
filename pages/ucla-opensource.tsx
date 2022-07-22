@@ -2,9 +2,15 @@ import { GetStaticProps } from 'next';
 import { NextSeo } from 'next-seo';
 import React, { useState } from 'react';
 import Layout from '../components/Layout';
-import ProjectGrid, {ProjectsProps} from '../components/ProjectGrid';
+import ProjectGrid from '../components/ProjectGrid';
 import SearchFilter from '../components/SearchFilter/SearchFilter';
-import { getProjects, getGithubColors } from '../util';
+import { getUclaOpenSource, Project, GitHubColors, getGithubColors } from '../util';
+
+
+interface ProjectsProps {
+  projects: Project[];
+  githubColors: GitHubColors
+}
 
 function Projects({ projects, githubColors }: ProjectsProps): JSX.Element {
 
@@ -16,8 +22,8 @@ function Projects({ projects, githubColors }: ProjectsProps): JSX.Element {
     <Layout>
       <div className="container">
         <NextSeo
-          title="projects | open source at ACM at UCLA"
-          description="a heads-up overview of the projects that power ACM at UCLA"
+          title="ucla-opensource | open source at UCLA"
+          description="a heads-up overview of open source projects at UCLA"
           openGraph={{
             images: [{
               url: 'https://opensource.uclaacm.com/logo.png',
@@ -25,14 +31,14 @@ function Projects({ projects, githubColors }: ProjectsProps): JSX.Element {
               height: 1200,
               alt: 'The ACM at UCLA logo',
             }],
-            site_name: 'open source at ACM at UCLA',
+            site_name: 'open source at UCLA',
           }}
         />
         <h1>
-          projects
+          ucla-opensource
         </h1>
         <p>
-          a (work-in-progress) heads-up overview of the projects that power ACM at UCLA.
+          a (work-in-progress) heads-up overview of open source projects at UCLA.
         </p>
         <hr />
         <SearchFilter
@@ -49,13 +55,13 @@ function Projects({ projects, githubColors }: ProjectsProps): JSX.Element {
 export default Projects;
 
 export const getStaticProps: GetStaticProps<ProjectsProps> = async () => {
-  const projects = await getProjects();
+  const projects = await getUclaOpenSource();
   const githubColors = await getGithubColors();
   return {
     props: {
       projects,
       githubColors: githubColors,
     },
-    revalidate: 60,
+    revalidate: 3600,
   };
 };
