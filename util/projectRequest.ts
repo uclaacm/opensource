@@ -1,6 +1,6 @@
 import { Octokit } from '@octokit/core';
 import { paginateRest } from '@octokit/plugin-paginate-rest';
-import {EndpointOptions} from '@octokit/types';
+// import {EndpointOptions} from '@octokit/types';
 import githubColorsFixture from '../data/githubColors.json';
 import { Project, ACMCommitteeTopics, GitHubColors, GitHubRepo } from './types';
 
