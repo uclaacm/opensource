@@ -1,6 +1,5 @@
 import { Octokit } from '@octokit/core';
 import { paginateRest } from '@octokit/plugin-paginate-rest';
-import { writeJsonFile } from 'write-json-file';
 import githubColorsFixture from '../data/githubColors.json';
 import sortedDataJSON from '../test/fixtures/sortedData.json';
 import { Project, ACMCommitteeTopics, GitHubColors } from './types';
@@ -20,7 +19,6 @@ export async function getProjects(): Promise<Project[]> {
       (a, b) =>
         new Date(b.updated_at as string).getTime() - new Date(a.updated_at as string).getTime(),
     );
-    await writeJsonFile('./test/fixtures/sortedData.json', sortedData);
   } catch (err) {
     sortedData = sortedDataJSON;
   }

@@ -3,7 +3,6 @@ import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { NextSeo } from 'next-seo';
 import Link from 'next/link';
 import React from 'react';
-import { writeJsonFile } from 'write-json-file';
 import ELink from '../components/ELink';
 import GitHubEventComponent from '../components/GitHubEvent';
 import Layout from '../components/Layout';
@@ -11,9 +10,8 @@ import ProjectCard from '../components/ProjectCard';
 import eventResponseJSON from '../test/fixtures/eventResponse.json';
 import orgResponseJSON from '../test/fixtures/orgResponse.json';
 import RandomProjects from '../test/fixtures/RandomProjects.json';
-import { Project } from '../util';
-import { getGithubColors } from '../util/projectRequest';
-import { GitHubEvent } from '../util/types';
+import { Project, getGithubColors, GitHubEvent } from '../util';
+
 
 function getRandomProj(projects: Project[]) {
   // get the length of RandomProjects.json
@@ -143,7 +141,6 @@ export const getStaticProps: GetStaticProps = async () => {
     const orgResponse = await octokit.request('GET /orgs/{org}', {
       org: 'uclaacm',
     });
-    await writeJsonFile('./test/fixtures/orgResponse.json', orgResponse);
     numRepos = orgResponse.data.public_repos;
   } catch (err) {
     numRepos = orgResponseJSON.data.public_repos;
@@ -154,7 +151,6 @@ export const getStaticProps: GetStaticProps = async () => {
     const eventResponse = await octokit.request('GET /orgs/{org}/events', {
       org: 'uclaacm',
     });
-    await writeJsonFile('./test/fixtures/eventResponse.json', eventResponse.data);
     recentEvents = eventResponse.data;
   } catch (err) {
     recentEvents = eventResponseJSON;
