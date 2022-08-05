@@ -1,44 +1,43 @@
 import { Octokit } from '@octokit/core';
 import { paginateRest } from '@octokit/plugin-paginate-rest';
+// import {EndpointOptions} from '@octokit/types';
 import githubColorsFixture from '../data/githubColors.json';
-import { Project, ACMCommitteeTopics, GitHubColors } from './types';
+import { Project, ACMCommitteeTopics, GitHubColors, GitHubRepo } from './types';
 
-export async function getProjects(): Promise<Project[]> {
+async function getGithubRepos(request: string, defaultUseUclaLogo: boolean): Promise<Project[]> {
   const PaginatedOctokit = Octokit.plugin(paginateRest);
   const octokit = new PaginatedOctokit();
-  const projectsResponse = await octokit.paginate('GET /orgs/{org}/repos', {
-    org: 'uclaacm',
+
+  const response: GitHubRepo[] = await octokit.paginate('GET /search/repositories?q=ucla-opensource+in:topics', {
     per_page: 100,
   });
 
-  const filteredData = projectsResponse.filter((repo) => !repo.archived);
+  const filteredData = response.filter((repo) => !repo.archived);
   const sortedData = filteredData.sort(
     (a, b) =>
       new Date(b.updated_at as string).getTime() - new Date(a.updated_at as string).getTime(),
   );
-  return sortedData.map((repo) =>
-    repo.homepage
-      ? {
-        name: repo.name,
-        description: repo.description ?? '',
-        link: repo.homepage ?? '',
-        repo: repo.html_url,
-        lang: repo.language ?? '',
-        topics: repo.topics ?? [],
-        image: getImageFromTopics(repo.topics).image,
-        alt: getImageFromTopics(repo.topics).alt,
-      }
-      : {
-        name: repo.name,
-        description: repo.description ?? '',
-        repo: repo.html_url ?? '',
-        lang: repo.language ?? '',
-        topics: repo.topics ?? [],
-        image: getImageFromTopics(repo.topics).image,
-        alt: getImageFromTopics(repo.topics).alt,
-      },
+  return sortedData.map((repo) => ({
+    name: repo.name,
+    description: repo.description ?? '',
+    link: repo.homepage ?? '',
+    repo: repo.html_url,
+    lang: repo.language ?? '',
+    topics: repo.topics ?? [],
+    image: getImageFromTopics(repo.topics, defaultUseUclaLogo).image,
+    alt: getImageFromTopics(repo.topics, defaultUseUclaLogo).alt,
+  }),
   );
 }
+
+export async function getUclaOpenSource(): Promise<Project[]> {
+  return getGithubRepos('GET /search/repositories?q=ucla-opensource+in:topics', true);
+}
+
+export async function getProjects(): Promise<Project[]> {
+  return getGithubRepos('GET /orgs/uclaacm/repos', false);
+}
+
 export async function getGithubColors(): Promise<GitHubColors> {
   const githubColorsResponse = await fetch(
     'https://raw.githubusercontent.com/ozh/github-colors/master/colors.json',
@@ -100,7 +99,7 @@ function topicToImg(topic: string): ImageInfo | false {
   }
 }
 
-export function getImageFromTopics(topics: string[] | undefined): ImageInfo {
+export function getImageFromTopics(topics: string[] | undefined, defaultUseUclaLogo: boolean): ImageInfo {
   if (topics) {
     for (const topic of topics) {
       const committeeImg = topicToImg(topic);
@@ -108,8 +107,11 @@ export function getImageFromTopics(topics: string[] | undefined): ImageInfo {
     }
   }
   //return acm logo if no committee topics
-  return {
-    image: '/logo.png',
-    alt: "ACM @ UCLA's Logo",
-  } as ImageInfo;
+  return defaultUseUclaLogo ? {
+    image: '/ucla-logo.jpeg',
+    alt: 'UCLA Bruin Logo'}
+    : {
+      image: '/logo.png',
+      alt: "ACM @ UCLA's Logo",
+    };
 }
