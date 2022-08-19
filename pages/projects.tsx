@@ -6,14 +6,12 @@ import ProjectCard from '../components/ProjectCard';
 import SearchFilter from '../components/SearchFilter/SearchFilter';
 import { getProjects, Project, GitHubColors, getGithubColors } from '../util';
 
-
 interface ProjectsProps {
   projects: Project[];
-  githubColors: GitHubColors
+  githubColors: GitHubColors;
 }
 
 function Projects({ projects, githubColors }: ProjectsProps): JSX.Element {
-
   // projects is a master list of all the projects that we fetched, filteredProjects is the one that we render
   // to the user
   const [filteredProjects, setFilteredProjects] = useState(projects);
@@ -25,38 +23,45 @@ function Projects({ projects, githubColors }: ProjectsProps): JSX.Element {
           title="projects | open source at ACM at UCLA"
           description="a heads-up overview of the projects that power ACM at UCLA"
           openGraph={{
-            images: [{
-              url: 'https://opensource.uclaacm.com/logo.png',
-              width: 1200,
-              height: 1200,
-              alt: 'The ACM at UCLA logo',
-            }],
+            images: [
+              {
+                url: 'https://opensource.uclaacm.com/logo.png',
+                width: 1200,
+                height: 1200,
+                alt: 'The ACM at UCLA logo',
+              },
+            ],
             site_name: 'open source at ACM at UCLA',
           }}
         />
-        <h1>
-          projects
-        </h1>
+        <h1>projects</h1>
         <p>
-          a (work-in-progress) heads-up overview of the projects that power ACM at UCLA.
+          a (work-in-progress) heads-up overview of the projects that power ACM
+          at UCLA.
         </p>
         <hr />
         <SearchFilter
           projects={projects}
           setFilteredProjects={setFilteredProjects}
         />
-        <hr/>
+        <hr />
         <div className="row same-height-grid">
-          {filteredProjects.length > 0
-            ? filteredProjects.map((project, i) => {
+          {filteredProjects.length > 0 ? (
+            filteredProjects.map((project, i) => {
               return (
                 <div className="col-4" key={project.name}>
-                  <ProjectCard project={project} vertical preload={i < 3} githubColors={githubColors} />
+                  <ProjectCard
+                    project={project}
+                    vertical
+                    preload={i < 3}
+                    githubColors={githubColors}
+                  />
                 </div>
               );
             })
-            : <h2>No results found</h2>
-          }
+          ) : (
+            <h2>No results found</h2>
+          )}
         </div>
       </div>
     </Layout>
@@ -73,6 +78,6 @@ export const getStaticProps: GetStaticProps<ProjectsProps> = async () => {
       projects,
       githubColors: githubColors,
     },
-    revalidate: 60,
+    revalidate: 3600,
   };
 };
