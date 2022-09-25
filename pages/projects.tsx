@@ -1,7 +1,6 @@
 import { GetStaticProps } from 'next';
 import { NextSeo } from 'next-seo';
 import React, { useState } from 'react';
-import { writeJsonFile } from 'write-json-file';
 import Layout from '../components/Layout';
 import ProjectCard from '../components/ProjectCard';
 import SearchFilter from '../components/SearchFilter/SearchFilter';
@@ -69,8 +68,6 @@ export default Projects;
 export const getStaticProps: GetStaticProps<ProjectsProps> = async () => {
   const projects = await getProjects();
   const githubColors = await getGithubColors();
-
-  await writeJsonFile('./test/fixtures/AllProjects.json', projects);
 
   return {
     props: {
