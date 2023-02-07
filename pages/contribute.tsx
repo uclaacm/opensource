@@ -20,8 +20,16 @@ function Contribute(): JSX.Element {
           }}
         />
         <h1>
-          get started
+          Contribute to open source
         </h1>
+        <p>
+          Anyone can contribute to open source! You do not need coding experience.
+        </p>
+        <ol>
+          <li><b><a href="https://wiki.openstreetmap.org/wiki/BruinMappers">BruinMappers</a></b>: student-run mapping club for UCLA campus and its surrounding area. Contribute by adding information about a place, or by taking photos.</li>
+          <li><b><a href="https://en.wikipedia.org/wiki/Wikipedia:WikiProject_University_of_California/Los_Angeles">WikiProject UCLA</a></b>: contribute by knowledge and enriching articles.</li>
+          <li><b><a href="/projects">Pull-requests</a></b>: Contribute by adding, reviewing, or improving code of one of ACM projects.</li>
+        </ol>
       </div>
     </Layout>
   );

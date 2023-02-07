@@ -26,7 +26,7 @@ export default function Home({
       <div className="container">
         <NextSeo
           title="open source at ACM at UCLA"
-          description="at the largest computer science community at UCLA, we care about open-source"
+          description="at the largest computer science community at UCLA, we care about open source and software freedom."
           openGraph={{
             images: [{
               url: 'https://opensource.uclaacm.com/logo.png',
@@ -46,7 +46,7 @@ export default function Home({
         <hr />
         <p className="knockout-description">
           at the largest computer science community at UCLA,
-          <br /> <b>we care about open-source.</b>
+          <br /> <b>we care about open source.</b>
         </p>
         <div className="row">
           <div className="col-6">
@@ -56,7 +56,7 @@ export default function Home({
                   <a>
                     <h3>Projects &rarr;</h3>
                     <p>
-                      All of our projects are open-source! Literally, all of
+                      All of our projects are open source! Literally, all of
                       them.
                     </p>
                   </a>
@@ -82,7 +82,7 @@ export default function Home({
               <div className="card-body">
                 <ELink link="https://uclaacm.com/events">
                   <h3>Events &rarr;</h3>
-                  <p>We love talking about open-source. Come talk with us!</p>
+                  <p>We love talking about open source. Come talk with us!</p>
                 </ELink>
               </div>
             </div>
@@ -93,7 +93,7 @@ export default function Home({
                 <Link href="/contribute">
                   <a>
                     <h3>Contribute &rarr;</h3>
-                    <p>Make your first pull request with us!</p>
+                    <p>No coding experience needed! There are many ways to contribute.</p>
                   </a>
                 </Link>
               </div>
@@ -102,11 +102,26 @@ export default function Home({
         </div>
         <hr className="mt-2" />
 
-        <h2>featured project</h2>
+        <h2>featured projects</h2>
         <ProjectCard
           project={randomProject ? randomProject : projects[projNumToDisplay]} preload={true}
           githubColors={githubColors}
         />
+        <h3>Open Access &amp; Data</h3>
+          <ol>
+          <li><a href='https://www.library.ucla.edu/openucla'>OpenUCLA</a></li>
+          <li><a href='https://www.uclaextension.edu/uclaxopen'>UCLAxOpen</a></li>
+          <li><a href='https://wiki.openstreetmap.org/wiki/BruinMappers'>BruinMappers</a>: student-run mapping club for UCLA campus and its surrounding area.</li>
+
+          </ol>
+        <h3>Research and development</h3>
+          <ol>
+          <li><a href='https://github.com/eggert/tz'>tz</a>: time zone database. Maintained by Paul Eggert.</li>
+          <li><a href='https://github.com/daharoni?tab=repositories'>Miniscope project</a>: microscope technology for studying neuroscience lead by  Daniel Ahuaroni.</li>
+          <li><a href='https://github.com/DerrickXuNu/OpenCOOD'>OpenCOOD</a>: open source framework for autonomous driving.</li>
+          <li><a href='https://zarlab.cs.ucla.edu/software/'>ZarLab</a>: a collection of biotechnology tools for analyzing genes and molecular data.</li>
+
+          </ol>
         <h2>what we&apos;ve been doing recently...</h2>
         <p>this is a live feed of our {numRepos} repositories</p>
         <div className="card">
