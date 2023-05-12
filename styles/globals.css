@@ -33,9 +33,22 @@ body {
   height: 100%;
 }
 
+.assignee-image {
+  border-radius: 50%;
+  overflow:  hidden;
+  width: 30px;
+  height: 30px;
+}
+
 /* this overrides a child div's display, which is useful for nullifying next/image's wrapper */
 .force-child-display-block > div {
   display: block !important;
+}
+
+.spaced-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 /* overriding the WestwoodCSS default */
@@ -80,4 +93,60 @@ body {
 
 .dev-language-badge.lang-rust {
   background-color: #DEA584;
+}
+
+.vertically-aligned-row {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  align-items: center;
+}
+
+.vertically-aligned-row > * {
+  align-items: center;
+  align-content: center;
+}
+
+.gfi-title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+  vertical-align: top;
+  text-align: center;
+}
+
+.gfi-title > h3 {
+  margin: 0
+}
+
+.gfi-image {
+  width: 75px;
+  height: 75px;
+}
+
+.gfi-button {
+  background-color: #1E6CFF;
+  color: white;
+}
+
+.gfi-button-displayed {
+  color: #1E6CFF;
+  background-color: rgb(244, 244, 244);
+}
+
+.comment-icon {
+  margin-right: 5px;
+}
+
+dl * {
+  display: inline;
+  margin: 0;
+}
+
+.action {
+  font-weight: bold;
+  color: black;
+  font-size: 36px;
 }
