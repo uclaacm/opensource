@@ -63,7 +63,7 @@ export default function ContributeProject({
               layout="responsive"
             />
           </div>
-          <h3><ELink link={repo + '/issues'}>{name}</ELink></h3>
+          <h3><ELink link={repo + '/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22'}>{name}</ELink></h3>
         </div>
 
         <p>
