@@ -15,6 +15,9 @@ function Navbar(): JSX.Element {
       </div>
       <div className="navbar-items">
         <div className="navbar-link">
+          <Link href="https://uclaacm.com">
+            <a>home</a>
+          </Link>
           <Link href="/projects">
             <a>projects</a>
           </Link>
