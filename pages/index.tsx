@@ -157,5 +157,5 @@ export const getStaticProps: GetStaticProps = async () => {
       randomProject: false,
     },
     revalidate: 60, 
-  };
+  }; 
 };
