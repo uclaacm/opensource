@@ -156,6 +156,6 @@ export const getStaticProps: GetStaticProps = async () => {
       projNumToDisplay,
       randomProject: false,
     },
-    revalidate: 60,
+    revalidate: 60, 
   };
 };
