@@ -99,7 +99,7 @@ function convertRepoToProject(repo: GitHubRepo): Project {
 
 function mapReposToProjects(repos: GitHubRepo[]): Project[] {
   if (!repos || repos.length < 1) return [];
-  const filteredData = repos.filter((repo) => !repo.archived);
+  const filteredData = repos.filter((repo) => !repo.archived && repo.topics?.includes('ucla-opensource'));
   const sortedData = filteredData.sort(
     (a, b) =>
       new Date(b.updated_at as string).getTime() - new Date(a.updated_at as string).getTime(),
