@@ -59,16 +59,18 @@ function mapIssuesToProjects(issues: GitHubIssue[], repoMap: Map<string, GitHubR
   while(!itVal.done){
     const [repoUrl, repoIssues] = itVal.value;
     const correspondingRepo = repoMap.get(repoUrl);
+
     if(!correspondingRepo){
-      //console.error('Repo Map went wrong!');
+      // console.error('Repo Map went wrong!');
       return gfis;
+    } else if (correspondingRepo?.topics?.includes('ucla-opensource')) {
+      const correspondingProject = convertRepoToProject(correspondingRepo);
+      gfis.push({
+        issues: repoIssues,
+        project: correspondingProject,
+        repoURL: repoUrl,
+      });
     }
-    const correspondingProject = convertRepoToProject(correspondingRepo);
-    gfis.push({
-      issues: repoIssues,
-      project: correspondingProject,
-      repoURL: repoUrl,
-    });
     itVal = mapIter.next();
   }
   return gfis;
