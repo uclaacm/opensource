@@ -35,7 +35,7 @@ body {
 
 .assignee-image {
   border-radius: 50%;
-  overflow:  hidden;
+  overflow: hidden;
   width: 30px;
   height: 30px;
 }
@@ -52,8 +52,31 @@ body {
 }
 
 /* overriding the WestwoodCSS default */
+.navbar {
+  background: white;
+  box-shadow: 0 0 4px #e2e2e2;
+  height: 72px;
+  align-items: center;
+  padding-left: 20px;
+  position: fixed;
+  width: 100%;
+  z-index: 10;
+  top: 0;
+  justify-content: space-between;
+  padding-top: 0px;
+}
+
 .navbar-link a {
-  padding-left: 1em !important;
+  font-family: inherit;
+  font-size: 0.95em;
+  font-weight: 600;
+  text-transform: lowercase;
+  transition: 0.2s;
+}
+
+.navbar-link a:hover {
+  color: #1e6cff;
+  cursor: pointer;
 }
 
 .navbar-link > button {
@@ -72,27 +95,27 @@ body {
 }
 
 .dev-language-badge.lang-js {
-  background-color: #EFDF6A;
+  background-color: #efdf6a;
 }
 
 .dev-language-badge.lang-ts {
-  background-color: #2B7489;
+  background-color: #2b7489;
 }
 
 .dev-language-badge.lang-scss {
-  background-color: #C6538C;
+  background-color: #c6538c;
 }
 
 .dev-language-badge.lang-go {
-  background-color: #4AABD5;
+  background-color: #4aabd5;
 }
 
 .dev-language-badge.lang-html {
-  background-color: #D35A31;
+  background-color: #d35a31;
 }
 
 .dev-language-badge.lang-rust {
-  background-color: #DEA584;
+  background-color: #dea584;
 }
 
 .vertically-aligned-row {
@@ -118,7 +141,7 @@ body {
 }
 
 .gfi-title > h3 {
-  margin: 0
+  margin: 0;
 }
 
 .gfi-image {
@@ -127,12 +150,12 @@ body {
 }
 
 .gfi-button {
-  background-color: #1E6CFF;
+  background-color: #1e6cff;
   color: white;
 }
 
 .gfi-button-displayed {
-  color: #1E6CFF;
+  color: #1e6cff;
   background-color: rgb(244, 244, 244);
 }
 
