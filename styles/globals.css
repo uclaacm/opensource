@@ -68,10 +68,12 @@ body {
 
 .navbar-link a {
   font-family: inherit;
-  font-size: 0.95em;
+  font-size: 0.9em;
   font-weight: 600;
   text-transform: lowercase;
   transition: 0.2s;
+  color: inherit;
+  line-height: 40px;
 }
 
 .navbar-link a:hover {
