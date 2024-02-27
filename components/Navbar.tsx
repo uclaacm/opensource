@@ -1,15 +1,20 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
-import WordmarkLogo from '../public/acm-logo-wordmark-extended.png';
+import WordmarkLogo from '../public/acm_wordmark_chapter.svg';
 
 function Navbar(): JSX.Element {
   return (
     <nav className="navbar">
       <div className="navbar-brand">
-        <Link href="/">
-          <a className='force-child-display-block'>
-            <Image src={WordmarkLogo} width={106} height={40} alt="Open Source at ACM Home" />
+        <Link href="https://www.uclaacm.com/">
+          <a className="force-child-display-block">
+            <Image
+              src={WordmarkLogo}
+              width={180}
+              height={60}
+              alt="Open Source at ACM Home"
+            />
           </a>
         </Link>
       </div>
