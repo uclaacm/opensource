@@ -7,12 +7,13 @@ import { Project, ACMCommitteeTopics, GitHubColors, GitHubRepo, GitHubIssue, GFI
 export async function getProjects(): Promise<Project[]> {
   const PaginatedOctokit = Octokit.plugin(paginateRest);
   const octokit = new PaginatedOctokit();
-  const projectsResponse = await octokit.paginate('GET /orgs/{org}/repos', {
-    org: 'uclaacm',
+  const queryString = 'ucla-opensource in:topics';
+  const searchResponse = await octokit.paginate('GET /search/repositories', {
+    q: queryString,
     per_page: 100,
-  });
+  }) as GitHubRepo[];
 
-  const projects = mapReposToProjects(projectsResponse);
+  const projects = mapReposToProjects(searchResponse);
   return projects;
 }
 
@@ -20,11 +21,11 @@ export async function getProjects(): Promise<Project[]> {
 export async function getGoodFirstIssueProjects(): Promise<GFIProject[]> {
   const PaginatedOctokit = Octokit.plugin(paginateRest);
   const octokit = new PaginatedOctokit();
-  const gfiIssuesSearchQuery = 'org:uclaacm+label:"good+first+issue"+is:open';
+  const gfiIssuesSearchQuery = 'ucla-opensource in:topics+label:"good+first+issue"+is:open';
   const gfiIssuesResponse = await octokit.paginate('GET /search/issues', {
     q: gfiIssuesSearchQuery,
   }) as GitHubIssue[];
-  const gfiReposSearchQuery = 'good-first-issues:>0+org:uclaacm';
+  const gfiReposSearchQuery = 'ucla-opensource in:topics+good-first-issues:>0';
   const gfiReposResponse = await octokit.paginate('GET /search/repositories', {
     q: gfiReposSearchQuery,
   }) as GitHubRepo[];
@@ -59,10 +60,12 @@ function mapIssuesToProjects(issues: GitHubIssue[], repoMap: Map<string, GitHubR
   while(!itVal.done){
     const [repoUrl, repoIssues] = itVal.value;
     const correspondingRepo = repoMap.get(repoUrl);
+
     if(!correspondingRepo){
-      //console.error('Repo Map went wrong!');
+      // console.error('Repo Map went wrong!');
       return gfis;
     }
+
     const correspondingProject = convertRepoToProject(correspondingRepo);
     gfis.push({
       issues: repoIssues,
@@ -83,8 +86,8 @@ function convertRepoToProject(repo: GitHubRepo): Project {
       repo: repo.html_url,
       lang: repo.language ?? '',
       topics: repo.topics ?? [],
-      image: getImageFromTopics(repo.topics).image,
-      alt: getImageFromTopics(repo.topics).alt,
+      image: getImageFromRepo(repo).image,
+      alt: getImageFromRepo(repo).alt,
     }
     : {
       name: repo.name,
@@ -92,8 +95,8 @@ function convertRepoToProject(repo: GitHubRepo): Project {
       repo: repo.html_url ?? '',
       lang: repo.language ?? '',
       topics: repo.topics ?? [],
-      image: getImageFromTopics(repo.topics).image,
-      alt: getImageFromTopics(repo.topics).alt,
+      image: getImageFromRepo(repo).image,
+      alt: getImageFromRepo(repo).alt,
     };
 }
 
@@ -169,7 +172,18 @@ function topicToImg(topic: string): ImageInfo | false {
   }
 }
 
-export function getImageFromTopics(topics: string[] | undefined): ImageInfo {
+export function getImageFromRepo(repo: GitHubRepo): ImageInfo {
+  if (repo.owner.login === 'uclaacm') {
+    return getACMImageFromTopics(repo.topics);
+  } else {
+    return {
+      image: '/ucla-logo.png',
+      alt: 'No logo shown',
+    } as ImageInfo;
+  }
+}
+
+function getACMImageFromTopics(topics: string[] | undefined): ImageInfo {
   if (topics) {
     for (const topic of topics) {
       const committeeImg = topicToImg(topic);
