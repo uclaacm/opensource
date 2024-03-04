@@ -7,12 +7,13 @@ import { Project, ACMCommitteeTopics, GitHubColors, GitHubRepo, GitHubIssue, GFI
 export async function getProjects(): Promise<Project[]> {
   const PaginatedOctokit = Octokit.plugin(paginateRest);
   const octokit = new PaginatedOctokit();
-  const projectsResponse = await octokit.paginate('GET /orgs/{org}/repos', {
-    org: 'uclaacm',
+  const queryString = 'ucla-opensource in:topics';
+  const searchResponse = await octokit.paginate('GET /search/repositories', {
+    q: queryString,
     per_page: 100,
-  });
+  }) as GitHubRepo[];
 
-  const projects = mapReposToProjects(projectsResponse);
+  const projects = mapReposToProjects(searchResponse);
   return projects;
 }
 
@@ -101,7 +102,7 @@ function convertRepoToProject(repo: GitHubRepo): Project {
 
 function mapReposToProjects(repos: GitHubRepo[]): Project[] {
   if (!repos || repos.length < 1) return [];
-  const filteredData = repos.filter((repo) => !repo.archived && repo.topics?.includes('ucla-opensource'));
+  const filteredData = repos.filter((repo) => !repo.archived);
   const sortedData = filteredData.sort(
     (a, b) =>
       new Date(b.updated_at as string).getTime() - new Date(a.updated_at as string).getTime(),
