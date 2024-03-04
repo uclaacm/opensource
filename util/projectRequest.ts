@@ -21,11 +21,11 @@ export async function getProjects(): Promise<Project[]> {
 export async function getGoodFirstIssueProjects(): Promise<GFIProject[]> {
   const PaginatedOctokit = Octokit.plugin(paginateRest);
   const octokit = new PaginatedOctokit();
-  const gfiIssuesSearchQuery = 'org:uclaacm+label:"good+first+issue"+is:open';
+  const gfiIssuesSearchQuery = 'ucla-opensource in:topics+label:"good+first+issue"+is:open';
   const gfiIssuesResponse = await octokit.paginate('GET /search/issues', {
     q: gfiIssuesSearchQuery,
   }) as GitHubIssue[];
-  const gfiReposSearchQuery = 'good-first-issues:>0+org:uclaacm';
+  const gfiReposSearchQuery = 'ucla-opensource in:topics+good-first-issues:>0';
   const gfiReposResponse = await octokit.paginate('GET /search/repositories', {
     q: gfiReposSearchQuery,
   }) as GitHubRepo[];
@@ -64,14 +64,14 @@ function mapIssuesToProjects(issues: GitHubIssue[], repoMap: Map<string, GitHubR
     if(!correspondingRepo){
       // console.error('Repo Map went wrong!');
       return gfis;
-    } else if (correspondingRepo?.topics?.includes('ucla-opensource')) {
-      const correspondingProject = convertRepoToProject(correspondingRepo);
-      gfis.push({
-        issues: repoIssues,
-        project: correspondingProject,
-        repoURL: repoUrl,
-      });
     }
+
+    const correspondingProject = convertRepoToProject(correspondingRepo);
+    gfis.push({
+      issues: repoIssues,
+      project: correspondingProject,
+      repoURL: repoUrl,
+    });
     itVal = mapIter.next();
   }
   return gfis;
