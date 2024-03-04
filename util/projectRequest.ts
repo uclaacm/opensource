@@ -86,8 +86,8 @@ function convertRepoToProject(repo: GitHubRepo): Project {
       repo: repo.html_url,
       lang: repo.language ?? '',
       topics: repo.topics ?? [],
-      image: getImageFromTopics(repo.topics).image,
-      alt: getImageFromTopics(repo.topics).alt,
+      image: getImageFromRepo(repo).image,
+      alt: getImageFromRepo(repo).alt,
     }
     : {
       name: repo.name,
@@ -95,8 +95,8 @@ function convertRepoToProject(repo: GitHubRepo): Project {
       repo: repo.html_url ?? '',
       lang: repo.language ?? '',
       topics: repo.topics ?? [],
-      image: getImageFromTopics(repo.topics).image,
-      alt: getImageFromTopics(repo.topics).alt,
+      image: getImageFromRepo(repo).image,
+      alt: getImageFromRepo(repo).alt,
     };
 }
 
@@ -172,7 +172,18 @@ function topicToImg(topic: string): ImageInfo | false {
   }
 }
 
-export function getImageFromTopics(topics: string[] | undefined): ImageInfo {
+export function getImageFromRepo(repo: GitHubRepo): ImageInfo {
+  if (repo.owner.login === 'uclaacm') {
+    return getACMImageFromTopics(repo.topics);
+  } else {
+    return {
+      image: '/ucla-logo.png',
+      alt: 'No logo shown',
+    } as ImageInfo;
+  }
+}
+
+function getACMImageFromTopics(topics: string[] | undefined): ImageInfo {
   if (topics) {
     for (const topic of topics) {
       const committeeImg = topicToImg(topic);
