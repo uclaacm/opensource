@@ -7,7 +7,7 @@ function Navbar(): JSX.Element {
   return (
     <nav className="navbar">
       <div className="navbar-brand">
-        <Link href="https://www.uclaacm.com/">
+        <Link href="https://opensource.uclaacm.com/">
           <a className="force-child-display-block">
             <Image
               src={WordmarkLogo}
@@ -20,6 +20,9 @@ function Navbar(): JSX.Element {
       </div>
       <div className="navbar-items">
         <div className="navbar-link">
+          <Link href="https://www.uclaacm.com/">
+            <a>acm website</a>
+          </Link>
           <Link href="/projects">
             <a>projects</a>
           </Link>
