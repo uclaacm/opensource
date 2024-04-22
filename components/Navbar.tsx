@@ -67,10 +67,15 @@ function Navbar(): JSX.Element {
               </Link>
             </li>
             <li>
-              <Link href="https://github.com/uclaacm">
-                <a className="button button-transparent button-lg font-header">
-                  GitHub
-                </a>
+              <Link href="https://github.com/uclaacm" passHref>
+                <button
+                  className="github"
+                  type="button"
+                  role="link"
+                  onClick={menuActivate}
+                >
+                  GITHUB
+                </button>
               </Link>
             </li>
           </ul>

@@ -79,6 +79,7 @@ body {
 
 #navbar #nav-container #nav-title {
   z-index: 12;
+  margin-top: 5px;
 }
 
 #navbar #nav-container #nav-title #acm-logo {
@@ -90,7 +91,7 @@ body {
 #navbar #nav-container #hamburger {
   align-items: center;
   background-color: transparent;
-  border: 0;
+  border: none;
   border-radius: 50%;
   cursor: pointer;
   display: none;
@@ -140,18 +141,20 @@ body {
 
 #navbar #nav-container .nav-items li {
   line-height: 40px;
-  padding: 0 20px;
+  padding: 0 10px;
 }
 
 #navbar #nav-container .nav-items li button {
   background-color: transparent;
-  border: 0;
+  border: none;
+  outline: none;
   color: inherit;
   font-family: inherit;
   font-size: 0.95em;
   font-weight: 600;
   text-transform: lowercase;
   transition: 0.2s;
+  margin: 0;
 }
 
 #navbar #nav-container .nav-items li button:hover {
@@ -159,8 +162,16 @@ body {
   cursor: pointer;
 }
 
-#navbar #nav-container .nav-items li:hover {
-  color: #333;
+#navbar #nav-container .nav-items li .github {
+  border: 0.7mm solid;
+  color: #1e6cff;
+  text-transform: none;
+}
+
+#navbar #nav-container .nav-items li .github:hover {
+  background-color: #1e6cff;
+  color: white;
+  transition: none;
 }
 
 @media (max-width: 1160px) {
@@ -193,9 +204,12 @@ body {
   }
 
   #navbar #menu-modal .nav-items .button {
-    padding: 10px 20px;
+    padding: 0 20px;
     white-space: nowrap;
     border: #2b7489;
+  }
+  #navbar #menu-modal .nav-items .button :focus {
+    outline: none;
   }
 
   #navbar #menu-modal .nav-items li {
