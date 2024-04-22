@@ -53,37 +53,165 @@ body {
 }
 
 /* overriding the WestwoodCSS default */
-.navbar {
+#navbar {
   background: white;
   box-shadow: 0 0 4px #e2e2e2;
+  color: #333;
+  font-family: 'Poppins', 'Helvetica Neue', 'Helvetica', sans-serif;
+  font-weight: 600;
   height: 72px;
-  align-items: center;
-  padding-left: 20px;
+  left: 0;
+  margin: 0;
+  padding: 0;
   position: fixed;
+  text-transform: lowercase;
+  top: 0;
   width: 100%;
   z-index: 10;
-  top: 0;
-  justify-content: space-between;
-  padding-top: 0px;
 }
 
-.navbar-link a {
+#navbar #nav-container {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+#navbar #nav-container #nav-title {
+  z-index: 12;
+}
+
+#navbar #nav-container #nav-title #acm-logo {
+  height: 60px;
+  margin-top: 05px;
+  width: 180px;
+}
+
+#navbar #nav-container #hamburger {
+  align-items: center;
+  background-color: transparent;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  display: none;
+  flex-direction: column;
+  height: 50px;
+  justify-content: center;
+  margin: 0 20px;
+  overflow: hidden;
+  position: relative;
+  width: 50px;
+  z-index: 12;
+}
+
+#navbar #nav-container #hamburger .bar {
+  background-color: #595959;
+  border-radius: 04px;
+  height: 03px;
+  margin: 2px 0;
+  position: relative;
+  transition: all 0.5s ease-in-out;
+  width: 20px;
+}
+
+#navbar #nav-container #hamburger.active #bar-one {
+  transform: rotate(45deg) translate(5px, 4px);
+}
+
+#navbar #nav-container #hamburger.active #bar-two {
+  transform: translateX(-50px);
+}
+
+#navbar #nav-container #hamburger.active #bar-three {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+#navbar #nav-container #hamburger:hover .bar {
+  background-color: #1e6cff;
+}
+
+#navbar #nav-container .nav-items {
+  align-items: center;
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#navbar #nav-container .nav-items li {
+  line-height: 40px;
+  padding: 0 20px;
+}
+
+#navbar #nav-container .nav-items li button {
+  background-color: transparent;
+  border: 0;
+  color: inherit;
   font-family: inherit;
-  font-size: 0.9em;
+  font-size: 0.95em;
   font-weight: 600;
   text-transform: lowercase;
   transition: 0.2s;
-  color: inherit;
-  line-height: 40px;
 }
 
-.navbar-link a:hover {
+#navbar #nav-container .nav-items li button:hover {
   color: #1e6cff;
   cursor: pointer;
 }
 
-.navbar-link > button {
-  margin-left: 4em;
+#navbar #nav-container .nav-items li:hover {
+  color: #333;
+}
+
+@media (max-width: 1160px) {
+  #navbar #nav-container #hamburger {
+    display: flex;
+  }
+
+  #navbar #menu-modal {
+    background: rgba(255, 255, 255, 0.95);
+    height: 100vh;
+    left: 50vw;
+    overflow-y: scroll;
+    position: absolute;
+    top: 50vh;
+    transform: translate(-50%, -150%);
+    transition: transform 0.35s cubic-bezier(0.05, 1.04, 0.72, 0.98);
+    width: 100vw;
+    z-index: 11;
+  }
+
+  #navbar #menu-modal .nav-items {
+    display: none;
+    font-size: 1.8em;
+    font-weight: 600;
+    left: 50vw;
+    margin: 10px 0;
+    position: absolute;
+    top: 50vh;
+    transform: translate(-50%, -50%);
+  }
+
+  #navbar #menu-modal .nav-items .button {
+    padding: 10px 20px;
+    white-space: nowrap;
+    border: #2b7489;
+  }
+
+  #navbar #menu-modal .nav-items li {
+    margin: 5px 0;
+  }
+
+  #navbar #menu-modal .nav-items.active {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #navbar #menu-modal.active {
+    transform: translate(-50%, -50%);
+    transition: transform 0.35s cubic-bezier(0.05, 1.04, 0.72, 0.98);
+  }
 }
 
 .dev-language-badge {
