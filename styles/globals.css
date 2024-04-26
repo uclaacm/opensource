@@ -103,6 +103,7 @@ body {
   position: relative;
   width: 50px;
   z-index: 12;
+  box-shadow: none;
 }
 
 #navbar #nav-container #hamburger .bar {
