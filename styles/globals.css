@@ -146,7 +146,6 @@ body {
 
 #navbar #nav-container .nav-items li button {
   background-color: transparent;
-  border: none;
   outline: none;
   color: inherit;
   font-family: inherit;
@@ -155,6 +154,7 @@ body {
   text-transform: lowercase;
   transition: 0.2s;
   margin: 0;
+  box-shadow: none;
 }
 
 #navbar #nav-container .nav-items li button:hover {
