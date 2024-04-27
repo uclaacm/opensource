@@ -142,7 +142,7 @@ body {
 
 #navbar #nav-container .nav-items li {
   line-height: 40px;
-  padding: 0 10px;
+  padding: 0px;
 }
 
 #navbar #nav-container .nav-items li button {
@@ -167,6 +167,7 @@ body {
   border: 0.7mm solid;
   color: #1e6cff;
   text-transform: none;
+  margin: 0 15px;
 }
 
 #navbar #nav-container .nav-items li .github:hover {
