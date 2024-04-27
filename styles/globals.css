@@ -156,6 +156,7 @@ body {
   transition: 0.2s;
   margin: 0;
   box-shadow: none;
+  border-radius: 15px;
 }
 
 #navbar #nav-container .nav-items li button:hover {
