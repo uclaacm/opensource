@@ -1,44 +1,116 @@
 import { Octokit } from '@octokit/core';
 import { paginateRest } from '@octokit/plugin-paginate-rest';
 import githubColorsFixture from '../data/githubColors.json';
-import { Project, ACMCommitteeTopics, GitHubColors } from './types';
+import { Project, ACMCommitteeTopics, GitHubColors, GitHubRepo, GitHubIssue, GFIProject } from './types';
 
+//get projects within uclaacm org
 export async function getProjects(): Promise<Project[]> {
   const PaginatedOctokit = Octokit.plugin(paginateRest);
   const octokit = new PaginatedOctokit();
-  const projectsResponse = await octokit.paginate('GET /orgs/{org}/repos', {
-    org: 'uclaacm',
+  const queryString = 'ucla-opensource in:topics';
+  const searchResponse = await octokit.paginate('GET /search/repositories', {
+    q: queryString,
     per_page: 100,
-  });
+  }) as GitHubRepo[];
 
-  const filteredData = projectsResponse.filter((repo) => !repo.archived);
+  const projects = mapReposToProjects(searchResponse);
+  return projects;
+}
+
+//search uclaacm org for good first issues, repos which contain gfis, and match them up
+export async function getGoodFirstIssueProjects(): Promise<GFIProject[]> {
+  const PaginatedOctokit = Octokit.plugin(paginateRest);
+  const octokit = new PaginatedOctokit();
+  const gfiIssuesSearchQuery = 'ucla-opensource in:topics+label:"good+first+issue"+is:open';
+  const gfiIssuesResponse = await octokit.paginate('GET /search/issues', {
+    q: gfiIssuesSearchQuery,
+  }) as GitHubIssue[];
+  const gfiReposSearchQuery = 'ucla-opensource in:topics+good-first-issues:>0';
+  const gfiReposResponse = await octokit.paginate('GET /search/repositories', {
+    q: gfiReposSearchQuery,
+  }) as GitHubRepo[];
+  const repoMap = new Map<string, GitHubRepo>();
+  //turn the gfiReposResponse into a map of url and the entire repo
+  for (const repo of gfiReposResponse){
+    repoMap.set(repo.url,repo);
+  }
+  const gfiProjects = mapIssuesToProjects(gfiIssuesResponse, repoMap);
+  return gfiProjects;
+}
+
+function mapIssuesToProjects(issues: GitHubIssue[], repoMap: Map<string, GitHubRepo>) : GFIProject[]{
+  //turn the issues into a map of projects and a list of issues associated with it
+  const mappedRepos = new Map<string, GitHubIssue[]>();
+  // console.log(issues);
+  if(issues.length ==0){
+    //console.error('No open good first issues!');
+    return [];
+  }
+  for (const issue of issues){
+    const issueRepoURL = issue.repository_url;
+    //if map already contains that project, append to array of issues, or make a new array containing it
+    mappedRepos.set(issueRepoURL,[...mappedRepos.get(issueRepoURL) ?? [], issue]);
+  }
+
+  const mapIter = mappedRepos.entries();
+
+  //turn everything into a gfiProject[]
+  const gfis : GFIProject[] = [];
+  let itVal = mapIter.next();
+  while(!itVal.done){
+    const [repoUrl, repoIssues] = itVal.value;
+    const correspondingRepo = repoMap.get(repoUrl);
+
+    if(!correspondingRepo){
+      // console.error('Repo Map went wrong!');
+      return gfis;
+    }
+
+    const correspondingProject = convertRepoToProject(correspondingRepo);
+    gfis.push({
+      issues: repoIssues,
+      project: correspondingProject,
+      repoURL: repoUrl,
+    });
+    itVal = mapIter.next();
+  }
+  return gfis;
+}
+
+function convertRepoToProject(repo: GitHubRepo): Project {
+  return repo.homepage
+    ? {
+      name: repo.name,
+      description: repo.description ?? '',
+      link: repo.homepage ?? '',
+      repo: repo.html_url,
+      lang: repo.language ?? '',
+      topics: repo.topics ?? [],
+      image: getImageFromRepo(repo).image,
+      alt: getImageFromRepo(repo).alt,
+    }
+    : {
+      name: repo.name,
+      description: repo.description ?? '',
+      repo: repo.html_url ?? '',
+      lang: repo.language ?? '',
+      topics: repo.topics ?? [],
+      image: getImageFromRepo(repo).image,
+      alt: getImageFromRepo(repo).alt,
+    };
+}
+
+function mapReposToProjects(repos: GitHubRepo[]): Project[] {
+  if (!repos || repos.length < 1) return [];
+  const filteredData = repos.filter((repo) => !repo.archived);
   const sortedData = filteredData.sort(
     (a, b) =>
       new Date(b.updated_at as string).getTime() - new Date(a.updated_at as string).getTime(),
   );
-  return sortedData.map((repo) =>
-    repo.homepage
-      ? {
-        name: repo.name,
-        description: repo.description ?? '',
-        link: repo.homepage ?? '',
-        repo: repo.html_url,
-        lang: repo.language ?? '',
-        topics: repo.topics ?? [],
-        image: getImageFromTopics(repo.topics).image,
-        alt: getImageFromTopics(repo.topics).alt,
-      }
-      : {
-        name: repo.name,
-        description: repo.description ?? '',
-        repo: repo.html_url ?? '',
-        lang: repo.language ?? '',
-        topics: repo.topics ?? [],
-        image: getImageFromTopics(repo.topics).image,
-        alt: getImageFromTopics(repo.topics).alt,
-      },
+  return sortedData.map((repo) => convertRepoToProject(repo),
   );
 }
+
 export async function getGithubColors(): Promise<GitHubColors> {
   const githubColorsResponse = await fetch(
     'https://raw.githubusercontent.com/ozh/github-colors/master/colors.json',
@@ -100,7 +172,18 @@ function topicToImg(topic: string): ImageInfo | false {
   }
 }
 
-export function getImageFromTopics(topics: string[] | undefined): ImageInfo {
+export function getImageFromRepo(repo: GitHubRepo): ImageInfo {
+  if (repo.owner.login === 'uclaacm') {
+    return getACMImageFromTopics(repo.topics);
+  } else {
+    return {
+      image: '/ucla-logo.png',
+      alt: 'No logo shown',
+    } as ImageInfo;
+  }
+}
+
+function getACMImageFromTopics(topics: string[] | undefined): ImageInfo {
   if (topics) {
     for (const topic of topics) {
       const committeeImg = topicToImg(topic);

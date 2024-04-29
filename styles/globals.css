@@ -4,6 +4,7 @@ html,
 body {
   padding: 0;
   margin: 0;
+  margin-top: 70px;
 }
 
 * {
@@ -33,18 +34,201 @@ body {
   height: 100%;
 }
 
+.assignee-image {
+  border-radius: 50%;
+  overflow: hidden;
+  width: 30px;
+  height: 30px;
+}
+
 /* this overrides a child div's display, which is useful for nullifying next/image's wrapper */
 .force-child-display-block > div {
   display: block !important;
 }
 
-/* overriding the WestwoodCSS default */
-.navbar-link a {
-  padding-left: 1em !important;
+.spaced-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.navbar-link > button {
-  margin-left: 1em;
+/* overriding the WestwoodCSS default */
+#navbar {
+  background: white;
+  box-shadow: 0 0 4px #e2e2e2;
+  color: #333;
+  font-family: 'Poppins', 'Helvetica Neue', 'Helvetica', sans-serif;
+  font-weight: 600;
+  height: 72px;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  position: fixed;
+  text-transform: lowercase;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+}
+
+#navbar #nav-container {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+#navbar #nav-container #nav-title {
+  z-index: 12;
+  margin-top: 5px;
+}
+
+#navbar #nav-container #nav-title #acm-logo {
+  height: 60px;
+  margin-top: 05px;
+  width: 180px;
+}
+
+#navbar #nav-container #hamburger {
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: none;
+  flex-direction: column;
+  height: 50px;
+  justify-content: center;
+  margin: 0 20px;
+  overflow: hidden;
+  position: relative;
+  width: 50px;
+  z-index: 12;
+  box-shadow: none;
+}
+
+#navbar #nav-container #hamburger .bar {
+  background-color: #595959;
+  border-radius: 04px;
+  height: 03px;
+  margin: 2px 0;
+  position: relative;
+  transition: all 0.5s ease-in-out;
+  width: 20px;
+}
+
+#navbar #nav-container #hamburger.active #bar-one {
+  transform: rotate(45deg) translate(5px, 4px);
+}
+
+#navbar #nav-container #hamburger.active #bar-two {
+  transform: translateX(-50px);
+}
+
+#navbar #nav-container #hamburger.active #bar-three {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+#navbar #nav-container #hamburger:hover .bar {
+  background-color: #1e6cff;
+}
+
+#navbar #nav-container .nav-items {
+  align-items: center;
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#navbar #nav-container .nav-items li {
+  line-height: 40px;
+  padding: 0px;
+}
+
+#navbar #nav-container .nav-items li button {
+  background-color: transparent;
+  outline: none;
+  color: inherit;
+  font-family: inherit;
+  font-size: 0.95em;
+  font-weight: 600;
+  text-transform: lowercase;
+  transition: 0.2s;
+  margin: 0;
+  box-shadow: none;
+  border-radius: 15px;
+}
+
+#navbar #nav-container .nav-items li button:hover {
+  color: #1e6cff;
+  cursor: pointer;
+}
+
+#navbar #nav-container .nav-items li .github {
+  border: 0.7mm solid;
+  color: #1e6cff;
+  text-transform: none;
+  margin: 0 15px;
+}
+
+#navbar #nav-container .nav-items li .github:hover {
+  background-color: #1e6cff;
+  color: white;
+  transition: none;
+}
+
+@media (max-width: 1160px) {
+  #navbar #nav-container #hamburger {
+    display: flex;
+  }
+
+  #navbar #menu-modal {
+    background: rgba(255, 255, 255, 0.95);
+    height: 100vh;
+    left: 50vw;
+    overflow-y: scroll;
+    position: absolute;
+    top: 50vh;
+    transform: translate(-50%, -150%);
+    transition: transform 0.35s cubic-bezier(0.05, 1.04, 0.72, 0.98);
+    width: 100vw;
+    z-index: 11;
+  }
+
+  #navbar #menu-modal .nav-items {
+    display: none;
+    font-size: 1.8em;
+    font-weight: 600;
+    left: 50vw;
+    margin: 10px 0;
+    position: absolute;
+    top: 50vh;
+    transform: translate(-50%, -50%);
+  }
+
+  #navbar #menu-modal .nav-items .button {
+    padding: 0 20px;
+    white-space: nowrap;
+    border: #2b7489;
+  }
+  #navbar #menu-modal .nav-items .button :focus {
+    outline: none;
+  }
+
+  #navbar #menu-modal .nav-items li {
+    margin: 5px 0;
+  }
+
+  #navbar #menu-modal .nav-items.active {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #navbar #menu-modal.active {
+    transform: translate(-50%, -50%);
+    transition: transform 0.35s cubic-bezier(0.05, 1.04, 0.72, 0.98);
+  }
 }
 
 .dev-language-badge {
@@ -59,25 +243,81 @@ body {
 }
 
 .dev-language-badge.lang-js {
-  background-color: #EFDF6A;
+  background-color: #efdf6a;
 }
 
 .dev-language-badge.lang-ts {
-  background-color: #2B7489;
+  background-color: #2b7489;
 }
 
 .dev-language-badge.lang-scss {
-  background-color: #C6538C;
+  background-color: #c6538c;
 }
 
 .dev-language-badge.lang-go {
-  background-color: #4AABD5;
+  background-color: #4aabd5;
 }
 
 .dev-language-badge.lang-html {
-  background-color: #D35A31;
+  background-color: #d35a31;
 }
 
 .dev-language-badge.lang-rust {
-  background-color: #DEA584;
+  background-color: #dea584;
+}
+
+.vertically-aligned-row {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  align-items: center;
+}
+
+.vertically-aligned-row > * {
+  align-items: center;
+  align-content: center;
+}
+
+.gfi-title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+  vertical-align: top;
+  text-align: center;
+}
+
+.gfi-title > h3 {
+  margin: 0;
+}
+
+.gfi-image {
+  width: 75px;
+  height: 75px;
+}
+
+.gfi-button {
+  background-color: #1e6cff;
+  color: white;
+}
+
+.gfi-button-displayed {
+  color: #1e6cff;
+  background-color: rgb(244, 244, 244);
+}
+
+.comment-icon {
+  margin-right: 5px;
+}
+
+dl * {
+  display: inline;
+  margin: 0;
+}
+
+.action {
+  font-weight: bold;
+  color: black;
+  font-size: 36px;
 }
