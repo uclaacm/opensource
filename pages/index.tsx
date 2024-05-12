@@ -53,13 +53,13 @@ export default function Home({
             <div className="card">
               <div className="card-body">
                 <Link href="/projects">
-                  <a>
-                    <h3>Projects &rarr;</h3>
-                    <p>
-                      All of our projects are open-source! Literally, all of
-                      them.
-                    </p>
-                  </a>
+
+                  <h3>Projects &rarr;</h3>
+                  <p>
+                    All of our projects are open-source! Literally, all of
+                    them.
+                  </p>
+
                 </Link>
               </div>
             </div>
@@ -91,10 +91,10 @@ export default function Home({
             <div className="card">
               <div className="card-body">
                 <Link href="/contribute">
-                  <a>
-                    <h3>Contribute &rarr;</h3>
-                    <p>Make your first pull request with us!</p>
-                  </a>
+
+                  <h3>Contribute &rarr;</h3>
+                  <p>Make your first pull request with us!</p>
+
                 </Link>
               </div>
             </div>

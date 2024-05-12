@@ -12,8 +12,8 @@ function ELink ({link, children}: ELinkProps): JSX.Element {
     target: '_blank',
   };
   return (
-    <Link href={link}>
-      <a {...linkProps}>{children}</a>
+    <Link href={link} {...linkProps}>
+      {children}
     </Link>
   );
 
