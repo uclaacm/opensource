@@ -28,25 +28,22 @@ export default function Home({
           title="open source at ACM at UCLA"
           description="at the largest computer science community at UCLA, we care about open-source"
           openGraph={{
-            images: [{
-              url: 'https://opensource.uclaacm.com/logo.png',
-              width: 1200,
-              height: 1200,
-              alt: 'The ACM at UCLA logo',
-            }],
+            images: [
+              {
+                url: 'https://opensource.uclaacm.com/logo.png',
+                width: 1200,
+                height: 1200,
+                alt: 'The ACM at UCLA logo',
+              },
+            ],
             site_name: 'open source at ACM at UCLA',
           }}
         />
-        <h1>
-          open source at{' '}
-          <ELink link="https://uclaacm.com">
-            ACM at UCLA
-          </ELink>
-        </h1>
+        <h1>open source at UCLA</h1>
         <hr />
         <p className="knockout-description">
-          at the largest computer science community at UCLA,
-          <br /> <b>we care about open-source.</b>
+          maintained by <ELink link="https://uclaacm.com">ACM at UCLA</ELink>,
+          the largest computer science community at UCLA
         </p>
         <div className="row">
           <div className="col-6">
@@ -104,7 +101,8 @@ export default function Home({
 
         <h2>featured project</h2>
         <ProjectCard
-          project={randomProject ? randomProject : projects[projNumToDisplay]} preload={true}
+          project={randomProject ? randomProject : projects[projNumToDisplay]}
+          preload={true}
           githubColors={githubColors}
         />
         <h2>what we&apos;ve been doing recently...</h2>
@@ -116,15 +114,12 @@ export default function Home({
             ))}
             <p>
               see more activity{' '}
-              <ELink link="https://github.com/uclaacm/">
-                on our org
-              </ELink>
-              !
+              <ELink link="https://github.com/uclaacm/">on our org</ELink>!
             </p>
           </div>
         </div>
-      </div >
-    </Layout >
+      </div>
+    </Layout>
   );
 }
 
@@ -140,7 +135,6 @@ export const getStaticProps: GetStaticProps = async () => {
     org: 'uclaacm',
   });
   const recentEvents = eventResponse.data;
-
 
   const githubColors = await getGithubColors();
 
