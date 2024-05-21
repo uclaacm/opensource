@@ -36,8 +36,8 @@ function Projects({ projects, githubColors }: ProjectsProps): JSX.Element {
         />
         <h1>check out current UCLA open source projects</h1>
         <p>
-          a (work-in-progress) heads-up overview of the projects that power ACM
-          at UCLA.
+          an overview of all open-source projects affiliated with UCLA,
+          extending beyond those managed by ACM at UCLA.
         </p>
         <hr />
         <SearchFilter
