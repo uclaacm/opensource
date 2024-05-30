@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
 
@@ -16,15 +16,19 @@ function Navbar(): JSX.Element {
   return (
     <nav id="navbar">
       <section id="nav-container">
-        <Link href="https://opensource.uclaacm.com/">
-          <a id="nav-title" className="nav-section left" aria-label="acm home">
-            <Image
-              src={WordmarkLogo}
-              width={180}
-              height={60}
-              alt="Open Source at ACM Home"
-            />
-          </a>
+        <Link
+          href="https://opensource.uclaacm.com/"
+          id="nav-title"
+          className="nav-section left"
+          aria-label="acm home">
+
+          <Image
+            src={WordmarkLogo}
+            width={180}
+            height={60}
+            alt="Open Source at ACM Home"
+          />
+
         </Link>
 
         <button
@@ -46,28 +50,28 @@ function Navbar(): JSX.Element {
             role="presentation"
           >
             <li>
-              <Link href="https://www.uclaacm.com/" passHref>
+              <Link href="https://www.uclaacm.com/" passHref legacyBehavior>
                 <button type="button" role="link" onClick={menuActivate}>
                   ACM Website
                 </button>
               </Link>
             </li>
             <li>
-              <Link href="/projects" passHref>
+              <Link href="/projects" passHref legacyBehavior>
                 <button type="button" role="link" onClick={menuActivate}>
                   Projects
                 </button>
               </Link>
             </li>
             <li>
-              <Link href="/contribute" passHref>
+              <Link href="/contribute" passHref legacyBehavior>
                 <button type="button" role="link" onClick={menuActivate}>
                   Contribute
                 </button>
               </Link>
             </li>
             <li>
-              <Link href="https://github.com/uclaacm" passHref>
+              <Link href="https://github.com/uclaacm" passHref legacyBehavior>
                 <button
                   className="github"
                   type="button"

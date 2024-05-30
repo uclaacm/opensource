@@ -85,10 +85,10 @@ export default function Home({
             <div className="card">
               <div className="card-body">
                 <Link href="/contribute">
-                  <a>
-                    <h3>Contribute &rarr;</h3>
-                    <p>Make your first pull request with us!</p>
-                  </a>
+
+                  <h3>Contribute &rarr;</h3>
+                  <p>Make your first pull request with us!</p>
+
                 </Link>
               </div>
             </div>

@@ -49,7 +49,7 @@ function mapIssuesToProjects(issues: GitHubIssue[], repoMap: Map<string, GitHubR
   for (const issue of issues){
     const issueRepoURL = issue.repository_url;
     //if map already contains that project, append to array of issues, or make a new array containing it
-    mappedRepos.set(issueRepoURL,[...mappedRepos.get(issueRepoURL) ?? [], issue]);
+    mappedRepos.set(issueRepoURL,[...(mappedRepos.get(issueRepoURL) ?? []), issue]);
   }
 
   const mapIter = mappedRepos.entries();
