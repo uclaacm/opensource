@@ -50,10 +50,8 @@ export default function Home({
             <div className="card">
               <div className="card-body">
                 <Link href="/projects">
-                  <a>
-                    <h3>Projects &rarr;</h3>
-                    <p>Check out current UCLA open source projects!</p>
-                  </a>
+                  <h3>Projects &rarr;</h3>
+                  <p>Check out current UCLA open source projects!</p>
                 </Link>
               </div>
             </div>
@@ -85,10 +83,8 @@ export default function Home({
             <div className="card">
               <div className="card-body">
                 <Link href="/contribute">
-
                   <h3>Contribute &rarr;</h3>
                   <p>Make your first pull request with us!</p>
-
                 </Link>
               </div>
             </div>
