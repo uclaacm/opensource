@@ -52,10 +52,7 @@ export default function Home({
                 <Link href="/projects">
                   <a>
                     <h3>Projects &rarr;</h3>
-                    <p>
-                      All of our projects are open-source! Literally, all of
-                      them.
-                    </p>
+                    <p>Check out current UCLA open source projects!</p>
                   </a>
                 </Link>
               </div>
@@ -66,7 +63,7 @@ export default function Home({
               <div className="card-body">
                 <ELink link="https://dev-pathways.netlify.app/">
                   <h3>Learning &rarr;</h3>
-                  <p>Pick up the skills to write great software.</p>
+                  <p>Pick up the skills to write great software!</p>
                 </ELink>
               </div>
             </div>

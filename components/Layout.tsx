@@ -19,7 +19,7 @@ function Layout(props: LayoutProps): JSX.Element {
           content="width=device-width, initial-scale=1, minimum-scale=1"
         />
 
-        <title>open source at ucla</title>
+        <title>open source at acm at ucla</title>
         <link rel="icon" href="/logo.png" />
       </Head>
       <Navbar />

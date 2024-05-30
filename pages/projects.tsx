@@ -34,7 +34,7 @@ function Projects({ projects, githubColors }: ProjectsProps): JSX.Element {
             site_name: 'open source at ACM at UCLA',
           }}
         />
-        <h1>check out current UCLA open source projects</h1>
+        <h1>projects</h1>
         <p>
           an overview of all open-source projects affiliated with UCLA,
           extending beyond those managed by ACM at UCLA.
