@@ -13,16 +13,17 @@ function Layout(props: LayoutProps): JSX.Element {
       <Head>
         <meta charSet="UTF-8" />
         <meta name="title" content="opensource at acm at ucla" />
-        <meta name="description" content="open source at acm at ucla!"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+        <meta name="description" content="open source at acm at ucla!" />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, minimum-scale=1"
+        />
 
         <title>open source at acm at ucla</title>
         <link rel="icon" href="/logo.png" />
       </Head>
       <Navbar />
-      <main>
-        {props.children}
-      </main>
+      <main>{props.children}</main>
       <Footer />
     </>
   );
