@@ -18,7 +18,7 @@
   "dependencies": {
     "@octokit/core": "^3.5.1",
     "@octokit/plugin-paginate-rest": "^2.17.0",
-    "@octokit/rest": "^18.12.0",
+    "@octokit/rest": "^20.1.1",
     "@octokit/types": "^13.5.0",
     "@octokit/webhooks-types": "^5.4.0",
     "moment": "^2.29.4",
