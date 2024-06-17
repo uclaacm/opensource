@@ -25,6 +25,9 @@ module.exports = {
     '@typescript-eslint',
   ],
   settings: {
+    "import/resolver": {
+      "typescript": {}
+    },
     react: {
       version: 'detect',
     },
