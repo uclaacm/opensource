@@ -1,7 +1,7 @@
 import { Octokit } from '@octokit/core';
 import { paginateRest } from '@octokit/plugin-paginate-rest';
-import githubColorsFixture from '../data/githubColors.json';
 import { Project, ACMCommitteeTopics, GitHubColors, GitHubRepo, GitHubIssue, GFIProject } from './types';
+import githubColorsFixture from '../data/githubColors.json';
 
 //get projects within uclaacm org
 export async function getProjects(): Promise<Project[]> {

@@ -1,7 +1,7 @@
 import Image from 'next/legacy/image';
 import React from 'react';
-import { Project, GitHubColors } from '../util/';
 import ELink from './ELink';
+import { Project, GitHubColors } from '../util/';
 
 interface ProjectCardProps {
   project: Project;
