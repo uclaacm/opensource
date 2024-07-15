@@ -1,7 +1,7 @@
 import { Octokit } from '@octokit/core';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
-import { NextSeo } from 'next-seo';
 import Link from 'next/link';
+import { NextSeo } from 'next-seo';
 import React from 'react';
 import ELink from '../components/ELink';
 import GitHubEventComponent from '../components/GitHubEvent';

@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useState, useEffect } from 'react';
-import { Project } from '../../util';
 import Searchbar from './Searchbar';
+import { Project } from '../../util';
 
 interface SearchFilterProps {
   projects: Project[];

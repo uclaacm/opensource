@@ -1,8 +1,8 @@
 import moment from 'moment';
 import React from 'react';
-import { GitHubEvent } from '../util';
 import ELink from './ELink';
 import GitHubEventAction from './GitHubEventAction';
+import { GitHubEvent } from '../util';
 
 
 function GitHubEventComponent(props: GitHubEvent): JSX.Element {

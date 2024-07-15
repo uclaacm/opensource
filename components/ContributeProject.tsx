@@ -1,7 +1,7 @@
 import Image from 'next/legacy/image';
 import React, { useState } from 'react';
-import { GFIProject, GitHubColors, GithubIssueAssignees } from '../util';
 import ELink from './ELink';
+import { GFIProject, GitHubColors, GithubIssueAssignees } from '../util';
 
 
 interface ContributeProjectProps {

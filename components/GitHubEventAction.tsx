@@ -10,8 +10,8 @@ import type {
   PushEvent, PublicEvent, WatchEvent,
 } from '@octokit/webhooks-types';
 import React from 'react';
-import { GitHubEvent } from '../util';
 import ELink from './ELink';
+import { GitHubEvent } from '../util';
 
 export type GitHubEventPayloadType =
   | CreateEvent
