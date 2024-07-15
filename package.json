@@ -29,7 +29,7 @@
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^14.2.3",
-    "@testing-library/react": "^12.1.2",
+    "@testing-library/react": "^15.0.5",
     "@types/jest": "^29.5.12",
     "@types/node": "^18.14.2",
     "@types/react": "^17.0.38",
