@@ -133,6 +133,7 @@ function topicToImg(topic: string): ImageInfo | false {
         alt: 'ACM AI Logo',
       };
     case ACMCommitteeTopics.CYBER:
+    case 'cyber':
       return {
         image: '/committee-logos/cyber-logo.png',
         alt: 'ACM Cyber Logo',
@@ -184,6 +185,7 @@ export function getImageFromRepo(repo: GitHubRepo): ImageInfo {
 }
 
 function getACMImageFromTopics(topics: string[] | undefined): ImageInfo {
+  // console.log(topics)
   if (topics) {
     for (const topic of topics) {
       const committeeImg = topicToImg(topic);
