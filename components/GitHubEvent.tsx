@@ -8,7 +8,8 @@ import { GitHubEvent } from '../util';
 function GitHubEventComponent(props: GitHubEvent): JSX.Element {
   const { type, actor, repo, payload, created_at } = props;
   const timePassed = moment(created_at).fromNow();
-  const userLink = !actor.login.includes('[bot]') ? <ELink link={`https://github.com/${actor.login}`}>{`@${actor.login}`}</ELink> : actor.login;
+  const userLink = <ELink link={`https://github.com/${actor.login}`}>{`@${actor.login}`}</ELink>;
+
   return (
     <>
       {/* <div className="card" style={{marginTop: "20px"}}> */}

@@ -102,9 +102,17 @@ export default function Home({
         <p>this is a live feed of our {numRepos} repositories</p>
         <div className="card">
           <div className="card-body">
-            {recentEvents.map((event: GitHubEvent) => (
-              <GitHubEventComponent {...event} key={event.id} />
-            ))}
+            {recentEvents
+              // Filter to remove bot accounts (dependabot, etc)
+              .filter(
+                (event: GitHubEvent) =>
+                  !['[bot]'].some((botAccount) =>
+                    event.actor.login.includes(botAccount),
+                  ),
+              )
+              .map((event: GitHubEvent) => (
+                <GitHubEventComponent {...event} key={event.id} />
+              ))}
             <p>
               see more activity{' '}
               <ELink link="https://github.com/uclaacm/">on our org</ELink>!
