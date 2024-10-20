@@ -1,10 +1,12 @@
-import React, { ChangeEvent, useState, useEffect } from 'react';
+import React, { ChangeEvent, useEffect } from 'react';
 import Searchbar from './Searchbar';
 import { Project } from '../../util';
 
 interface SearchFilterProps {
   projects: Project[];
   setFilteredProjects: (projectList: Project[]) => void;
+  searchQuery: string;
+  setSearchQuery: (search: string) => void;
 }
 
 function lowercaseRemove(s: string) {
@@ -16,12 +18,14 @@ function lowercaseRemove(s: string) {
   return newString;
 }
 
-function SearchFilter({projects, setFilteredProjects}: SearchFilterProps): JSX.Element {
-
-  const [searchbarText, setSearchbarText] = useState('');
-
+function SearchFilter({
+  projects,
+  setFilteredProjects,
+  setSearchQuery,
+  searchQuery,
+}: SearchFilterProps): JSX.Element {
   const handleSearchInput = (e: ChangeEvent<HTMLInputElement>) => {
-    setSearchbarText(e.target.value);
+    setSearchQuery(e.target.value);
   };
 
   const filterProjectsBySearchText = (project: Project) => {
@@ -30,21 +34,20 @@ function SearchFilter({projects, setFilteredProjects}: SearchFilterProps): JSX.E
     // remove - and _ and white spaces from search, and make it lowercase to make it easier for the user to
     // search things without typing the exact name
     // e.g. if the user searches "devpathways" or "dev pathways" they should still be able to see "Dev-Pathways"
-    const search = lowercaseRemove(searchbarText);
+    const search = lowercaseRemove(searchQuery);
 
-    const {
-      name,
-      description,
-      lang,
-      topics,
-    } = project;
+    const { name, description, lang, topics } = project;
 
     // can search by name, description, or language
     const lowercaseName = lowercaseRemove(name);
     const lowercaseDescription = lowercaseRemove(description);
     const lowercaseLang = lowercaseRemove(lang);
 
-    if (lowercaseName.includes(search) || lowercaseDescription.includes(search) || lowercaseLang.includes(search)) {
+    if (
+      lowercaseName.includes(search) ||
+      lowercaseDescription.includes(search) ||
+      lowercaseLang.includes(search)
+    ) {
       return true;
     }
 
@@ -64,12 +67,12 @@ function SearchFilter({projects, setFilteredProjects}: SearchFilterProps): JSX.E
   useEffect(() => {
     const tempProjects = projects.filter(filterProjectsBySearchText);
     setFilteredProjects(tempProjects);
-  }, [searchbarText]);
+  }, [searchQuery]);
 
   return (
     <div>
       <Searchbar
-        value={searchbarText}
+        value={searchQuery}
         onChange={(e: ChangeEvent<HTMLInputElement>) => handleSearchInput(e)}
       />
     </div>
