@@ -66,10 +66,9 @@ function ProjectCardBody({
   searchQuery = '',
   ...props
 }: ProjectCardBodyProps) {
-  const { repo, link, lang } = project;
+  const { repo, link, description, lang } = project;
 
   const name = highlightText(project.name, searchQuery);
-  const description = highlightText(project.description, searchQuery);
 
   const topics = (() => {
     if (project.topics.length === 0) return [];
@@ -95,10 +94,10 @@ function ProjectCardBody({
               : 'black',
           }}
         ></span>{' '}
-        {lang || 'Markdown'}
+        {highlightText(lang, searchQuery) || 'Markdown'}
         {topics.length > 0 && <span> • {topics}</span>}
       </p>
-      <p>{description}</p>
+      <p>{highlightText(description, searchQuery)}</p>
       <ELink link={repo}>GitHub Repository</ELink>
     </div>
   );
