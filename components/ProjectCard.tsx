@@ -49,16 +49,26 @@ interface ProjectCardBodyProps {
   searchQuery?: string;
 }
 
+const escapeSpecialCharacters = (string: string) => {
+  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+};
+
 const highlightText = (text: string, query: string) => {
   if (!query) return text;
-  const parts = text.split(new RegExp(`(${query})`, 'gi'));
-  return parts.map((part, index) =>
-    part.toLowerCase() === query.toLowerCase() ? (
-      <mark key={index}>{part}</mark>
-    ) : (
-      part
-    ),
-  );
+
+  try {
+    const escapedQuery = escapeSpecialCharacters(query);
+    const parts = text.split(new RegExp(`(${escapedQuery})`, 'gi'));
+    return parts.map((part, index) =>
+      part.toLowerCase() === query.toLowerCase() ? (
+        <mark key={index}>{part}</mark>
+      ) : (
+        part
+      ),
+    );
+  } catch (e) {
+    return text;
+  }
 };
 
 function ProjectCardBody({
