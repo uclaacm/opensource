@@ -54,6 +54,7 @@ const escapeSpecialCharacters = (string: string) => {
 };
 
 const highlightText = (text: string, query: string) => {
+  query = query.trim();
   if (!query) return text;
 
   try {
