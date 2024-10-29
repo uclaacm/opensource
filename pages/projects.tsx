@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Layout from '../components/Layout';
 import ProjectCard from '../components/ProjectCard';
 import SearchFilter from '../components/SearchFilter/SearchFilter';
-import { getProjects, Project, GitHubColors, getGithubColors } from '../util';
+import { getGithubColors, getProjects, GitHubColors, Project } from '../util';
 
 interface ProjectsProps {
   projects: Project[];
@@ -15,6 +15,8 @@ function Projects({ projects, githubColors }: ProjectsProps): JSX.Element {
   // projects is a master list of all the projects that we fetched, filteredProjects is the one that we render
   // to the user
   const [filteredProjects, setFilteredProjects] = useState(projects);
+  const [searchQuery, setSearchQuery] = useState('');
+
 
   return (
     <Layout>
@@ -43,6 +45,8 @@ function Projects({ projects, githubColors }: ProjectsProps): JSX.Element {
         <SearchFilter
           projects={projects}
           setFilteredProjects={setFilteredProjects}
+          setSearchQuery={setSearchQuery}
+          searchQuery={searchQuery}
         />
         <hr />
         <div className="row same-height-grid">
@@ -51,6 +55,7 @@ function Projects({ projects, githubColors }: ProjectsProps): JSX.Element {
               return (
                 <div className="col-4" key={project.name}>
                   <ProjectCard
+                    searchQuery={searchQuery}
                     project={project}
                     vertical
                     preload={i < 3}

@@ -7,7 +7,8 @@ interface ProjectCardProps {
   project: Project;
   vertical?: boolean;
   preload?: boolean;
-  githubColors: GitHubColors
+  githubColors: GitHubColors;
+  searchQuery?: string;
 }
 
 interface ProjectCardImageProps {
@@ -43,19 +44,53 @@ function ProjectCardImage({ project, preload }: ProjectCardImageProps) {
 }
 
 interface ProjectCardBodyProps {
-  githubColors: GitHubColors,
-  project: Project
+  githubColors: GitHubColors;
+  project: Project;
+  searchQuery?: string;
 }
 
-function ProjectCardBody(props: ProjectCardBodyProps) {
-  const {
-    name,
-    description,
-    repo,
-    link,
-    lang,
-    topics,
-  } = props.project;
+const escapeSpecialCharacters = (string: string) => {
+  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+};
+
+const highlightText = (text: string, query: string) => {
+  query = query.trim();
+  if (!query) return text;
+
+  try {
+    const escapedQuery = escapeSpecialCharacters(query);
+    const parts = text.split(new RegExp(`(${escapedQuery})`, 'gi'));
+    return parts.map((part, index) =>
+      part.toLowerCase() === query.toLowerCase() ? (
+        <mark key={index}>{part}</mark>
+      ) : (
+        part
+      ),
+    );
+  } catch (e) {
+    return text;
+  }
+};
+
+function ProjectCardBody({
+  project,
+  searchQuery = '',
+  ...props
+}: ProjectCardBodyProps) {
+  const { repo, link, description, lang } = project;
+
+  const name = highlightText(project.name, searchQuery);
+
+  const topics = (() => {
+    if (project.topics.length === 0) return [];
+    return project.topics.map((topic, index) => (
+      <span key={index}>
+        {highlightText(topic, searchQuery)}
+        {index < project.topics.length - 1 && ', '}
+      </span>
+    ));
+  })();
+
   return (
     <div className="card-body">
       <h3 className="mt-1">
@@ -70,10 +105,10 @@ function ProjectCardBody(props: ProjectCardBodyProps) {
               : 'black',
           }}
         ></span>{' '}
-        {lang || 'Markdown'}
-        {topics.length > 0 && <span> • {topics.join(', ')}</span>}
+        {highlightText(lang, searchQuery) || 'Markdown'}
+        {topics.length > 0 && <span> • {topics}</span>}
       </p>
-      <p>{description}</p>
+      <p>{highlightText(description, searchQuery)}</p>
       <ELink link={repo}>GitHub Repository</ELink>
     </div>
   );
@@ -86,12 +121,17 @@ function ProjectCard({
   vertical = false,
   preload = false,
   githubColors,
+  searchQuery = '',
 }: ProjectCardProps): JSX.Element {
   if (vertical) {
     return (
       <div className="card">
         <ProjectCardImage project={project} preload={preload} />
-        <ProjectCardBody project={project} githubColors={githubColors} />
+        <ProjectCardBody
+          searchQuery={searchQuery}
+          project={project}
+          githubColors={githubColors}
+        />
       </div>
     );
   }
@@ -102,7 +142,11 @@ function ProjectCard({
           <ProjectCardImage project={project} preload={preload} />
         </div>
         <div className="col-6">
-          <ProjectCardBody project={project} githubColors={githubColors} />
+          <ProjectCardBody
+            searchQuery={searchQuery}
+            project={project}
+            githubColors={githubColors}
+          />
         </div>
       </div>
     </div>
