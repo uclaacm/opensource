@@ -53,7 +53,7 @@ function Projects({ projects, githubColors }: ProjectsProps): JSX.Element {
           {filteredProjects.length > 0 ? (
             filteredProjects.map((project, i) => {
               return (
-                <div className="col-4" key={project.name}>
+                <div className="project-grid-item" key={project.name}>
                   <ProjectCard
                     searchQuery={searchQuery}
                     project={project}

@@ -177,6 +177,22 @@ body {
   transition: none;
 }
 
+.project-grid-item {
+  grid-column: span 4;
+}
+
+@media (max-width: 800px) {
+  .project-grid-item {
+    grid-column: span 6;
+  }
+}
+
+@media (max-width: 600px) {
+  .project-grid-item {
+    grid-column: span 12;
+  }
+}
+
 @media (max-width: 1160px) {
   #navbar #nav-container #hamburger {
     display: flex;
