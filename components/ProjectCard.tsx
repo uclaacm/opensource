@@ -1,5 +1,5 @@
 import Image from 'next/legacy/image';
-import React from 'react';
+import React, {useState, useEffect } from 'react';
 import ELink from './ELink';
 import { Project, GitHubColors } from '../util/';
 
@@ -123,7 +123,17 @@ function ProjectCard({
   githubColors,
   searchQuery = '',
 }: ProjectCardProps): JSX.Element {
-  if (vertical) {
+
+  // For mobile devices, set project card to be always in `vertical` format
+  const [isVertical, setIsVertical] = useState(vertical);
+  useEffect(() => {
+    const handleResize = () => setIsVertical(vertical || window.innerWidth < 540);
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [vertical]);
+
+  if (isVertical) {
     return (
       <div className="card">
         <ProjectCardImage project={project} preload={preload} />
