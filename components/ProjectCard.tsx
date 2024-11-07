@@ -1,5 +1,5 @@
 import Image from 'next/legacy/image';
-import React, {useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import ELink from './ELink';
 import { Project, GitHubColors } from '../util/';
 
@@ -18,28 +18,34 @@ interface ProjectCardImageProps {
 
 function ProjectCardImage({ project, preload }: ProjectCardImageProps) {
   const { image, alt, link } = project;
-  return link ? (
-    <ELink link={link}>
-      <Image
-        src={image ?? '/logo.png'}
-        alt={alt}
-        width="1000"
-        height="1000"
-        layout="responsive"
-        priority={preload}
-      />
-    </ELink>
-  ) : (
-    <>
-      <Image
-        src={image}
-        alt={alt}
-        width="1000"
-        height="1000"
-        layout="responsive"
-        priority={preload}
-      />
-    </>
+  return (
+    <div className="card-image-container">
+      {link ? (
+        <ELink link={link}>
+          <Image
+            src={image ?? '/logo.png'}
+            alt={alt}
+            width="1000"
+            height="1000"
+            layout="fill"
+            objectFit="contain"
+            priority={preload}
+          />
+        </ELink>
+      ) : (
+        <>
+          <Image
+            src={image}
+            alt={alt}
+            width="1000"
+            height="1000"
+            layout="fill"
+            objectFit="contain"
+            priority={preload}
+          />
+        </>
+      )}
+    </div>
   );
 }
 
@@ -123,7 +129,6 @@ function ProjectCard({
   githubColors,
   searchQuery = '',
 }: ProjectCardProps): JSX.Element {
-
   // For mobile devices, set project card to be always in `vertical` format
   const [isVertical, setIsVertical] = useState(vertical);
   useEffect(() => {
@@ -136,7 +141,9 @@ function ProjectCard({
   if (isVertical) {
     return (
       <div className="card">
+        {/* <div className="card-image-container"> */}
         <ProjectCardImage project={project} preload={preload} />
+        {/* </div> */}
         <ProjectCardBody
           searchQuery={searchQuery}
           project={project}
@@ -148,8 +155,10 @@ function ProjectCard({
   return (
     <div className="card">
       <div className="row">
-        <div className="col-6">
+        <div className="col-6 centered-content">
+          {/* <div className="card-image-container"> */}
           <ProjectCardImage project={project} preload={preload} />
+          {/* </div> */}
         </div>
         <div className="col-6">
           <ProjectCardBody
