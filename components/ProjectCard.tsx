@@ -141,9 +141,7 @@ function ProjectCard({
   if (isVertical) {
     return (
       <div className="card">
-        {/* <div className="card-image-container"> */}
         <ProjectCardImage project={project} preload={preload} />
-        {/* </div> */}
         <ProjectCardBody
           searchQuery={searchQuery}
           project={project}
@@ -156,9 +154,7 @@ function ProjectCard({
     <div className="card">
       <div className="row">
         <div className="col-6 centered-content">
-          {/* <div className="card-image-container"> */}
           <ProjectCardImage project={project} preload={preload} />
-          {/* </div> */}
         </div>
         <div className="col-6">
           <ProjectCardBody
