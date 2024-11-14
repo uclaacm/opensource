@@ -45,8 +45,9 @@ export default function Home({
           maintained by <ELink link="https://uclaacm.com">ACM at UCLA</ELink>,
           the largest computer science community at UCLA
         </p>
+
         <div className="row">
-          <div className="col-6">
+          <div className="col-6 col-mb-12">
             <div className="card">
               <div className="card-body">
                 <Link href="/projects">
@@ -56,7 +57,7 @@ export default function Home({
               </div>
             </div>
           </div>
-          <div className="col-6">
+          <div className="col-6 col-mb-12">
             <div className="card">
               <div className="card-body">
                 <ELink link="https://dev-pathways.netlify.app/">
@@ -68,8 +69,8 @@ export default function Home({
           </div>
         </div>
 
-        <div className="row mt-2">
-          <div className="col-6">
+        <div className="row">
+          <div className="col-6 col-mb-12">
             <div className="card">
               <div className="card-body">
                 <ELink link="https://uclaacm.com/events">
@@ -79,7 +80,7 @@ export default function Home({
               </div>
             </div>
           </div>
-          <div className="col-6">
+          <div className="col-6 col-mb-12">
             <div className="card">
               <div className="card-body">
                 <Link href="/contribute">
@@ -90,7 +91,7 @@ export default function Home({
             </div>
           </div>
         </div>
-        <hr className="mt-2" />
+        <hr />
 
         <h2>featured project</h2>
         <ProjectCard
